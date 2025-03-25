@@ -28,6 +28,8 @@ export const LanguageSwitcher = () => {
         checked={locale === 'de'}
         onChange={(e) => handleSwitch(e.target.checked ? 'de' : 'en')}
         disabled={isPending}
+        aria-label="Switch language"
+        aria-busy={isPending}
       />
       <label htmlFor="language-toggle" />
       <span className="on">EN</span>
