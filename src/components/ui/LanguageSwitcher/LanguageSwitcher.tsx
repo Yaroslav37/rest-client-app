@@ -1,17 +1,38 @@
-import React from 'react';
+'use client';
+
+import { useLocale } from 'next-intl';
+import { useRouter } from 'next/navigation';
+import { useTransition } from 'react';
+import { setUserLocale } from '@/services/locale';
+import { Locale } from '@/i18n/config';
 import './index.css';
 
 export const LanguageSwitcher = () => {
+  const locale = useLocale();
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
+
+  const handleSwitch = (newLocale: Locale) => {
+    startTransition(async () => {
+      await setUserLocale(newLocale);
+      router.refresh();
+    });
+  };
+
   return (
     <div className="switch">
       <input
         id="language-toggle"
         className="check-toggle check-toggle-round-flat"
         type="checkbox"
+        checked={locale === 'de'}
+        onChange={(e) => handleSwitch(e.target.checked ? 'de' : 'en')}
+        disabled={isPending}
       />
-      <label htmlFor="language-toggle"></label>
+      <label htmlFor="language-toggle" />
       <span className="on">EN</span>
       <span className="off">DE</span>
+      {isPending && <div className="absolute inset-0 bg-white/10 backdrop-blur-[1px]" />}
     </div>
   );
 };
