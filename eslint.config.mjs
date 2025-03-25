@@ -14,7 +14,7 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
-  { ignores: ['.next/**', 'node_modules/**'] },
+  { ignores: ['.next/**', 'node_modules/**', 'eslint.config.mjs'] },
   {
     languageOptions: {
       globals: {

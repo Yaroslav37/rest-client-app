@@ -1,18 +1,8 @@
 import type { Metadata } from 'next';
-import './globals.css';
-import { Geist, Geist_Mono } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale } from 'next-intl/server';
-
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-});
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
-});
+import { inter, montserrat, openSans } from '@/utils/fonts';
+import '../styles/globals.css';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -28,7 +18,7 @@ export default async function RootLayout({
 
   return (
     <html lang={locale}>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${openSans.variable} ${montserrat.variable} ${inter.variable}`}>
         <NextIntlClientProvider>{children}</NextIntlClientProvider>
       </body>
     </html>
