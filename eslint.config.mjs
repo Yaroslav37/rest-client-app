@@ -1,5 +1,4 @@
 import globals from 'globals';
-import js from '@eslint/js'
 import nextPlugin from '@next/eslint-plugin-next';
 import pluginSimpleImportSort from 'eslint-plugin-simple-import-sort';
 import pluginReact from 'eslint-plugin-react';
@@ -13,11 +12,10 @@ const __dirname = dirname(__filename);
 
 const compat = new FlatCompat({
   baseDirectory: __dirname,
-  recommendedConfig: js.configs.recommended,
 });
 
 const eslintConfig = [
-  { ignores: ['.next/**', 'node_modules/**', 'eslint.config.mjs'] },
+  { ignores: ['.next/**', 'node_modules/**'] },
   {
     languageOptions: {
       globals: {
