@@ -18,7 +18,7 @@
 }
 
 input.check-toggle-round-flat:checked ~ .off {
-  color: #474a4f;
+  color: #fff;
 }
 
 input.check-toggle-round-flat:checked ~ .on {
@@ -28,7 +28,7 @@ input.check-toggle-round-flat:checked ~ .on {
 .switch > span.on {
   left: 0;
   padding-left: 2px;
-  color: #474a4f;
+  color: #fff;
 }
 
 .switch > span.off {
@@ -77,7 +77,7 @@ input.check-toggle-round-flat + label:after {
   left: 4px;
   bottom: 4px;
   width: 45px;
-  background-color: #fff;
+  background-color: #618930;
   border-radius: 52px;
   transition: margin 0.2s;
 }
