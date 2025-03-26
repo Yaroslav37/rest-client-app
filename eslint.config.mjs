@@ -18,7 +18,6 @@ const compat = new FlatCompat({
 
 const eslintConfig = [
   { ignores: ['.next/**', 'node_modules/**', 'eslint.config.mjs'] },
-  { files: ['**/*.{ts,tsx}'] },
   {
     languageOptions: {
       globals: {
@@ -32,13 +31,13 @@ const eslintConfig = [
       },
     },
   },
- ...compat.extends(
-  'next/core-web-vitals',
-  'next/typescript',
-  'plugin:@typescript-eslint/recommended',
-  'plugin:react/recommended',
-  'prettier',
-),
+  ...compat.extends(
+    'next/core-web-vitals',
+    'next/typescript',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:react/recommended',
+    'prettier',
+  ),
   {
     plugins: {
       '@next/next': nextPlugin,
