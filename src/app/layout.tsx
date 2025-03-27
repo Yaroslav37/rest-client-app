@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale } from 'next-intl/server';
 
+import { AuthProvider } from '@/context/authContext';
 import { inter, montserrat, openSans } from '@/utils/fonts';
 
 export const metadata: Metadata = {
@@ -21,7 +22,9 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <body className={`${openSans.variable} ${montserrat.variable} ${inter.variable}`}>
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <AuthProvider>
+          <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        </AuthProvider>
       </body>
     </html>
   );

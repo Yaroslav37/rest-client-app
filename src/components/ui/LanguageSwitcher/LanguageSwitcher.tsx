@@ -36,7 +36,9 @@ export const LanguageSwitcher = () => {
       <label htmlFor="language-toggle" />
       <span className="on">EN</span>
       <span className="off">DE</span>
-      {isPending && <div className="absolute inset-0 bg-white/10 rounded-2xl backdrop-blur-[1px]" />}
+      {isPending && (
+        <div className="absolute inset-0 bg-white/10 rounded-2xl backdrop-blur-[1px]" />
+      )}
     </div>
   );
 };
