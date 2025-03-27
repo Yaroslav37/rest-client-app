@@ -1,5 +1,10 @@
 {
   "HomePage": {
     "title": "Hallo Welt!"
+  },
+  "Header": {
+    "sign-in": "Eintragen",
+    "sign-up": "Anmeldung",
+    "sign-out": "Abmelden"
   }
 }
