@@ -1,10 +1,14 @@
 @import 'tailwindcss';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @theme {
   --font-open-sans: var(--font-open-sans);
   --font-inter: var(--font-inter);
   --font-montserrat: var(--font-montserrat);
 
+  --color-white: rgb(255, 255, 255);
   --color-green: #618930;
   --color-light-green: #87c232;
   --color-dark-grey: #474a4f;
@@ -41,6 +45,7 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
+  background-color: var(--color-dark);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

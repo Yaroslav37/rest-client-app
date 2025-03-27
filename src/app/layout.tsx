@@ -1,9 +1,10 @@
-import '../styles/globals.css';
+import '@/styles/globals.css';
 
 import type { Metadata } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale } from 'next-intl/server';
 
+import Footer from '@/components/layout/Footer/Footer';
 import { inter, montserrat, openSans } from '@/utils/fonts';
 
 export const metadata: Metadata = {
@@ -21,7 +22,10 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <body className={`${openSans.variable} ${montserrat.variable} ${inter.variable}`}>
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <NextIntlClientProvider>
+          <main className="flex-grow">{children}</main>
+          <Footer />
+        </NextIntlClientProvider>
       </body>
     </html>
   );
