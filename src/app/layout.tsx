@@ -3,6 +3,7 @@ import '@/styles/globals.css';
 import type { Metadata } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale } from 'next-intl/server';
+
 import Footer from '@/components/layout/Footer/Footer';
 import { AuthProvider } from '@/context/authContext';
 import { inter, montserrat, openSans } from '@/utils/fonts';
