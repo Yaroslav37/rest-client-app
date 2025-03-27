@@ -1,9 +1,9 @@
-import '../styles/globals.css';
+import '@/styles/globals.css';
 
 import type { Metadata } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale } from 'next-intl/server';
-
+import Footer from '@/components/layout/Footer/Footer';
 import { AuthProvider } from '@/context/authContext';
 import { inter, montserrat, openSans } from '@/utils/fonts';
 
@@ -25,6 +25,7 @@ export default async function RootLayout({
         <AuthProvider>
           <NextIntlClientProvider>{children}</NextIntlClientProvider>
         </AuthProvider>
+        <Footer />
       </body>
     </html>
   );
