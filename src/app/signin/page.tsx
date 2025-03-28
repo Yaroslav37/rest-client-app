@@ -1,8 +1,9 @@
 'use client';
 import { useRouter } from 'next/navigation';
-import React from 'react';
+import React, { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
+import ErrorMessage from '@/components/ui/ErrorMessage/ErrorMessage';
 import { useAuth } from '@/context/authContext';
 
 type Inputs = {
@@ -11,23 +12,22 @@ type Inputs = {
 };
 
 export default function SignInPage() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<Inputs>({});
+  const { register, handleSubmit } = useForm<Inputs>({});
   const { signin } = useAuth();
+  const [error, setError] = useState('');
   const router = useRouter();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const { email, password } = data;
-    await signin(email, password);
-    router.push('/');
+    signin(email, password)
+      .then(() => router.push('/'))
+      .catch((error) => setError(error));
   };
 
   return (
     <div className="w-full max-w-md mx-auto bg-white rounded-lg shadow-md overflow-hidden">
       <div className="px-6 py-8">
+        <ErrorMessage message={error} />
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="space-y-6">
             <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
