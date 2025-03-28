@@ -4,15 +4,17 @@ import React, { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 import ErrorMessage from '@/components/ui/ErrorMessage/ErrorMessage';
+import Button from '@/components/ui/FormButton/FormButton';
+import { FormField } from '@/components/ui/FormField/FormField';
 import { useAuth } from '@/context/authContext';
 
-type Inputs = {
+type SignInFormValues = {
   email: string;
   password: string;
 };
 
 export default function SignInPage() {
-  const { register, handleSubmit } = useForm<Inputs>({
+  const { register, handleSubmit } = useForm<SignInFormValues>({
     mode: 'onBlur',
     reValidateMode: 'onChange',
   });
@@ -20,7 +22,7 @@ export default function SignInPage() {
   const [error, setError] = useState('');
   const router = useRouter();
 
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+  const onSubmit: SubmitHandler<SignInFormValues> = async (data) => {
     const { email, password } = data;
     signin(email, password)
       .then(() => router.push('/'))
@@ -33,30 +35,22 @@ export default function SignInPage() {
         <form onSubmit={handleSubmit(onSubmit)}>
           <ErrorMessage message={error} justifyCenter />
           <div className="space-y-5">
-            <label htmlFor="email" className="block text-sm font-medium text-white mb-1">
-              Email
-            </label>
-            <input
+            <FormField
+              id="email"
               type="email"
-              className="w-full  px-2 py-2 border text-white border-input-border bg-input rounded-md focus:outline-none focus:ring-1 focus:ring-green-600"
+              label="Email"
+              register={register}
               placeholder="email"
-              {...register('email')}
             />
-            <label htmlFor="password" className="block text-sm font-medium text-white mb-1">
-              Password
-            </label>
-            <input
+
+            <FormField
+              id="password"
               type="password"
-              className="w-full px-2 py-2 border text-white border-input-border bg-input rounded-md focus:outline-none focus:ring-1 focus:ring-green-600"
+              label="Password"
+              register={register}
               placeholder="password"
-              {...register('password')}
             />
-            <button
-              type="submit"
-              className="w-full mt-2 py-2 px-4 rounded-md text-white font-medium bg-gradient-to-r from-green-900 to-green-700 hover:from-green-800 hover:to-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors"
-            >
-              Sign In
-            </button>
+            <Button>Sign In</Button>
           </div>
         </form>
       </div>
