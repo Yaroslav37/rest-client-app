@@ -3,6 +3,8 @@ import '@/styles/globals.css';
 import type { Metadata } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale } from 'next-intl/server';
+
+import { Header } from '@/components';
 import Footer from '@/components/layout/Footer/Footer';
 import { AuthProvider } from '@/context/authContext';
 import { inter, montserrat, openSans } from '@/utils/fonts';
@@ -23,9 +25,14 @@ export default async function RootLayout({
     <html lang={locale}>
       <body className={`${openSans.variable} ${montserrat.variable} ${inter.variable}`}>
         <AuthProvider>
-          <NextIntlClientProvider>{children}</NextIntlClientProvider>
+          <NextIntlClientProvider>
+            <div className="min-h-screen flex flex-col">
+              <Header />
+              <main>{children}</main>
+              <Footer />
+            </div>
+          </NextIntlClientProvider>
         </AuthProvider>
-        <Footer />
       </body>
     </html>
   );

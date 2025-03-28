@@ -1,40 +1,82 @@
 'use client';
-import { useRouter } from 'next/navigation';
-import React, { useState } from 'react';
 
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useRouter } from 'next/navigation';
+import React from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+
+import ErrorMessage from '@/components/ui/ErrorMessage/ErrorMessage';
 import { useAuth } from '@/context/authContext';
+import { validationSchema } from '@/lib/yup/schema';
+
+type Inputs = {
+  email: string;
+  password: string;
+  passwordConfirm: string;
+};
 
 export default function SignUpPage() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Inputs>({
+    resolver: yupResolver(validationSchema),
+    mode: 'onBlur',
+  });
   const { signup } = useAuth();
   const router = useRouter();
 
-  const handleClick = async () => {
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    const { email, password } = data;
     await signup(email, password);
     router.push('/');
   };
 
   return (
-    <div className="flex flex-col items-center w-100 h-100">
-      Sign in
-      <input
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="email"
-        className="mb-2 p-2 border border-gray-300 rounded bg-amber-200"
-      />
-      <input
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder="password"
-        className="mb-2 p-2 border border-gray-300 rounded bg-amber-200"
-      />
-      <button className="bg-amber-500 mb-2 p-2 border border-gray-500" onClick={handleClick}>
-        Sign In
-      </button>
+    <div className="w-full max-w-md mx-auto bg-white rounded-lg shadow-md overflow-hidden">
+      <div className="px-6 py-8">
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="space-y-2">
+            <div className="flex items-center gap-1">
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                Email
+              </label>
+            </div>
+            <input
+              type="email"
+              className="w-full  px-2 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-green-600"
+              {...register('email')}
+            />
+            <ErrorMessage message={errors.email?.message} />
+
+            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+              Password
+            </label>
+            <input
+              type="password"
+              className="w-full px-2 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-green-600"
+              {...register('password')}
+            />
+            <ErrorMessage message={errors.password?.message} />
+            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+              Confirm password
+            </label>
+            <input
+              type="password"
+              className="w-full px-2 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-green-600"
+              {...register('passwordConfirm')}
+            />
+            <ErrorMessage message={errors.passwordConfirm?.message} />
+            <button
+              type="submit"
+              className="w-full py-2 px-4 mt-2 rounded-md text-white font-medium bg-gradient-to-r from-green-900 to-green-700 hover:from-green-800 hover:to-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors"
+            >
+              Sign In
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
