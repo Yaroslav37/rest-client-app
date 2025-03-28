@@ -34,43 +34,44 @@ export default function SignUpPage() {
   };
 
   return (
-    <div className="w-full max-w-md mx-auto bg-white rounded-lg shadow-md overflow-hidden">
-      <div className="px-6 py-8">
+    <div className="w-full my-10 max-w-md mx-auto bg-input-bg rounded-lg shadow-md overflow-hidden">
+      <div className="px-6 py-5">
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="space-y-2">
-            <div className="flex items-center gap-1">
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                Email
-              </label>
-            </div>
+          <div className="space-y-5">
+            <label htmlFor="email" className="block text-sm font-medium text-white mb-1">
+              Email
+            </label>
             <input
               type="email"
-              className="w-full  px-2 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-green-600"
+              className="w-full  px-2 py-2 border text-white border-input-border bg-input rounded-md focus:outline-none focus:ring-1 focus:ring-green-600"
               {...register('email')}
+              placeholder="email"
             />
             <ErrorMessage message={errors.email?.message} />
 
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="password" className="block  text-sm font-medium text-white mb-1">
               Password
             </label>
             <input
               type="password"
-              className="w-full px-2 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-green-600"
+              className="w-full px-2 py-2 border text-white border-input-border bg-input rounded-md focus:outline-none focus:ring-1 focus:ring-green-600"
               {...register('password')}
+              placeholder="password"
             />
             <ErrorMessage message={errors.password?.message} />
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="password" className="block text-sm font-medium text-white mb-1">
               Confirm password
             </label>
             <input
               type="password"
-              className="w-full px-2 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-green-600"
+              className="w-full px-2 py-2 border text-white border-input-border bg-input rounded-md focus:outline-none focus:ring-1 focus:ring-green-600"
               {...register('passwordConfirm')}
+              placeholder="password"
             />
             <ErrorMessage message={errors.passwordConfirm?.message} />
             <button
               type="submit"
-              className="w-full py-2 px-4 mt-2 rounded-md text-white font-medium bg-gradient-to-r from-green-900 to-green-700 hover:from-green-800 hover:to-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors"
+              className="w-full mt-2 py-2 px-4 rounded-md text-white font-medium bg-gradient-to-r from-green-900 to-green-700 hover:from-green-800 hover:to-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors"
             >
               Sign In
             </button>

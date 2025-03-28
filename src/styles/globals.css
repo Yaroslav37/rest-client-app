@@ -13,6 +13,10 @@
   --color-grey: #6a6e71;
   --color-dark: #030303;
   --color-error: #e25c5c;
+  --color-input: #212224;
+  --color-input-bg: #0f0f10;
+  --color-input-border: #2f2f31;
+  --color-warning: #e86b10;
 
   --breakpoint-ls: 320px;
   --breakpoint-xs: 500px;
