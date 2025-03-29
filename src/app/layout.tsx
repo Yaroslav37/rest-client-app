@@ -5,7 +5,6 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getLocale } from 'next-intl/server';
 
 import { Header } from '@/components';
-
 import Footer from '@/components/layout/Footer/Footer';
 import { AuthProvider } from '@/context/authContext';
 import { inter, montserrat, openSans } from '@/utils/fonts';

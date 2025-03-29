@@ -1,9 +1,9 @@
 import * as yup from 'yup';
 
-const hasNumber = /\d/;
-const hasUpperCase = /[A-Z]/;
-const hasLowerCase = /[a-z]/;
-const hasSpecialChar = /[!@#$%^&*]/;
+const hasNumber = /\p{N}/u;
+const hasUpperCase = /\p{Lu}/u;
+const hasLowerCase = /\p{Ll}/u;
+const hasSpecialChar = /[^\p{L}\p{N}]/u;
 const minLength = 8;
 
 export const validationSchema = yup.object().shape({
