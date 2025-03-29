@@ -6,5 +6,13 @@
     "sign-in": "Eintragen",
     "sign-up": "Anmeldung",
     "sign-out": "Abmelden"
+  },
+  "NotFound": {
+    "not-found": "Ups! Diese Seite wurde nicht gefunden.",
+    "back": "Zurück zur Hauptseite"
+  },
+   "Error": {
+    "error": "Etwas ist schief gelaufen!",
+    "try": "Erneut versuchen"
   }
 }
