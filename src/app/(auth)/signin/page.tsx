@@ -4,9 +4,9 @@ import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
+import { Button } from '@/components';
+import { FormField } from '@/components';
 import ErrorMessage from '@/components/ui/ErrorMessage/ErrorMessage';
-import Button from '@/components/ui/FormButton/FormButton';
-import { FormField } from '@/components/ui/FormField/FormField';
 import { useAuth } from '@/context/authContext';
 import { ROUTES } from '@/shared/routes';
 

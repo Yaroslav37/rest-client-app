@@ -5,8 +5,8 @@ import { useRouter } from 'next/navigation';
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
-import Button from '@/components/ui/FormButton/FormButton';
-import { FormField } from '@/components/ui/FormField/FormField';
+import { Button } from '@/components';
+import { FormField } from '@/components';
 import { useAuth } from '@/context/authContext';
 import { validationSchema } from '@/lib/yup/schema';
 import { ROUTES } from '@/shared/routes';
