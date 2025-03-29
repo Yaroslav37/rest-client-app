@@ -1,7 +1,10 @@
 'use client';
+
+import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
 import { useAuth } from '@/context/authContext';
+import { ROUTES } from '@/shared/routes';
 
 export default function Home() {
   const t = useTranslations('HomePage');
@@ -14,6 +17,7 @@ export default function Home() {
         {user && (
           <>
             <div className="w-full text-amber-300 text-center">Hello, {user?.email}</div>
+            <Link href={ROUTES.REST} className='text-light-green'>Rest Client</Link>
           </>
         )}
       </main>

@@ -28,9 +28,9 @@ export default function Error({
     transition-colors
     duration-300
     hover:bg-light-green
-    cursor-pointer     
-      hover:scale-105  
-      transform     
+    cursor-pointer
+      hover:scale-105
+      transform
       active:scale-95
   "
       >

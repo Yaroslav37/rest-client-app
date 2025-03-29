@@ -51,7 +51,10 @@ export const Header = () => {
               </Link>
             </div>
           ) : (
-            <button onClick={handleLogout} className="min-w-[98px] text-center flex gap-2.5">
+            <button
+              onClick={handleLogout}
+              className="cursor-pointer min-w-[98px] text-center flex gap-2.5"
+            >
               <Image
                 src="/icons/exit.svg"
                 width={20}
