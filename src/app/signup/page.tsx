@@ -1,40 +1,74 @@
 'use client';
-import { useRouter } from 'next/navigation';
-import React, { useState } from 'react';
 
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useRouter } from 'next/navigation';
+import React from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+
+import Button from '@/components/ui/FormButton/FormButton';
+import { FormField } from '@/components/ui/FormField/FormField';
 import { useAuth } from '@/context/authContext';
+import { validationSchema } from '@/lib/yup/schema';
+import { ROUTES } from '@/shared/routes';
+
+type SignUpFormValues = {
+  email: string;
+  password: string;
+  passwordConfirm: string;
+};
 
 export default function SignUpPage() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<SignUpFormValues>({
+    resolver: yupResolver(validationSchema),
+    mode: 'onBlur',
+  });
   const { signup } = useAuth();
   const router = useRouter();
 
-  const handleClick = async () => {
+  const onSubmit: SubmitHandler<SignUpFormValues> = async (data) => {
+    const { email, password } = data;
     await signup(email, password);
-    router.push('/');
+    router.push(ROUTES.MAIN);
   };
 
   return (
-    <div className="flex flex-col items-center w-100 h-100">
-      Sign in
-      <input
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="email"
-        className="mb-2 p-2 border border-gray-300 rounded bg-amber-200"
-      />
-      <input
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder="password"
-        className="mb-2 p-2 border border-gray-300 rounded bg-amber-200"
-      />
-      <button className="bg-amber-500 mb-2 p-2 border border-gray-500" onClick={handleClick}>
-        Sign In
-      </button>
+    <div className="w-full my-10 max-w-md mx-auto bg-input-bg rounded-lg shadow-md overflow-hidden text-white">
+      <div className="px-6 py-8">
+        <h2 className="flex w-full justify-center text-3xl font-bold pb-5">Sign Up</h2>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="space-y-5">
+            <FormField
+              id="email"
+              type="email"
+              label="Email"
+              register={register}
+              placeholder="email"
+              error={errors.email?.message}
+            />
+            <FormField
+              id="password"
+              type="password"
+              label="Password"
+              register={register}
+              placeholder="password"
+              error={errors.password?.message}
+            />
+            <FormField
+              id="passwordConfirm"
+              type="password"
+              label="Confirm Password"
+              register={register}
+              placeholder="password"
+              error={errors.passwordConfirm?.message}
+            />
+            <Button>Sign Up</Button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
