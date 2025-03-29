@@ -1,4 +1,5 @@
 'use client';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -7,6 +8,7 @@ import ErrorMessage from '@/components/ui/ErrorMessage/ErrorMessage';
 import Button from '@/components/ui/FormButton/FormButton';
 import { FormField } from '@/components/ui/FormField/FormField';
 import { useAuth } from '@/context/authContext';
+import { ROUTES } from '@/shared/routes';
 
 type SignInFormValues = {
   email: string;
@@ -25,13 +27,14 @@ export default function SignInPage() {
   const onSubmit: SubmitHandler<SignInFormValues> = async (data) => {
     const { email, password } = data;
     signin(email, password)
-      .then(() => router.push('/'))
+      .then(() => router.push(ROUTES.MAIN))
       .catch((error) => setError(error));
   };
 
   return (
-    <div className="w-full my-10 max-w-md mx-auto bg-input-bg rounded-lg shadow-md overflow-hidden">
+    <div className="w-full my-10 max-w-md text-white mx-auto bg-input-bg rounded-lg shadow-md overflow-hidden">
       <div className="px-6 py-8">
+        <h2 className="flex w-full justify-center text-3xl font-bold pb-5">Sign In</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
           <ErrorMessage message={error} justifyCenter />
           <div className="space-y-5">
@@ -51,6 +54,12 @@ export default function SignInPage() {
               placeholder="password"
             />
             <Button>Sign In</Button>
+            <Link
+              href={`${ROUTES.SIGN_UP}`}
+              className="flex justify-center text-gray-400 cursor-pointer hover:border-light-green whitespace-pre"
+            >
+              Do not have an account?<span className="text-green-600"> Sign Up</span>
+            </Link>
           </div>
         </form>
       </div>

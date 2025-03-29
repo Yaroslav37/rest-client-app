@@ -9,6 +9,7 @@ import Button from '@/components/ui/FormButton/FormButton';
 import { FormField } from '@/components/ui/FormField/FormField';
 import { useAuth } from '@/context/authContext';
 import { validationSchema } from '@/lib/yup/schema';
+import { ROUTES } from '@/shared/routes';
 
 type SignUpFormValues = {
   email: string;
@@ -31,12 +32,13 @@ export default function SignUpPage() {
   const onSubmit: SubmitHandler<SignUpFormValues> = async (data) => {
     const { email, password } = data;
     await signup(email, password);
-    router.push('/');
+    router.push(ROUTES.MAIN);
   };
 
   return (
-    <div className="w-full my-10 max-w-md mx-auto bg-input-bg rounded-lg shadow-md overflow-hidden">
-      <div className="px-6 py-5">
+    <div className="w-full my-10 max-w-md mx-auto bg-input-bg rounded-lg shadow-md overflow-hidden text-white">
+      <div className="px-6 py-8">
+        <h2 className="flex w-full justify-center text-3xl font-bold pb-5">Sign Up</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="space-y-5">
             <FormField

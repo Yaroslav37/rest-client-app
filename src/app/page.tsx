@@ -5,7 +5,7 @@ import { useAuth } from '@/context/authContext';
 
 export default function Home() {
   const t = useTranslations('HomePage');
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -13,10 +13,7 @@ export default function Home() {
         <h1 className="font-inter">{t('title')}</h1>
         {user && (
           <>
-            <div className="text-amber-300">Hello, {user?.email}</div>
-            <button className="bg-amber-700 w-100" onClick={() => logout()}>
-              logout
-            </button>
+            <div className="w-full text-amber-300 text-center">Hello, {user?.email}</div>
           </>
         )}
       </main>

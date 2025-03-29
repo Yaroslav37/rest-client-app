@@ -2,11 +2,12 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import { useState } from 'react';
 
 import { LanguageSwitcher } from '@/components/ui/LanguageSwitcher/LanguageSwitcher';
 import { Logo } from '@/components/ui/Logo/Logo';
+import { useAuth } from '@/context/authContext';
 import { useScrollTrigger } from '@/hooks/useScrollTrigger';
 import { ROUTES } from '@/shared/routes';
 import { cn } from '@/utils/tailwind-clsx';
@@ -18,8 +19,14 @@ const linksStyles =
 
 export const Header = () => {
   const t = useTranslations('Header');
-  const [isAuthorized] = useState(false);
+  const { user, logout } = useAuth();
+  const router = useRouter();
   const isScrolled = useScrollTrigger(50);
+
+  const handleLogout = () => {
+    logout();
+    router.push(ROUTES.SIGN_IN);
+  };
 
   return (
     <header
@@ -34,7 +41,7 @@ export const Header = () => {
             <Logo />
             <LanguageSwitcher />
           </div>
-          {!isAuthorized ? (
+          {!user ? (
             <div className="flex gap-3 items-center min-w-[167px] justify-center xs:justify-end">
               <Link href={`${ROUTES.SIGN_IN}`} className={linksStyles}>
                 {t('sign-in')}
@@ -44,7 +51,7 @@ export const Header = () => {
               </Link>
             </div>
           ) : (
-            <Link href={`${ROUTES.MAIN}`} className="min-w-[98px] text-center flex gap-2.5">
+            <button onClick={handleLogout} className="min-w-[98px] text-center flex gap-2.5">
               <Image
                 src="/icons/exit.svg"
                 width={20}
@@ -62,7 +69,7 @@ export const Header = () => {
               >
                 {t('sign-out')}
               </span>
-            </Link>
+            </button>
           )}
         </nav>
       </Container>
