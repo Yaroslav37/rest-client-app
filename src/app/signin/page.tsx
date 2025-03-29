@@ -7,7 +7,8 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import ErrorMessage from '@/components/ui/ErrorMessage/ErrorMessage';
 import Button from '@/components/ui/FormButton/FormButton';
 import { FormField } from '@/components/ui/FormField/FormField';
-import { useAuth } from '@/context/authContext';
+import withAuthRedirect from '@/hoc/withAuthRedirect';
+import { useAuth } from '@/hooks/useAuth';
 import { ROUTES } from '@/shared/routes';
 
 type SignInFormValues = {
@@ -15,7 +16,7 @@ type SignInFormValues = {
   password: string;
 };
 
-export default function SignInPage() {
+function SignInPage() {
   const { register, handleSubmit } = useForm<SignInFormValues>({
     mode: 'onBlur',
     reValidateMode: 'onChange',
@@ -66,3 +67,5 @@ export default function SignInPage() {
     </div>
   );
 }
+
+export default withAuthRedirect(SignInPage);

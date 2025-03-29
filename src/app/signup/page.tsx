@@ -7,7 +7,8 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 
 import Button from '@/components/ui/FormButton/FormButton';
 import { FormField } from '@/components/ui/FormField/FormField';
-import { useAuth } from '@/context/authContext';
+import withAuthRedirect from '@/hoc/withAuthRedirect';
+import { useAuth } from '@/hooks/useAuth';
 import { validationSchema } from '@/lib/yup/schema';
 import { ROUTES } from '@/shared/routes';
 
@@ -17,14 +18,14 @@ type SignUpFormValues = {
   passwordConfirm: string;
 };
 
-export default function SignUpPage() {
+function SignUpPage() {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<SignUpFormValues>({
     resolver: yupResolver(validationSchema),
-    mode: 'onBlur',
+    mode: 'onChange',
   });
   const { signup } = useAuth();
   const router = useRouter();
@@ -72,3 +73,5 @@ export default function SignUpPage() {
     </div>
   );
 }
+
+export default withAuthRedirect(SignUpPage);
