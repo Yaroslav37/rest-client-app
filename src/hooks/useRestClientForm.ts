@@ -15,7 +15,6 @@ interface UseRestClientFormProps {
 
 export function useRestClientForm({ initialMethod, initialValues }: UseRestClientFormProps) {
   const { control, handleSubmit, setValue, watch } = useForm<RestClientFormValues>({
-    // resolver: yupResolver(restClientSchema),
     defaultValues: {
       method: initialMethod,
       ...initialValues,

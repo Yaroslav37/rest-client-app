@@ -43,7 +43,7 @@ const RestClient = () => {
           <UrlInput control={control} />
         </div>
         <HeadersEditor control={control} />
-        <RequestEditor />
+        <RequestEditor control={control} />
         <ResponseViewer />
         <CodeGenerator />
         <Button>Send Request</Button>

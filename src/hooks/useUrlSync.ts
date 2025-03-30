@@ -29,7 +29,7 @@ export function useUrlSync({
     [currentMethod, currentUrl, currentBody, currentHeaders, buildUrl],
   );
 
-  const debouncedNewUrl = useDebounce(newUrl, 300);
+  const debouncedNewUrl = useDebounce(newUrl, 100);
 
   useEffect(() => {
     if (!initializedRef.current) return;
