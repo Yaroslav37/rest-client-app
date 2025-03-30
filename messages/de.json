@@ -11,8 +11,47 @@
     "not-found": "Ups! Diese Seite wurde nicht gefunden.",
     "back": "Zurück zur Hauptseite"
   },
-   "Error": {
+  "Error": {
     "error": "Etwas ist schief gelaufen!",
     "try": "Erneut versuchen"
+  },
+  "SignIn": {
+    "title": "Anmelden",
+    "emailLabel": "Email",
+    "passwordLabel": "Passwort",
+    "button": "Anmelden",
+    "noAccount": "Haben Sie kein Konto?",
+    "signUpLink": "Registrieren",
+    "error": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut."
+  },
+  "SignUp": {
+    "title": "Registrieren",
+    "emailLabel": "Email",
+    "passwordLabel": "Passwort",
+    "confirmPasswordLabel": "Passwort bestätigen",
+    "button": "Registrieren",
+    "error": {
+      "email": "Ungültige Email-Adresse",
+      "password": "Passwort ist zu schwach",
+      "passwordConfirm": "Passwörter stimmen nicht überein"
+    }
+  },
+  "validation": {
+    "email": {
+      "invalid": "Ungültige Email",
+      "required": "Email ist erforderlich"
+    },
+    "password": {
+      "hasNumber": "Passwort muss mindestens 1 Zahl enthalten",
+      "hasUpperCase": "Passwort muss mindestens 1 Großbuchstaben enthalten",
+      "hasLowerCase": "Passwort muss mindestens 1 Kleinbuchstaben enthalten",
+      "hasSpecialChar": "Passwort muss mindestens 1 Sonderzeichen enthalten",
+      "minLength": "Passwort muss mindestens {length} Zeichen lang sein",
+      "required": "Passwort ist erforderlich"
+    },
+    "passwordConfirm": {
+      "match": "Passwörter müssen übereinstimmen",
+      "required": "Passwortbestätigung ist erforderlich"
+    }
   }
 }

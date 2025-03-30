@@ -14,5 +14,44 @@
   "Error": {
     "error": "Something went wrong!",
     "try": "Try again"
+  },
+  "SignIn": {
+    "title": "Sign In",
+    "emailLabel": "Email",
+    "passwordLabel": "Password",
+    "button": "Sign In",
+    "noAccount": "Do not have an account?",
+    "signUpLink": "Sign Up",
+    "error": "An error occurred. Please try again."
+  },
+  "SignUp": {
+    "title": "Sign Up",
+    "emailLabel": "Email",
+    "passwordLabel": "Password",
+    "confirmPasswordLabel": "Confirm Password",
+    "button": "Sign Up",
+    "error": {
+      "email": "Invalid email address",
+      "password": "Password is too weak",
+      "passwordConfirm": "Passwords do not match"
+    }
+  },
+  "validation": {
+    "email": {
+      "invalid": "Invalid email",
+      "required": "Email is required"
+    },
+    "password": {
+      "hasNumber": "Password must contain at least 1 number",
+      "hasUpperCase": "Password must contain at least 1 uppercase letter",
+      "hasLowerCase": "Password must contain at least 1 lowercase letter",
+      "hasSpecialChar": "Password must contain at least 1 special character",
+      "minLength": "Password must be at least 8 characters",
+      "required": "Password is required"
+    },
+    "passwordConfirm": {
+      "match": "Passwords must match",
+      "required": "Confirm password is required"
+    }
   }
 }
