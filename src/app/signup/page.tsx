@@ -1,7 +1,7 @@
 'use client';
 
 import { yupResolver } from '@hookform/resolvers/yup';
-import { debounce } from 'lodash';
+import debounce from 'debounce';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { type SubmitHandler, useForm } from 'react-hook-form';
