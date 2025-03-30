@@ -1,12 +1,13 @@
 'use client';
 
 import { yupResolver } from '@hookform/resolvers/yup';
+import { debounce } from 'lodash';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 
 import Button from '@/components/ui/FormButton/FormButton';
-import { FormField } from '@/components/ui/FormField/FormField';
+import { FormFieldSignUp } from '@/components/ui/FormField/FormFieldSignUp';
 import withAuthRedirect from '@/hoc/withAuthRedirect';
 import { useAuth } from '@/hooks/useAuth';
 import { validationSchema } from '@/lib/yup/schema';
@@ -23,9 +24,9 @@ function SignUpPage() {
     register,
     handleSubmit,
     formState: { errors },
+    trigger,
   } = useForm<SignUpFormValues>({
     resolver: yupResolver(validationSchema),
-    mode: 'onChange',
   });
 
   const t = useTranslations();
@@ -33,6 +34,10 @@ function SignUpPage() {
   const { signup } = useAuth();
   const router = useRouter();
   const signUpT = useTranslations('SignUp');
+
+  const handleFieldChange = debounce(async (field: keyof SignUpFormValues) => {
+    await trigger(field);
+  }, 500);
 
   const onSubmit: SubmitHandler<SignUpFormValues> = async (data) => {
     const { email, password } = data;
@@ -46,29 +51,32 @@ function SignUpPage() {
         <h2 className="flex w-full justify-center text-3xl font-bold pb-5">{signUpT('title')}</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="space-y-5">
-            <FormField
+            <FormFieldSignUp
               id="email"
               type="email"
               label={signUpT('emailLabel')}
               register={register}
               placeholder={signUpT('emailLabel')}
               error={errors.email?.message && t(errors.email?.message)}
+              onChange={() => handleFieldChange('email')}
             />
-            <FormField
+            <FormFieldSignUp
               id="password"
               type="password"
               label={signUpT('passwordLabel')}
               register={register}
               placeholder={signUpT('passwordLabel')}
               error={errors.password?.message && t(errors.password?.message)}
+              onChange={() => handleFieldChange('password')}
             />
-            <FormField
+            <FormFieldSignUp
               id="passwordConfirm"
               type="password"
               label={signUpT('confirmPasswordLabel')}
               register={register}
               placeholder={signUpT('confirmPasswordLabel')}
               error={errors.passwordConfirm?.message && t(errors.passwordConfirm?.message)}
+              onChange={() => handleFieldChange('passwordConfirm')}
             />
             <Button>{signUpT('button')}</Button>
           </div>
