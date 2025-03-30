@@ -1,6 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
+import { Suspense } from 'react';
 
 import { Spinner } from '@/components';
 
@@ -10,5 +11,9 @@ const RestClient = dynamic(() => import('@/screens/RestClient.tsx'), {
 });
 
 export default function RestClientPage() {
-  return <RestClient />;
+  return (
+    <Suspense fallback={<Spinner />}>
+      <RestClient />
+    </Suspense>
+  );
 }

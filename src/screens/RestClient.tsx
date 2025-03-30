@@ -1,6 +1,8 @@
+'use client';
+
 import { yupResolver } from '@hookform/resolvers/yup';
-import { notFound, useParams, useRouter, useSearchParams } from 'next/navigation';
-import { useEffect, useMemo } from 'react';
+import { notFound, useParams, useSearchParams } from 'next/navigation';
+import { useEffect, useMemo, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { Button, Container } from '@/components';
@@ -19,10 +21,10 @@ import { HttpMethod } from '@/shared/types/enums';
 import { decodeBase64 } from '@/shared/utils/safe-coding';
 
 const RestClient = () => {
-  const router = useRouter();
   const params = useParams();
   const searchParams = useSearchParams();
   const { buildUrl } = useUpdateUrl();
+  const initializedRef = useRef(false);
 
   const initialMethod = (() => {
     const method = params.parts?.[0]?.toUpperCase() as HttpMethod;
@@ -44,9 +46,7 @@ const RestClient = () => {
     // resolver: yupResolver(restClientSchema),
     defaultValues: {
       method: initialMethod,
-      url: initialValues.url,
-      body: initialValues.body,
-      headers: initialValues.headers,
+      ...initialValues,
     },
   });
 
@@ -56,10 +56,14 @@ const RestClient = () => {
   const currentHeaders = watch('headers');
 
   useEffect(() => {
+    if (initializedRef.current) return;
+
     const parts = params.parts || [];
 
     if (parts.length === 0) {
-      router.replace(`${ROUTES.REST}/${HttpMethod.GET}`);
+      const defaultUrl = `${ROUTES.REST}/${HttpMethod.GET}`;
+      window.history.replaceState(null, '', defaultUrl);
+      return;
     }
 
     const method = (parts[0]?.toUpperCase() || HttpMethod.GET) as HttpMethod;
@@ -68,30 +72,20 @@ const RestClient = () => {
       notFound();
     }
 
-    const url = parts[1] ? decodeBase64(parts[1]) : '';
-    const body = parts[2] ? decodeBase64(parts[2]) : '';
-
-    const headers = Array.from(searchParams.entries()).map(([key, value]) => ({
-      key: decodeURIComponent(key),
-      value: decodeURIComponent(value),
-    }));
-
-    setValue('method', method);
-    setValue('url', url);
-    setValue('body', body);
-    setValue('headers', headers);
-  }, [params, searchParams, setValue, router]);
+    initializedRef.current = true;
+  }, [params.parts]);
 
   const newUrl = useMemo(
     () => buildUrl(currentMethod, currentUrl, currentBody, currentHeaders),
     [currentMethod, currentUrl, currentBody, currentHeaders, buildUrl],
   );
 
-  const debouncedNewUrl = useDebounce(newUrl, 500);
+  const debouncedNewUrl = useDebounce(newUrl, 300);
 
   useEffect(() => {
-    router.replace(debouncedNewUrl);
-  }, [debouncedNewUrl, router]);
+    if (!initializedRef.current) return;
+    window.history.replaceState(null, '', debouncedNewUrl);
+  }, [debouncedNewUrl]);
 
   const onSubmit = (_data: RestClientFormValues) => {
     // console.log(data);
@@ -104,7 +98,7 @@ const RestClient = () => {
           <MethodSelector control={control} />
           <UrlInput control={control} />
         </div>
-        <HeadersEditor />
+        <HeadersEditor control={control} />
         <RequestEditor />
         <ResponseViewer />
         <CodeGenerator />
