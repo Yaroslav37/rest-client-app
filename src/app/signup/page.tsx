@@ -19,7 +19,7 @@ type SignUpFormValues = {
   passwordConfirm: string;
 };
 
-function SignUpPage() {
+const SignUpPage: React.FC = () => {
   const {
     register,
     handleSubmit,
@@ -84,6 +84,6 @@ function SignUpPage() {
       </div>
     </div>
   );
-}
+};
 
 export default withAuthRedirect(SignUpPage);

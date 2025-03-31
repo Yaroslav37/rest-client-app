@@ -17,7 +17,7 @@ type SignInFormValues = {
   password: string;
 };
 
-function SignInPage() {
+const SignInPage: React.FC = () => {
   const { register, handleSubmit } = useForm<SignInFormValues>({
     mode: 'onBlur',
     reValidateMode: 'onChange',
@@ -69,6 +69,6 @@ function SignInPage() {
       </div>
     </div>
   );
-}
+};
 
 export default withAuthRedirect(SignInPage);

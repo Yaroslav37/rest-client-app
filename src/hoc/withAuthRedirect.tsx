@@ -6,7 +6,7 @@ import { ROUTES } from '@/shared/routes';
 
 export default function withAuthRedirect<T extends Record<string, unknown>>(
   Component: React.ComponentType<T>,
-) {
+): React.FC<T> {
   return function WrappedComponent(props: T) {
     const { user } = useAuth();
     const router = useRouter();
