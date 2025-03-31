@@ -44,12 +44,14 @@ const SignUpPage: React.FC = () => {
   const tr = useTranslations('Toasts');
   const onSubmit: SubmitHandler<SignUpFormValues> = async (data) => {
     const { email, password } = data;
-    await signup(email, password);
-    toast.success(tr('signup.success'), {
-      position: 'top-right',
-      autoClose: 3000,
-    });
-    router.push(ROUTES.MAIN);
+    try {
+      await signup(email, password);
+      toast.success(tr('signup.success'));
+      router.push(ROUTES.MAIN);
+    } catch (error) {
+      console.error('SignUp error:', error);
+      toast.error(tr('in-use.in-use'));
+    }
   };
 
   return (

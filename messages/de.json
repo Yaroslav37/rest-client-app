@@ -22,7 +22,8 @@
     "button": "Anmelden",
     "noAccount": "Haben Sie kein Konto?",
     "signUpLink": "Registrieren",
-    "error": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut."
+    "error": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.",
+    "invalid": "Ungültige Berechtigungsnachweise"
   },
   "SignUp": {
     "title": "Registrieren",

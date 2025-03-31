@@ -31,10 +31,15 @@ const SignInPage: React.FC = () => {
   const tr = useTranslations('Toasts');
   const onSubmit: SubmitHandler<SignInFormValues> = async (data) => {
     const { email, password } = data;
-    signin(email, password)
-      .then(() => toast.success(tr('signin.success')))
-      .then(() => router.push(ROUTES.MAIN))
-      .catch((error) => setError(error));
+    try {
+      await signin(email, password);
+      toast.success(tr('signin.success'));
+      router.push(ROUTES.MAIN);
+    } catch (_error) {
+      toast.error(tr('errors.invalid'));
+      const errorMessage = t('invalid');
+      setError(errorMessage);
+    }
   };
 
   return (

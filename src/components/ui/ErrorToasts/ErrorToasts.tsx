@@ -1,4 +1,4 @@
-'use client';
+/*'use client';
 
 import { FirebaseError } from 'firebase/app';
 import { toast } from 'react-toastify';
@@ -27,4 +27,4 @@ export const ErrorToasts = (error: unknown): string => {
   const defaultError = 'An unexpected error occurred';
   toast.error(defaultError);
   return defaultError;
-};
+};*/

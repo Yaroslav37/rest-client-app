@@ -22,7 +22,8 @@
     "button": "Sign In",
     "noAccount": "Do not have an account?",
     "signUpLink": "Sign Up",
-    "error": "An error occurred. Please try again."
+    "error": "An error occurred. Please try again.",
+    "invalid": "Invalid credentials"
   },
   "SignUp": {
     "title": "Sign Up",
