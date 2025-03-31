@@ -9,7 +9,6 @@ import {
 } from 'firebase/auth';
 import { createContext, useEffect, useState } from 'react';
 import { ReactNode } from 'react';
-
 import { auth } from '@/lib/firebase/config';
 
 interface AuthContextType {

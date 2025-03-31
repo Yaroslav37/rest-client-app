@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import React, { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 
 import ErrorMessage from '@/components/ui/ErrorMessage/ErrorMessage';
 import Button from '@/components/ui/FormButton/FormButton';
@@ -27,9 +28,11 @@ const SignInPage: React.FC = () => {
   const router = useRouter();
   const t = useTranslations('SignIn');
 
+  const tr = useTranslations('Toasts');
   const onSubmit: SubmitHandler<SignInFormValues> = async (data) => {
     const { email, password } = data;
     signin(email, password)
+      .then(() => toast.success(tr('signin.success')))
       .then(() => router.push(ROUTES.MAIN))
       .catch((error) => setError(error));
   };
@@ -47,6 +50,7 @@ const SignInPage: React.FC = () => {
               label={t('emailLabel')}
               register={register}
               placeholder={t('emailLabel')}
+              required={true}
             />
 
             <FormField
@@ -55,6 +59,7 @@ const SignInPage: React.FC = () => {
               label={t('passwordLabel')}
               register={register}
               placeholder={t('passwordLabel')}
+              required={true}
             />
             <Button>{t('button')}</Button>
             <Link

@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
+import { toast } from 'react-toastify';
 
 import { LanguageSwitcher } from '@/components/ui/LanguageSwitcher/LanguageSwitcher';
 import { Logo } from '@/components/ui/Logo/Logo';
@@ -19,12 +20,14 @@ const linksStyles =
 
 export const Header = () => {
   const t = useTranslations('Header');
+  const tr = useTranslations('Toasts');
   const { user, logout } = useAuth();
   const router = useRouter();
   const isScrolled = useScrollTrigger(50);
 
   const handleLogout = () => {
     logout();
+    toast.success(tr('logout.success'));
     router.push(ROUTES.SIGN_IN);
   };
 
@@ -51,7 +54,10 @@ export const Header = () => {
               </Link>
             </div>
           ) : (
-            <button onClick={handleLogout} className="min-w-[98px] text-center flex gap-2.5">
+            <button
+              onClick={handleLogout}
+              className="min-w-[98px] text-center flex gap-2.5 cursor-pointer"
+            >
               <Image
                 src="/icons/exit.svg"
                 width={20}

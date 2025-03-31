@@ -53,5 +53,24 @@
       "match": "Passwörter müssen übereinstimmen",
       "required": "Passwortbestätigung ist erforderlich"
     }
+  },
+   "Toasts": {
+    "signup": {
+      "success": "Konto erfolgreich erstellt!"
+    },
+    "signin": {
+      "success": "Erfolgreich eingeloggt!"
+    },
+    "logout": {
+      "success": "Auf Wiedersehen! Bis bald..."
+    },
+     "in-use": {
+      "in-use": "Die E-Mail ist bereits in Gebrauch. Bitte versuchen Sie eine andere E-Mail."
+    },
+    "errors": {
+      "invalid": "Überprüfen Sie Ihre E-Mail und Ihr Passwort.",
+      "unknown": "Ein unerwarteter Fehler ist aufgetreten."
+    }
   }
 }
+

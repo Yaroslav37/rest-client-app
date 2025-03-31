@@ -53,5 +53,23 @@
       "match": "Passwords must match",
       "required": "Confirm password is required"
     }
+  },
+  "Toasts": {
+    "signup": {
+      "success": "Account created successfully!"
+    },
+    "signin": {
+      "success": "Logged in successfully!"
+    },
+    "logout": {
+      "success": "Goodbye! See you soon..."
+    },
+     "in-use": {
+      "in-use": "Email is already in use. Please try another email."
+    },
+    "errors": {
+      "invalid": "Check your email and password.",
+      "unknown": "An unexpected error occurred."
+    }
   }
 }
