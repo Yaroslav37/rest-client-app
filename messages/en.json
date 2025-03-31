@@ -18,6 +18,10 @@
   "RestClient": {
     "sending": "Sending...",
     "send": "Send Request",
-    "select-method": "Select Method"
+    "select-method": "Select Method",
+    "enter-url": "Enter endpoint URL",
+    "headers-title": "Headers",
+    "key-placeholder": "Key",
+    "value-placeholder": "Value"
   }
 }

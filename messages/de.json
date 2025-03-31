@@ -18,6 +18,10 @@
   "RestClient": {
     "sending": "Senden von...",
     "send": "Anfrage senden",
-    "select-method": "Methode wählen"
+    "select-method": "Methode wählen",
+    "enter-url": "Endpunkt-URL eingeben",
+    "headers-title": "Kopfzeilen",
+    "key-placeholder": "Schlüssel",
+    "value-placeholder": "Wert"
   }
 }

@@ -53,17 +53,20 @@ const RestClient = () => {
   };
 
   return (
-    <Container>
-      <form onSubmit={handleSubmit(handleFormSubmit)}>
-        <div>
+    <Container className="py-12">
+      <form
+        onSubmit={handleSubmit(handleFormSubmit)}
+        className="flex flex-col gap-12 max-w-[900px] mx-auto"
+      >
+        <div className="flex flex-col sm:flex-row gap-5 sm:justify-between sm:gap-10">
           <MethodSelector control={control} />
           <UrlInput control={control} />
         </div>
         <HeadersEditor control={control} />
-        <RequestEditor control={control} />
+        {/* <RequestEditor control={control} />
         <ResponseViewer response={response} error={error} />
         <CodeGenerator />
-        <Button disabled={isPending}>{isPending ? t('sending') : t('send')}</Button>
+        <Button disabled={isPending}>{isPending ? t('sending') : t('send')}</Button> */}
       </form>
     </Container>
   );

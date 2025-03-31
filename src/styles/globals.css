@@ -6,13 +6,14 @@
   --font-inter: var(--font-inter);
   --font-montserrat: var(--font-montserrat);
 
-  --color-white: rgb(255, 255, 255);
+  --color-white: #ffffff;
   --color-green: #618930;
   --color-light-green: #87c232;
   --color-dark-grey: #474a4f;
   --color-grey: #6a6e71;
+  --color-light-grey: #aaaaaa;
   --color-dark: #030303;
-  --color-error: #e25c5c;
+  --color-error: #e25c5f;
   --color-input: #212224;
   --color-input-bg: #0f0f10;
   --color-input-border: #2f2f31;

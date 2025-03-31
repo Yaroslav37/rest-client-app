@@ -11,12 +11,12 @@ import { useDebounce } from '@/hooks/useDebounce';
 import { RestClientFormValues } from '@/lib/yup/restClient';
 import { cn } from '@/utils/tailwind-clsx';
 
-interface RequestEditorProps {
+interface Props {
   control: Control<RestClientFormValues>;
   readOnly?: boolean;
 }
 
-export const RequestEditor = ({ control, readOnly = false }: RequestEditorProps) => {
+export const RequestEditor = ({ control, readOnly = false }: Props) => {
   const [language, setLanguage] = useState<'json' | 'text'>('json');
   const { field } = useController({
     control,

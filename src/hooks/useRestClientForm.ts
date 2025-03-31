@@ -5,7 +5,7 @@ import type { RestClientFormValues } from '@/lib/yup/restClient';
 import type { HttpMethod } from '@/shared/types/enums';
 import { ApiResponse, Header } from '@/shared/types/interfaces';
 
-interface UseRestClientFormProps {
+interface Props {
   initialMethod: HttpMethod;
   initialValues: {
     url: string;
@@ -14,7 +14,7 @@ interface UseRestClientFormProps {
   };
 }
 
-export function useRestClientForm({ initialMethod, initialValues }: UseRestClientFormProps) {
+export function useRestClientForm({ initialMethod, initialValues }: Props) {
   const { control, handleSubmit, setValue, watch } = useForm<RestClientFormValues>({
     defaultValues: {
       method: initialMethod,

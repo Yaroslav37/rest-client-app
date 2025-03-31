@@ -7,7 +7,7 @@ import { useUpdateUrl } from '@/hooks/useUpdateUrl';
 import type { HttpMethod } from '@/shared/types/enums';
 import { Header } from '@/shared/types/interfaces';
 
-interface UseUrlSyncProps {
+interface Props {
   currentMethod: HttpMethod;
   currentUrl: string;
   currentBody: string;
@@ -21,7 +21,7 @@ export function useUrlSync({
   currentBody,
   currentHeaders,
   initializedRef,
-}: UseUrlSyncProps) {
+}: Props) {
   const { buildUrl } = useUpdateUrl();
 
   const newUrl = useMemo(

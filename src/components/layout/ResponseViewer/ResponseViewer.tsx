@@ -8,12 +8,12 @@ import { useState } from 'react';
 import { ApiResponse } from '@/shared/types/interfaces';
 import { getStatusColor, getStatusMessage } from '@/shared/utils/set-response-status';
 
-interface ResponseViewerProps {
+interface Props {
   response?: ApiResponse;
   error?: Error | null;
 }
 
-export const ResponseViewer = ({ response, error }: ResponseViewerProps) => {
+export const ResponseViewer = ({ response, error }: Props) => {
   const [activeTab, setActiveTab] = useState<'headers' | 'body'>('body');
   const formattedData =
     typeof response?.data === 'string' ? response.data : JSON.stringify(response?.data, null, 2);
