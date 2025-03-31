@@ -14,5 +14,10 @@
   "Error": {
     "error": "Something went wrong!",
     "try": "Try again"
+  },
+  "RestClient": {
+    "sending": "Sending...",
+    "send": "Send Request",
+    "select-method": "Select Method"
   }
 }

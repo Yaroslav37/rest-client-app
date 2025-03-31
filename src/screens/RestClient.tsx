@@ -1,18 +1,27 @@
 'use client';
 
-import { Button, Container } from '@/components';
-import { CodeGenerator } from '@/components/ui/CodeGenerator/CodeGenerator';
-import { HeadersEditor } from '@/components/ui/HeadersEditor/HeadersEditor';
-import { MethodSelector } from '@/components/ui/MethodSelector/MethodSelector';
-import { RequestEditor } from '@/components/ui/RequestEditor/RequestEditor';
-import { ResponseViewer } from '@/components/ui/ResponseViewer/ResponseViewer';
-import { UrlInput } from '@/components/ui/UrlInput/UrlInput';
+import { useTranslations } from 'next-intl';
+import { useTransition } from 'react';
+
+import {
+  Button,
+  CodeGenerator,
+  Container,
+  HeadersEditor,
+  MethodSelector,
+  RequestEditor,
+  ResponseViewer,
+  UrlInput,
+} from '@/components';
 import { useRestClientForm } from '@/hooks/useRestClientForm';
 import { useRestClientParams } from '@/hooks/useRestClientParams';
 import { useUrlSync } from '@/hooks/useUrlSync';
+import { RestClientFormValues } from '@/lib/yup/restClient';
 
 const RestClient = () => {
   const { initialMethod, initialValues, initializedRef } = useRestClientParams();
+  const [isPending, startTransition] = useTransition();
+  const t = useTranslations('RestClient');
 
   const {
     control,
@@ -24,7 +33,6 @@ const RestClient = () => {
     onSubmit,
     response,
     error,
-    isLoading,
   } = useRestClientForm({
     initialMethod,
     initialValues,
@@ -38,9 +46,15 @@ const RestClient = () => {
     initializedRef,
   });
 
+  const handleFormSubmit = (data: RestClientFormValues) => {
+    startTransition(async () => {
+      await onSubmit(data);
+    });
+  };
+
   return (
     <Container>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(handleFormSubmit)}>
         <div>
           <MethodSelector control={control} />
           <UrlInput control={control} />
@@ -49,7 +63,7 @@ const RestClient = () => {
         <RequestEditor control={control} />
         <ResponseViewer response={response} error={error} />
         <CodeGenerator />
-        <Button disabled={isLoading}>{isLoading ? 'Sending...' : 'Send Request'}</Button>
+        <Button disabled={isPending}>{isPending ? t('sending') : t('send')}</Button>
       </form>
     </Container>
   );

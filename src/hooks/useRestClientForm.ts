@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 
 import type { RestClientFormValues } from '@/lib/yup/restClient';
 import type { HttpMethod } from '@/shared/types/enums';
-import { Header } from '@/shared/types/interfaces';
+import { ApiResponse, Header } from '@/shared/types/interfaces';
 
 interface UseRestClientFormProps {
   initialMethod: HttpMethod;
@@ -12,13 +12,6 @@ interface UseRestClientFormProps {
     body: string;
     headers: Header[];
   };
-}
-
-interface ApiResponse {
-  status: number;
-  statusText: string;
-  headers: Record<string, string>;
-  data: unknown;
 }
 
 export function useRestClientForm({ initialMethod, initialValues }: UseRestClientFormProps) {
@@ -31,7 +24,6 @@ export function useRestClientForm({ initialMethod, initialValues }: UseRestClien
 
   const [response, setResponse] = useState<ApiResponse>();
   const [error, setError] = useState<Error | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
 
   const currentMethod = watch('method');
   const currentUrl = watch('url');
@@ -39,7 +31,6 @@ export function useRestClientForm({ initialMethod, initialValues }: UseRestClien
   const currentHeaders = watch('headers');
 
   const onSubmit = useCallback(async (data: RestClientFormValues) => {
-    setIsLoading(true);
     setError(null);
     setResponse(undefined);
 
@@ -88,8 +79,6 @@ export function useRestClientForm({ initialMethod, initialValues }: UseRestClien
     } catch (err) {
       // TODO: ADD TOAST
       setError(err instanceof Error ? err : new Error('Unknown error occurred'));
-    } finally {
-      setIsLoading(false);
     }
   }, []);
 
@@ -105,6 +94,5 @@ export function useRestClientForm({ initialMethod, initialValues }: UseRestClien
     onSubmit,
     response,
     error,
-    isLoading,
   };
 }

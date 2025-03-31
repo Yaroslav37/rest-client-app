@@ -10,3 +10,10 @@ export interface ResponseData {
   headers?: Record<string, string>;
   time?: number;
 }
+
+export interface ApiResponse {
+  status: number;
+  statusText: string;
+  headers: Record<string, string>;
+  data: unknown;
+}

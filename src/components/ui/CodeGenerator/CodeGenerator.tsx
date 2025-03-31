@@ -1,6 +1,5 @@
-export const CodeGenerator = () => {
-  return (
-    <div>CodeGenerator</div>
-  )
-}
+'use client';
 
+export const CodeGenerator = () => {
+  return <div>CodeGenerator</div>;
+};

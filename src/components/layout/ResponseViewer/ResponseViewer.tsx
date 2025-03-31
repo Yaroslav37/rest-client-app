@@ -5,34 +5,16 @@ import { EditorView } from '@codemirror/view';
 import CodeMirror from '@uiw/react-codemirror';
 import { useState } from 'react';
 
+import { ApiResponse } from '@/shared/types/interfaces';
+import { getStatusColor, getStatusMessage } from '@/shared/utils/set-response-status';
+
 interface ResponseViewerProps {
-  response?: {
-    status: number;
-    statusText: string;
-    headers: Record<string, string>;
-    data: unknown;
-  };
+  response?: ApiResponse;
   error?: Error | null;
 }
 
-const getStatusColor = (status: number) => {
-  if (status >= 100 && status < 200) return 'text-gray-600';
-  if (status >= 200 && status < 300) return 'text-green-600';
-  if (status >= 300 && status < 400) return 'text-blue-600';
-  return 'text-red-600';
-};
-
-const getStatusMessage = (status: number) => {
-  if (status >= 100 && status < 200) return 'Informational';
-  if (status >= 200 && status < 300) return 'Success';
-  if (status >= 300 && status < 400) return 'Redirection';
-  if (status >= 400 && status < 500) return 'Client Error';
-  if (status >= 500 && status < 600) return 'Server Error';
-  return 'Unknown Status';
-};
-
 export const ResponseViewer = ({ response, error }: ResponseViewerProps) => {
-  const [activeTab, setActiveTab] = useState<'headers' | 'body'>('headers');
+  const [activeTab, setActiveTab] = useState<'headers' | 'body'>('body');
   const formattedData =
     typeof response?.data === 'string' ? response.data : JSON.stringify(response?.data, null, 2);
 

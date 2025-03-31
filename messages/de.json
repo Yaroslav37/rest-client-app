@@ -11,8 +11,13 @@
     "not-found": "Ups! Diese Seite wurde nicht gefunden.",
     "back": "Zurück zur Hauptseite"
   },
-   "Error": {
+  "Error": {
     "error": "Etwas ist schief gelaufen!",
     "try": "Erneut versuchen"
+  },
+  "RestClient": {
+    "sending": "Senden von...",
+    "send": "Anfrage senden",
+    "select-method": "Methode wählen"
   }
 }
