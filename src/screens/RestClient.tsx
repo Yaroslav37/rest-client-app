@@ -22,6 +22,9 @@ const RestClient = () => {
     currentBody = '',
     currentHeaders = [],
     onSubmit,
+    response,
+    error,
+    isLoading,
   } = useRestClientForm({
     initialMethod,
     initialValues,
@@ -44,9 +47,9 @@ const RestClient = () => {
         </div>
         <HeadersEditor control={control} />
         <RequestEditor control={control} />
-        <ResponseViewer />
+        <ResponseViewer response={response} error={error} />
         <CodeGenerator />
-        <Button>Send Request</Button>
+        <Button disabled={isLoading}>{isLoading ? 'Sending...' : 'Send Request'}</Button>
       </form>
     </Container>
   );

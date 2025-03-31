@@ -9,7 +9,6 @@ import { Control, useController } from 'react-hook-form';
 
 import { useDebounce } from '@/hooks/useDebounce';
 import { RestClientFormValues } from '@/lib/yup/restClient';
-import { decodeBase64, encodeBase64 } from '@/shared/utils/safe-coding';
 import { cn } from '@/utils/tailwind-clsx';
 
 interface RequestEditorProps {
@@ -24,36 +23,31 @@ export const RequestEditor = ({ control, readOnly = false }: RequestEditorProps)
     name: 'body',
   });
 
-  const decodedValue = decodeBase64(field.value || '');
-  const [localValue, setLocalValue] = useState(decodedValue);
+  const [localValue, setLocalValue] = useState(field.value || '');
   const debouncedValue = useDebounce(localValue, 300);
 
   useEffect(() => {
-    setLocalValue(decodedValue);
-  }, [decodedValue]);
+    setLocalValue(field.value || '');
+  }, [field.value]);
 
   useEffect(() => {
-    if (debouncedValue !== decodedValue) {
-      field.onChange(encodeBase64(debouncedValue));
+    if (debouncedValue !== field.value) {
+      field.onChange(debouncedValue);
     }
-  }, [debouncedValue, decodedValue, field]);
+  }, [debouncedValue, field]);
 
   const handlePrettify = () => {
-    if (language === 'json') {
-      try {
-        const parsed = JSON.parse(localValue);
-        const formatted = JSON.stringify(parsed, null, 2);
-        setLocalValue(formatted);
-      } catch (_error) {
-        // TODO: show TOAST
-        // showToast('Invalid JSON format');
-      }
-    } else {
-      const formatted = localValue
-        .split('\n')
-        .map((line) => line.trim())
-        .join('\n');
+    try {
+      const correctedJson = localValue
+        .replace(/(\w+):\s*'/g, '"$1": "')
+        .replace(/'([^']*)'/g, '"$1"');
+
+      const parsed = JSON.parse(correctedJson);
+      const formatted = JSON.stringify(parsed, null, 2);
       setLocalValue(formatted);
+    } catch (_error) {
+      // TODO: show TOAST
+      // showToast('Invalid JSON format');
     }
   };
 
@@ -76,17 +70,17 @@ export const RequestEditor = ({ control, readOnly = false }: RequestEditorProps)
             onClick={() => setLanguage('text')}
             className={cn(
               `px-3 py-1 rounded cursor-pointer`,
-              language === 'json' ? 'bg-blue-600 text-white' : 'bg-gray-700 text-gray-300',
+              language === 'text' ? 'bg-blue-600 text-white' : 'bg-gray-700 text-gray-300',
             )}
           >
             Text
           </button>
         </div>
-        {!readOnly && (
+        {!readOnly && language === 'json' && (
           <button
             type="button"
             onClick={handlePrettify}
-            className=" cursor-pointer px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700"
+            className="cursor-pointer px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700"
           >
             Prettify
           </button>
@@ -95,7 +89,7 @@ export const RequestEditor = ({ control, readOnly = false }: RequestEditorProps)
 
       <CodeMirror
         value={localValue}
-        height="400px"
+        height="200px"
         extensions={[
           language === 'json' ? json() : EditorView.lineWrapping,
           language === 'json' ? linter(jsonParseLinter()) : [],

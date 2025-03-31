@@ -1,3 +1,4 @@
+import { useCallback, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import type { RestClientFormValues } from '@/lib/yup/restClient';
@@ -13,6 +14,13 @@ interface UseRestClientFormProps {
   };
 }
 
+interface ApiResponse {
+  status: number;
+  statusText: string;
+  headers: Record<string, string>;
+  data: unknown;
+}
+
 export function useRestClientForm({ initialMethod, initialValues }: UseRestClientFormProps) {
   const { control, handleSubmit, setValue, watch } = useForm<RestClientFormValues>({
     defaultValues: {
@@ -21,14 +29,69 @@ export function useRestClientForm({ initialMethod, initialValues }: UseRestClien
     },
   });
 
+  const [response, setResponse] = useState<ApiResponse>();
+  const [error, setError] = useState<Error | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+
   const currentMethod = watch('method');
   const currentUrl = watch('url');
   const currentBody = watch('body');
   const currentHeaders = watch('headers');
 
-  const onSubmit = (data: RestClientFormValues) => {
-    // console.log(data);
-  };
+  const onSubmit = useCallback(async (data: RestClientFormValues) => {
+    setIsLoading(true);
+    setError(null);
+    setResponse(undefined);
+
+    try {
+      const headers = new Headers(
+        data.headers?.reduce(
+          (acc, { key, value }) => {
+            if (key && value) acc[key] = value;
+            return acc;
+          },
+          {} as Record<string, string>,
+        ),
+      );
+
+      const requestInit: RequestInit = {
+        method: data.method,
+        headers,
+      };
+
+      if (['POST', 'PUT', 'PATCH'].includes(data.method)) {
+        requestInit.body = data.body;
+      }
+
+      const response = await fetch(data.url, requestInit);
+
+      const responseHeaders = Object.fromEntries(response.headers.entries());
+      const textData = await response.text();
+
+      let responseData;
+      try {
+        responseData = JSON.parse(textData);
+      } catch {
+        responseData = textData;
+      }
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      setResponse({
+        status: response.status,
+        statusText: response.statusText,
+        headers: responseHeaders,
+        data: responseData,
+      });
+    } catch (err) {
+      // TODO: ADD TOAST
+      setError(err instanceof Error ? err : new Error('Unknown error occurred'));
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
 
   return {
     control,
@@ -40,5 +103,8 @@ export function useRestClientForm({ initialMethod, initialValues }: UseRestClien
     currentBody,
     currentHeaders,
     onSubmit,
+    response,
+    error,
+    isLoading,
   };
 }

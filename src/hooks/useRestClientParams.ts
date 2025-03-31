@@ -1,6 +1,6 @@
 'use client';
 
-import { notFound, useParams, useSearchParams } from 'next/navigation';
+import { notFound, useParams, useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useMemo, useRef } from 'react';
 
 import { HTTP_METHODS } from '@/shared/constants';
@@ -10,6 +10,7 @@ import { decodeBase64 } from '@/shared/utils/safe-coding';
 
 export function useRestClientParams() {
   const params = useParams();
+  const router = useRouter();
   const searchParams = useSearchParams();
   const initializedRef = useRef(false);
 
@@ -36,7 +37,7 @@ export function useRestClientParams() {
 
     if (parts.length === 0) {
       const defaultUrl = `${ROUTES.REST}/${HttpMethod.GET}`;
-      window.history.replaceState(null, '', defaultUrl);
+      router.replace(defaultUrl);
       return;
     }
 
@@ -47,7 +48,7 @@ export function useRestClientParams() {
     }
 
     initializedRef.current = true;
-  }, [params.parts]);
+  }, [params.parts, router]);
 
   return {
     initialMethod,

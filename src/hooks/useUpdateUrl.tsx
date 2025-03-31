@@ -12,11 +12,12 @@ export const useUpdateUrl = () => {
     const query = new URLSearchParams();
     headers?.forEach(({ key, value }) => {
       if (key && value) {
-        query.append(key, value);
+        query.append(encodeURIComponent(key), encodeURIComponent(value));
       }
     });
 
     return `${ROUTES.REST}/${method}/${encodedUrl}${encodedBody}${query.size ? `?${query}` : ''}`;
   }, []);
+
   return { buildUrl };
 };

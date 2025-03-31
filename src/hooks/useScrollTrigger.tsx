@@ -2,19 +2,18 @@
 
 import { useEffect, useState } from 'react';
 
-export const useScrollTrigger = (threshold = 50) => {
+export const useScrollTrigger = () => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > threshold);
+      const scrollPosition = window.scrollY;
+      setIsScrolled(scrollPosition > 50);
     };
 
-    handleScroll();
     window.addEventListener('scroll', handleScroll);
-
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [threshold]);
+  }, []);
 
   return isScrolled;
 };

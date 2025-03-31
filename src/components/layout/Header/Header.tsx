@@ -21,7 +21,7 @@ export const Header = () => {
   const t = useTranslations('Header');
   const { user, logout } = useAuth();
   const router = useRouter();
-  const isScrolled = useScrollTrigger(50);
+  const isScrolled = useScrollTrigger();
 
   const handleLogout = () => {
     logout();
@@ -31,7 +31,7 @@ export const Header = () => {
   return (
     <header
       className={cn(
-        'flex w-full border-b border-light-green sticky top-0 transition-all duration-300',
+        'flex w-full border-b border-light-green sticky top-0 transition-all duration-500 z-[500]',
         isScrolled ? 'py-3 shadow-[0_3px_3px_0_rgba(135,194,50,0.3)] bg-[#121a11]' : 'py-6 bg-dark',
       )}
     >
