@@ -1,13 +1,15 @@
 'use client';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import React, { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 import ErrorMessage from '@/components/ui/ErrorMessage/ErrorMessage';
 import Button from '@/components/ui/FormButton/FormButton';
 import { FormField } from '@/components/ui/FormField/FormField';
-import { useAuth } from '@/context/authContext';
+import withAuthRedirect from '@/hoc/withAuthRedirect';
+import { useAuth } from '@/hooks/useAuth';
 import { ROUTES } from '@/shared/routes';
 
 type SignInFormValues = {
@@ -15,7 +17,7 @@ type SignInFormValues = {
   password: string;
 };
 
-export default function SignInPage() {
+function SignInPage() {
   const { register, handleSubmit } = useForm<SignInFormValues>({
     mode: 'onBlur',
     reValidateMode: 'onChange',
@@ -23,6 +25,7 @@ export default function SignInPage() {
   const { signin } = useAuth();
   const [error, setError] = useState('');
   const router = useRouter();
+  const t = useTranslations('SignIn');
 
   const onSubmit: SubmitHandler<SignInFormValues> = async (data) => {
     const { email, password } = data;
@@ -34,31 +37,32 @@ export default function SignInPage() {
   return (
     <div className="w-full my-10 max-w-md text-white mx-auto bg-input-bg rounded-lg shadow-md overflow-hidden">
       <div className="px-6 py-8">
-        <h2 className="flex w-full justify-center text-3xl font-bold pb-5">Sign In</h2>
+        <h2 className="flex w-full justify-center text-3xl font-bold pb-5">{t('title')}</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
           <ErrorMessage message={error} justifyCenter />
           <div className="space-y-5">
             <FormField
               id="email"
               type="email"
-              label="Email"
+              label={t('emailLabel')}
               register={register}
-              placeholder="email"
+              placeholder={t('emailLabel')}
             />
 
             <FormField
               id="password"
               type="password"
-              label="Password"
+              label={t('passwordLabel')}
               register={register}
-              placeholder="password"
+              placeholder={t('passwordLabel')}
             />
-            <Button>Sign In</Button>
+            <Button>{t('button')}</Button>
             <Link
               href={`${ROUTES.SIGN_UP}`}
               className="flex justify-center text-gray-400 cursor-pointer hover:border-light-green whitespace-pre"
             >
-              Do not have an account?<span className="text-green-600"> Sign Up</span>
+              {t('noAccount')}
+              <span className="text-green-600"> {t('signUpLink')}</span>
             </Link>
           </div>
         </form>
@@ -66,3 +70,5 @@ export default function SignInPage() {
     </div>
   );
 }
+
+export default withAuthRedirect(SignInPage);

@@ -1,13 +1,15 @@
 'use client';
 
 import { yupResolver } from '@hookform/resolvers/yup';
+import debounce from 'debounce';
 import { useRouter } from 'next/navigation';
-import React from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { useTranslations } from 'next-intl';
+import { type SubmitHandler, useForm } from 'react-hook-form';
 
 import Button from '@/components/ui/FormButton/FormButton';
-import { FormField } from '@/components/ui/FormField/FormField';
-import { useAuth } from '@/context/authContext';
+import { FormFieldSignUp } from '@/components/ui/FormField/FormFieldSignUp';
+import withAuthRedirect from '@/hoc/withAuthRedirect';
+import { useAuth } from '@/hooks/useAuth';
 import { validationSchema } from '@/lib/yup/schema';
 import { ROUTES } from '@/shared/routes';
 
@@ -17,17 +19,25 @@ type SignUpFormValues = {
   passwordConfirm: string;
 };
 
-export default function SignUpPage() {
+function SignUpPage() {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    trigger,
   } = useForm<SignUpFormValues>({
     resolver: yupResolver(validationSchema),
-    mode: 'onBlur',
   });
+
+  const t = useTranslations();
+
   const { signup } = useAuth();
   const router = useRouter();
+  const signUpT = useTranslations('SignUp');
+
+  const handleFieldChange = debounce(async (field: keyof SignUpFormValues) => {
+    await trigger(field);
+  }, 500);
 
   const onSubmit: SubmitHandler<SignUpFormValues> = async (data) => {
     const { email, password } = data;
@@ -38,37 +48,42 @@ export default function SignUpPage() {
   return (
     <div className="w-full my-10 max-w-md mx-auto bg-input-bg rounded-lg shadow-md overflow-hidden text-white">
       <div className="px-6 py-8">
-        <h2 className="flex w-full justify-center text-3xl font-bold pb-5">Sign Up</h2>
+        <h2 className="flex w-full justify-center text-3xl font-bold pb-5">{signUpT('title')}</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="space-y-5">
-            <FormField
+            <FormFieldSignUp
               id="email"
               type="email"
-              label="Email"
+              label={signUpT('emailLabel')}
               register={register}
-              placeholder="email"
-              error={errors.email?.message}
+              placeholder={signUpT('emailLabel')}
+              error={errors.email?.message && t(errors.email?.message)}
+              onChange={() => handleFieldChange('email')}
             />
-            <FormField
+            <FormFieldSignUp
               id="password"
               type="password"
-              label="Password"
+              label={signUpT('passwordLabel')}
               register={register}
-              placeholder="password"
-              error={errors.password?.message}
+              placeholder={signUpT('passwordLabel')}
+              error={errors.password?.message && t(errors.password?.message)}
+              onChange={() => handleFieldChange('password')}
             />
-            <FormField
+            <FormFieldSignUp
               id="passwordConfirm"
               type="password"
-              label="Confirm Password"
+              label={signUpT('confirmPasswordLabel')}
               register={register}
-              placeholder="password"
-              error={errors.passwordConfirm?.message}
+              placeholder={signUpT('confirmPasswordLabel')}
+              error={errors.passwordConfirm?.message && t(errors.passwordConfirm?.message)}
+              onChange={() => handleFieldChange('passwordConfirm')}
             />
-            <Button>Sign Up</Button>
+            <Button>{signUpT('button')}</Button>
           </div>
         </form>
       </div>
     </div>
   );
 }
+
+export default withAuthRedirect(SignUpPage);
