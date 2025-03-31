@@ -22,7 +22,8 @@
     "button": "Anmelden",
     "noAccount": "Haben Sie kein Konto?",
     "signUpLink": "Registrieren",
-    "error": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut."
+    "error": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.",
+    "invalid": "Ungültige Berechtigungsnachweise"
   },
   "SignUp": {
     "title": "Registrieren",
@@ -53,5 +54,24 @@
       "match": "Passwörter müssen übereinstimmen",
       "required": "Passwortbestätigung ist erforderlich"
     }
+  },
+   "Toasts": {
+    "signup": {
+      "success": "Konto erfolgreich erstellt!"
+    },
+    "signin": {
+      "success": "Erfolgreich eingeloggt!"
+    },
+    "logout": {
+      "success": "Auf Wiedersehen! Bis bald..."
+    },
+     "in-use": {
+      "in-use": "Die E-Mail ist bereits in Gebrauch. Bitte versuchen Sie eine andere E-Mail."
+    },
+    "errors": {
+      "invalid": "Überprüfen Sie Ihre E-Mail und Ihr Passwort.",
+      "unknown": "Ein unerwarteter Fehler ist aufgetreten."
+    }
   }
 }
+

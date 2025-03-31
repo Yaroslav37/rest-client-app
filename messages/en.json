@@ -22,7 +22,8 @@
     "button": "Sign In",
     "noAccount": "Do not have an account?",
     "signUpLink": "Sign Up",
-    "error": "An error occurred. Please try again."
+    "error": "An error occurred. Please try again.",
+    "invalid": "Invalid credentials"
   },
   "SignUp": {
     "title": "Sign Up",
@@ -52,6 +53,24 @@
     "passwordConfirm": {
       "match": "Passwords must match",
       "required": "Confirm password is required"
+    }
+  },
+  "Toasts": {
+    "signup": {
+      "success": "Account created successfully!"
+    },
+    "signin": {
+      "success": "Logged in successfully!"
+    },
+    "logout": {
+      "success": "Goodbye! See you soon..."
+    },
+     "in-use": {
+      "in-use": "Email is already in use. Please try another email."
+    },
+    "errors": {
+      "invalid": "Check your email and password.",
+      "unknown": "An unexpected error occurred."
     }
   }
 }

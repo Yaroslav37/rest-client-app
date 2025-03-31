@@ -4,7 +4,9 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import debounce from 'debounce';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import { type SubmitHandler, useForm } from 'react-hook-form';
+import React from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 
 import Button from '@/components/ui/FormButton/FormButton';
 import { FormFieldSignUp } from '@/components/ui/FormField/FormFieldSignUp';
@@ -39,10 +41,17 @@ const SignUpPage: React.FC = () => {
     await trigger(field);
   }, 500);
 
+  const tr = useTranslations('Toasts');
   const onSubmit: SubmitHandler<SignUpFormValues> = async (data) => {
     const { email, password } = data;
-    await signup(email, password);
-    router.push(ROUTES.MAIN);
+    try {
+      await signup(email, password);
+      toast.success(tr('signup.success'));
+      router.push(ROUTES.MAIN);
+    } catch (error) {
+      console.error('SignUp error:', error);
+      toast.error(tr('in-use.in-use'));
+    }
   };
 
   return (
