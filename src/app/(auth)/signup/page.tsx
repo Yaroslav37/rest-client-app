@@ -8,7 +8,7 @@ import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 
-import Button from '@/components/ui/FormButton/FormButton';
+import { Button } from '@/components';
 import { FormFieldSignUp } from '@/components/ui/FormField/FormFieldSignUp';
 import withAuthRedirect from '@/hoc/withAuthRedirect';
 import { useAuth } from '@/hooks/useAuth';

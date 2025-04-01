@@ -9,8 +9,6 @@ import { toast } from 'react-toastify';
 import { Button } from '@/components';
 import { FormField } from '@/components';
 import ErrorMessage from '@/components/ui/ErrorMessage/ErrorMessage';
-import Button from '@/components/ui/FormButton/FormButton';
-import { FormField } from '@/components/ui/FormField/FormField';
 import withAuthRedirect from '@/hoc/withAuthRedirect';
 import { useAuth } from '@/hooks/useAuth';
 import { ROUTES } from '@/shared/routes';
