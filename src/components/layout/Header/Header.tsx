@@ -2,7 +2,6 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { toast } from 'react-toastify';
 
@@ -22,13 +21,11 @@ export const Header = () => {
   const t = useTranslations('Header');
   const tr = useTranslations('Toasts');
   const { user, logout } = useAuth();
-  const router = useRouter();
   const isScrolled = useScrollTrigger(50);
 
   const handleLogout = () => {
     logout();
     toast.success(tr('logout.success'));
-    router.push(ROUTES.SIGN_IN);
   };
 
   return (

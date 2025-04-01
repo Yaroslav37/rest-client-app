@@ -1,6 +1,8 @@
 'use client';
 import { useTranslations } from 'next-intl';
 
+import AuthWelcome from '@/components/layout/Navbar/AuthWelcome';
+import UserWelcome from '@/components/layout/Navbar/UserWelcome';
 import { useAuth } from '@/hooks/useAuth';
 
 export default function Home() {
@@ -11,11 +13,7 @@ export default function Home() {
     <div className="min-h-screen flex flex-col">
       <main className="flex-1 min-h-[100vh] flex flex-col items-center sm:items-start bg-dark">
         <h1 className="font-inter">{t('title')}</h1>
-        {user && (
-          <>
-            <div className="w-full text-amber-300 text-center">Hello, {user?.email}</div>
-          </>
-        )}
+        {user ? <UserWelcome email={user.email || ''} /> : <AuthWelcome />}
       </main>
     </div>
   );
