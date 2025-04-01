@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { Control, useFieldArray } from 'react-hook-form';
 import { MdLibraryAdd } from 'react-icons/md';
 
@@ -18,7 +18,7 @@ interface Props {
 const iconSize = 25;
 
 export const HeadersEditor = ({ control }: Props) => {
-  const { fields, append, remove } = useFieldArray({
+  const { fields, append, remove, update } = useFieldArray({
     control,
     name: 'headers',
   });
@@ -35,6 +35,13 @@ export const HeadersEditor = ({ control }: Props) => {
     }
   };
 
+  const handleUpdateHeader = useCallback(
+    (index: number, key: string, value: string) => {
+      update(index, { key, value });
+    },
+    [update],
+  );
+
   return (
     <div className="flex gap-2 flex-col justify-between font-montserrat">
       <span className="text-light-green">{t('headers-title')}</span>
@@ -46,12 +53,14 @@ export const HeadersEditor = ({ control }: Props) => {
             placeholder={t('key-placeholder')}
             value={newHeader.key}
             onChange={(e) => setNewHeader((prev) => ({ ...prev, key: e.target.value }))}
+            className="border-green text-green"
           />
           <HeaderInput
             ref={valueInputRef}
             placeholder={t('value-placeholder')}
             value={newHeader.value}
             onChange={(e) => setNewHeader((prev) => ({ ...prev, value: e.target.value }))}
+            className="border-green text-green"
           />
         </div>
         <Button
@@ -68,9 +77,11 @@ export const HeadersEditor = ({ control }: Props) => {
           <HeaderItem
             key={field.id}
             id={field.id}
+            index={index}
             keyValue={field.key}
             value={field.value}
             onRemove={() => remove(index)}
+            onUpdate={handleUpdateHeader}
           />
         ))}
       </div>
