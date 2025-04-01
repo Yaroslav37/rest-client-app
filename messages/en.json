@@ -81,7 +81,7 @@
     "toContinue": "to continue."
   },
   "userWelcome": {
-    "welcomeUser": "Welcome, {{email}}!",
+    "welcomeUser": "Welcome",
     "restClient": "REST Client",
     "history": "History",
     "variables": "Variables"
