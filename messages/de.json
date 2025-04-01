@@ -55,7 +55,7 @@
       "required": "Passwortbestätigung ist erforderlich"
     }
   },
-   "Toasts": {
+  "Toasts": {
     "signup": {
       "success": "Konto erfolgreich erstellt!"
     },
@@ -65,13 +65,25 @@
     "logout": {
       "success": "Auf Wiedersehen! Bis bald..."
     },
-     "in-use": {
+    "in-use": {
       "in-use": "Die E-Mail ist bereits in Gebrauch. Bitte versuchen Sie eine andere E-Mail."
     },
     "errors": {
       "invalid": "Überprüfen Sie Ihre E-Mail und Ihr Passwort.",
       "unknown": "Ein unerwarteter Fehler ist aufgetreten."
     }
+  },
+  "authWelcome": {
+    "welcome": "Willkommen!",
+    "signIn": "Anmelden",
+    "or": "oder",
+    "signUp": "Registrieren",
+    "toContinue": "um fortzufahren."
+  },
+  "userWelcome": {
+    "welcomeUser": "Willkommen",
+    "restClient": "REST-Client",
+    "history": "Verlauf",
+    "variables": "Variablen"
   }
 }
-

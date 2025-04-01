@@ -65,12 +65,25 @@
     "logout": {
       "success": "Goodbye! See you soon..."
     },
-     "in-use": {
+    "in-use": {
       "in-use": "Email is already in use. Please try another email."
     },
     "errors": {
       "invalid": "Check your email and password.",
       "unknown": "An unexpected error occurred."
     }
+  },
+  "authWelcome": {
+    "welcome": "Welcome!",
+    "signIn": "Sign In",
+    "or": "or",
+    "signUp": "Sign Up",
+    "toContinue": "to continue."
+  },
+  "userWelcome": {
+    "welcomeUser": "Welcome",
+    "restClient": "REST Client",
+    "history": "History",
+    "variables": "Variables"
   }
 }
