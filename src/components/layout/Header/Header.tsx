@@ -2,12 +2,12 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
+import { toast } from 'react-toastify';
 
 import { LanguageSwitcher } from '@/components/ui/LanguageSwitcher/LanguageSwitcher';
 import { Logo } from '@/components/ui/Logo/Logo';
-import { useAuth } from '@/context/authContext';
+import { useAuth } from '@/hooks/useAuth';
 import { useScrollTrigger } from '@/hooks/useScrollTrigger';
 import { ROUTES } from '@/shared/routes';
 import { cn } from '@/utils/tailwind-clsx';
@@ -19,13 +19,13 @@ const linksStyles =
 
 export const Header = () => {
   const t = useTranslations('Header');
+  const tr = useTranslations('Toasts');
   const { user, logout } = useAuth();
-  const router = useRouter();
   const isScrolled = useScrollTrigger();
 
   const handleLogout = () => {
     logout();
-    router.push(ROUTES.SIGN_IN);
+    toast.success(tr('logout.success'));
   };
 
   return (

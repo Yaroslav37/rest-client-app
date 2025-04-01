@@ -15,6 +15,77 @@
     "error": "Etwas ist schief gelaufen!",
     "try": "Erneut versuchen"
   },
+  "SignIn": {
+    "title": "Anmelden",
+    "emailLabel": "Email",
+    "passwordLabel": "Passwort",
+    "button": "Anmelden",
+    "noAccount": "Haben Sie kein Konto?",
+    "signUpLink": "Registrieren",
+    "error": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.",
+    "invalid": "Ungültige Berechtigungsnachweise"
+  },
+  "SignUp": {
+    "title": "Registrieren",
+    "emailLabel": "Email",
+    "passwordLabel": "Passwort",
+    "confirmPasswordLabel": "Passwort bestätigen",
+    "button": "Registrieren",
+    "error": {
+      "email": "Ungültige Email-Adresse",
+      "password": "Passwort ist zu schwach",
+      "passwordConfirm": "Passwörter stimmen nicht überein"
+    }
+  },
+  "validation": {
+    "email": {
+      "invalid": "Ungültige Email",
+      "required": "Email ist erforderlich"
+    },
+    "password": {
+      "hasNumber": "Passwort muss mindestens 1 Zahl enthalten",
+      "hasUpperCase": "Passwort muss mindestens 1 Großbuchstaben enthalten",
+      "hasLowerCase": "Passwort muss mindestens 1 Kleinbuchstaben enthalten",
+      "hasSpecialChar": "Passwort muss mindestens 1 Sonderzeichen enthalten",
+      "minLength": "Passwort muss mindestens {length} Zeichen lang sein",
+      "required": "Passwort ist erforderlich"
+    },
+    "passwordConfirm": {
+      "match": "Passwörter müssen übereinstimmen",
+      "required": "Passwortbestätigung ist erforderlich"
+    }
+  },
+  "Toasts": {
+    "signup": {
+      "success": "Konto erfolgreich erstellt!"
+    },
+    "signin": {
+      "success": "Erfolgreich eingeloggt!"
+    },
+    "logout": {
+      "success": "Auf Wiedersehen! Bis bald..."
+    },
+    "in-use": {
+      "in-use": "Die E-Mail ist bereits in Gebrauch. Bitte versuchen Sie eine andere E-Mail."
+    },
+    "errors": {
+      "invalid": "Überprüfen Sie Ihre E-Mail und Ihr Passwort.",
+      "unknown": "Ein unerwarteter Fehler ist aufgetreten."
+    }
+  },
+  "authWelcome": {
+    "welcome": "Willkommen!",
+    "signIn": "Anmelden",
+    "or": "oder",
+    "signUp": "Registrieren",
+    "toContinue": "um fortzufahren."
+  },
+  "userWelcome": {
+    "welcomeUser": "Willkommen",
+    "restClient": "REST-Client",
+    "history": "Verlauf",
+    "variables": "Variablen"
+  },
   "RestClient": {
     "sending": "Senden von...",
     "send": "Anfrage senden",

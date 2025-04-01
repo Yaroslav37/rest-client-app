@@ -6,7 +6,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 export const Button = ({ children, ...props }: ButtonProps) => {
   return (
-    <button type="submit" className="button" {...props}>
+    <button type="submit" className="button cursor-pointer" {...props}>
       {children}
     </button>
   );

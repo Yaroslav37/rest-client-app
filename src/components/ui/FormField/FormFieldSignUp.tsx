@@ -3,38 +3,46 @@ import { FieldValues, Path, UseFormRegister } from 'react-hook-form';
 
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
-interface FormFieldProps<T extends FieldValues> {
+interface FormFieldSignUpProps<T extends FieldValues> {
   id: Path<T>;
   label: string;
   register: UseFormRegister<T>;
   type: string;
   placeholder?: string;
   error?: string;
-  required?: boolean;
+  onChange?: (value: string) => void;
 }
 
-export const FormField = <T extends FieldValues>({
+export const FormFieldSignUp = <T extends FieldValues>({
   id,
   label,
   register,
   type,
   placeholder,
   error,
-  required = false,
-}: FormFieldProps<T>) => {
+  onChange,
+}: FormFieldSignUpProps<T>) => {
+  const { onChange: registerOnChange, ...rest } = register(id);
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (onChange) {
+      onChange(event.target.value);
+    }
+    registerOnChange(event);
+  };
+
   return (
-    <div className="form-field">
+    <div>
       <label htmlFor={id} className="label">
         {label}
       </label>
       <input
         id={id}
         type={type}
-        className={`input ${error ? 'input-error' : ''}`}
-        {...register(id)}
+        className="input"
         placeholder={placeholder}
-        required={required}
-        aria-required={required}
+        onChange={handleChange}
+        {...rest}
       />
       {error && <ErrorMessage message={error} />}
     </div>

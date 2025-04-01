@@ -68,3 +68,11 @@ body {
 .button {
   @apply w-full mt-2 py-2 px-4 rounded-md text-white font-medium bg-gradient-to-r cursor-pointer from-green-900 to-green-700 hover:from-green-800 hover:to-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors;
 }
+
+.text-responsive-auth {
+  @apply text-xl sm:text-3xl md:text-4xl lg:text-5xl;
+}
+
+.text-responsive {
+  @apply text-5xl sm:text-5xl md:text-6xl lg:text-7xl;
+}

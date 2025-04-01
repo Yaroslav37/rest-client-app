@@ -15,6 +15,77 @@
     "error": "Something went wrong!",
     "try": "Try again"
   },
+  "SignIn": {
+    "title": "Sign In",
+    "emailLabel": "Email",
+    "passwordLabel": "Password",
+    "button": "Sign In",
+    "noAccount": "Do not have an account?",
+    "signUpLink": "Sign Up",
+    "error": "An error occurred. Please try again.",
+    "invalid": "Invalid credentials"
+  },
+  "SignUp": {
+    "title": "Sign Up",
+    "emailLabel": "Email",
+    "passwordLabel": "Password",
+    "confirmPasswordLabel": "Confirm Password",
+    "button": "Sign Up",
+    "error": {
+      "email": "Invalid email address",
+      "password": "Password is too weak",
+      "passwordConfirm": "Passwords do not match"
+    }
+  },
+  "validation": {
+    "email": {
+      "invalid": "Invalid email",
+      "required": "Email is required"
+    },
+    "password": {
+      "hasNumber": "Password must contain at least 1 number",
+      "hasUpperCase": "Password must contain at least 1 uppercase letter",
+      "hasLowerCase": "Password must contain at least 1 lowercase letter",
+      "hasSpecialChar": "Password must contain at least 1 special character",
+      "minLength": "Password must be at least 8 characters",
+      "required": "Password is required"
+    },
+    "passwordConfirm": {
+      "match": "Passwords must match",
+      "required": "Confirm password is required"
+    }
+  },
+  "Toasts": {
+    "signup": {
+      "success": "Account created successfully!"
+    },
+    "signin": {
+      "success": "Logged in successfully!"
+    },
+    "logout": {
+      "success": "Goodbye! See you soon..."
+    },
+    "in-use": {
+      "in-use": "Email is already in use. Please try another email."
+    },
+    "errors": {
+      "invalid": "Check your email and password.",
+      "unknown": "An unexpected error occurred."
+    }
+  },
+  "authWelcome": {
+    "welcome": "Welcome!",
+    "signIn": "Sign In",
+    "or": "or",
+    "signUp": "Sign Up",
+    "toContinue": "to continue."
+  },
+  "userWelcome": {
+    "welcomeUser": "Welcome",
+    "restClient": "REST Client",
+    "history": "History",
+    "variables": "Variables"
+  },
   "RestClient": {
     "sending": "Sending...",
     "send": "Send Request",
