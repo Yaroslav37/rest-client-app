@@ -33,6 +33,7 @@ export function useRestClientForm({ initialMethod, initialValues }: Props) {
   const onSubmit = useCallback(async (data: RestClientFormValues) => {
     setError(null);
     setResponse(undefined);
+    // console.log(data)
 
     try {
       const headers = new Headers(

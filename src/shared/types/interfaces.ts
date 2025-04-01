@@ -17,3 +17,5 @@ export interface ApiResponse {
   headers: Record<string, string>;
   data: unknown;
 }
+
+export type EditingLanguage = 'json' | 'text';

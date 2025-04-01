@@ -32,7 +32,7 @@ export const Header = () => {
     <header
       className={cn(
         'flex w-full border-b border-light-green sticky top-0 transition-all duration-500 z-[500]',
-        isScrolled ? 'py-3 shadow-[0_3px_3px_0_rgba(135,194,50,0.3)] bg-[#121a11]' : 'py-6 bg-dark',
+        isScrolled ? 'py-3 shadow-[0_3px_3px_0_rgba(135,194,50,0.3)] bg-dark-green' : 'py-6 bg-dark',
       )}
     >
       <Container className="w-full">
