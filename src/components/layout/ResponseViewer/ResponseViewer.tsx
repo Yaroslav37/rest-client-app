@@ -1,37 +1,47 @@
 'use client';
 
-import { json } from '@codemirror/lang-json';
-import { EditorView } from '@codemirror/view';
-import CodeMirror from '@uiw/react-codemirror';
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
-import { ApiResponse } from '@/shared/types/interfaces';
-import { getStatusColor, getStatusMessage } from '@/shared/utils/set-response-status';
+import { ResponseTabs } from '@/components/ui/ReponseTabs/ResponseTabs';
+import { ResponseContent } from '@/components/ui/ResponseContent/ResponseContent';
+import { useStatusInfo } from '@/hooks/useStatusInfo';
+import { cn } from '@/utils/tailwind-clsx';
 
-interface Props {
-  response?: ApiResponse;
+interface ResponseViewerProps {
+  response?: {
+    status: number;
+    statusText: string;
+    headers: Record<string, string>;
+    data: unknown;
+  };
   error?: Error | null;
 }
 
-export const ResponseViewer = ({ response, error }: Props) => {
+export const ResponseViewer = ({ response, error }: ResponseViewerProps) => {
   const [activeTab, setActiveTab] = useState<'headers' | 'body'>('body');
-  const formattedData =
-    typeof response?.data === 'string' ? response.data : JSON.stringify(response?.data, null, 2);
+  const t = useTranslations('RestClient');
+  const { getStatusColor, getStatusMessage } = useStatusInfo();
+
+  const status = response?.status;
+  const statusText = response?.statusText;
 
   return (
-    <div className="mt-4 border rounded-lg overflow-hidden bg-gray-900">
-      {response && !error && (
-        <div className="bg-gray-800 p-4 flex justify-between items-center">
+    <div className="border rounded-lg overflow-hidden">
+      <span className={cn('text-light-green mb-1.5 hidden', response && 'flex')}>
+        {t('response-title')}
+      </span>
+      {status !== undefined && (
+        <div className="flex justify-between items-center bg-dark-green p-4">
           <div className="flex items-center gap-4">
-            <span className="text-gray-400">Status:</span>
-            <span className={`${getStatusColor(response.status)} font-semibold`}>
-              {response.status} {getStatusMessage(response.status)}
+            <span className="text-white">{t('status')}:</span>
+            <span className={`${getStatusColor(status)} font-bold`}>
+              {status} {getStatusMessage(status)}
             </span>
-            {response.statusText && <span className="text-gray-400">• {response.statusText}</span>}
+            {statusText && <span className="text-white">• {statusText}</span>}
           </div>
         </div>
       )}
-
       {error ? (
         // TODO: ADD TOAST INSTEAD ?
         <div className="p-4 bg-red-900 text-red-200 flex items-center gap-2">
@@ -40,61 +50,14 @@ export const ResponseViewer = ({ response, error }: Props) => {
             <div className="text-sm">{error.message}</div>
           </div>
         </div>
-      ) : (
-        response && (
-          <>
-            <div className="bg-gray-800 px-4 border-t border-gray-700">
-              <div className="flex gap-2">
-                <button
-                  type="button"
-                  onClick={() => setActiveTab('body')}
-                  className={`px-4 py-2 rounded-t-lg transition-colors ${
-                    activeTab === 'body'
-                      ? 'bg-gray-700 text-white'
-                      : 'text-gray-400 hover:bg-gray-700/50'
-                  }`}
-                >
-                  Body
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setActiveTab('headers')}
-                  className={`px-4 py-2 rounded-t-lg transition-colors ${
-                    activeTab === 'headers'
-                      ? 'bg-gray-700 text-white'
-                      : 'text-gray-400 hover:bg-gray-700/50'
-                  }`}
-                >
-                  Headers
-                </button>
-              </div>
-            </div>
-
-            <div>
-              {activeTab === 'headers' ? (
-                <div className="p-4 h-full overflow-auto">
-                  <pre className="text-sm text-gray-400">
-                    {JSON.stringify(response.headers, null, 2)}
-                  </pre>
-                </div>
-              ) : (
-                <CodeMirror
-                  value={formattedData || ''}
-                  extensions={[json(), EditorView.lineWrapping]}
-                  readOnly
-                  theme="dark"
-                  height="300px"
-                  basicSetup={{
-                    lineNumbers: true,
-                    foldGutter: false,
-                    highlightActiveLine: false,
-                  }}
-                />
-              )}
-            </div>
-          </>
-        )
-      )}
+      ) : response ? (
+        <>
+          <div className="bg-dark py-2 px-4 border-t  border-grey">
+            <ResponseTabs activeTab={activeTab} onTabChange={setActiveTab} />
+          </div>
+          <ResponseContent response={response} activeTab={activeTab} />
+        </>
+      ) : null}
     </div>
   );
 };

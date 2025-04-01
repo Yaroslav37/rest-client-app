@@ -56,7 +56,7 @@ const RestClient = () => {
     <Container className="py-12">
       <form
         onSubmit={handleSubmit(handleFormSubmit)}
-        className="flex flex-col gap-12 max-w-[900px] mx-auto"
+        className="flex flex-col gap-10 max-w-[900px] mx-auto"
       >
         <div className="flex flex-col sm:flex-row gap-5 sm:justify-between sm:gap-10">
           <MethodSelector control={control} />

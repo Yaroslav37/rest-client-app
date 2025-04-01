@@ -22,6 +22,18 @@
     "enter-url": "Enter endpoint URL",
     "headers-title": "Headers",
     "key-placeholder": "Key",
-    "value-placeholder": "Value"
+    "value-placeholder": "Value",
+    "request-title": "Request editor",
+    "prettify": "Prettify",
+    "response-title": "Response viewer",
+    "status": "Status",
+    "response-tab-body": "Body",
+    "response-tab-headers": "Headers",
+    "informational": "Informational",
+    "success": "Success",
+    "redirection": "Redirection",
+    "clientError": "Client Error",
+    "serverError": "Server Error",
+    "unknown": "Unknown Status"
   }
 }

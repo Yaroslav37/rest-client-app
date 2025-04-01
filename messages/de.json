@@ -22,6 +22,18 @@
     "enter-url": "Endpunkt-URL eingeben",
     "headers-title": "Kopfzeilen",
     "key-placeholder": "Schlüssel",
-    "value-placeholder": "Wert"
+    "value-placeholder": "Wert",
+    "request-title": "Editor anfordern",
+    "prettify": "Aufhübschen",
+    "response-title": "Antwort-Viewer",
+    "status": "Stand",
+    "response-tab-body": "Körper",
+    "response-tab-headers": "Kopfzeilen",
+    "informational": "Informationell",
+    "success": "Erfolg",
+    "redirection": "Umleitung",
+    "clientError": "Client-Fehler",
+    "serverError": "Server-Fehler",
+    "unknown": "Unbekannter Status"
   }
 }

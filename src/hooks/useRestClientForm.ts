@@ -33,7 +33,6 @@ export function useRestClientForm({ initialMethod, initialValues }: Props) {
   const onSubmit = useCallback(async (data: RestClientFormValues) => {
     setError(null);
     setResponse(undefined);
-    // console.log(data)
 
     try {
       const headers = new Headers(
@@ -57,26 +56,32 @@ export function useRestClientForm({ initialMethod, initialValues }: Props) {
 
       const response = await fetch(data.url, requestInit);
 
-      const responseHeaders = Object.fromEntries(response.headers.entries());
-      const textData = await response.text();
-
-      let responseData;
-      try {
-        responseData = JSON.parse(textData);
-      } catch {
-        responseData = textData;
-      }
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      setResponse({
+      const responseInfo = {
         status: response.status,
         statusText: response.statusText,
-        headers: responseHeaders,
-        data: responseData,
-      });
+        headers: Object.fromEntries(response.headers.entries()),
+      };
+
+      let responseData;
+
+      try {
+        responseData = await response.clone().json();
+      } catch {
+        try {
+          responseData = await response.clone().text();
+        } catch {
+          responseData = 'Unable to parse response';
+        }
+      }
+
+      const fullResponse = { ...responseInfo, data: responseData };
+      setResponse(fullResponse);
+
+      if (!response.ok) {
+        const error = new Error(`HTTP Error ${response.status}`);
+        Object.assign(error, { response: fullResponse });
+        throw error;
+      }
     } catch (err) {
       // TODO: ADD TOAST
       setError(err instanceof Error ? err : new Error('Unknown error occurred'));

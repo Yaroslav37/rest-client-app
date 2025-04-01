@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 import { Control, useController } from 'react-hook-form';
 
@@ -23,6 +24,7 @@ export const RequestEditor = ({ control, readOnly = false }: Props) => {
 
   const [localValue, setLocalValue] = useState(field.value || '');
   const { formatJson } = useJsonFormatter();
+  const t = useTranslations('RestClient');
 
   useEffect(() => {
     setLocalValue(field.value || '');
@@ -47,6 +49,8 @@ export const RequestEditor = ({ control, readOnly = false }: Props) => {
 
   return (
     <div className="border rounded-lg overflow-hidden">
+      <span className="text-light-green mb-1.5 inline-block">{t('request-title')}</span>
+
       <div className="flex justify-between items-center bg-dark-green p-2">
         <EditorSwitcher language={language} onLanguageChange={setLanguage} />
         {!readOnly && language === 'json' && (
@@ -55,7 +59,7 @@ export const RequestEditor = ({ control, readOnly = false }: Props) => {
             onClick={handlePrettify}
             className="cursor-pointer px-3 py-1 transition-colors border border-light-green  text-light-green rounded hover:bg-light-green hover:text-dark"
           >
-            Prettify
+            {t('prettify')}
           </button>
         )}
       </div>
