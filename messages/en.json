@@ -106,5 +106,16 @@
     "clientError": "Client Error",
     "serverError": "Server Error",
     "unknown": "Unknown Status"
+  },
+  "CodeGenerator": {
+    "useGenerator": "Use our Code Generator to convert your API request to different programming languages.",
+    "error": "Error",
+    "error-no-code": "No code generated",
+    "unknown": "Unknown error occurred",
+    "select-language": "Select language",
+    "select-variant": "Select variant",
+    "hide": "Hide generated code",
+    "show": "Show generated code",
+    "generate": "Generate code to see the result"
   }
 }
