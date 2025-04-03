@@ -52,6 +52,13 @@ const RestClient = () => {
     });
   };
 
+  const currentRequest = {
+    method: currentMethod,
+    url: currentUrl,
+    headers: currentHeaders,
+    body: currentBody,
+  };
+
   return (
     <Container className="py-12">
       <form
@@ -66,7 +73,7 @@ const RestClient = () => {
         <RequestEditor control={control} />
         <Button disabled={isPending}>{isPending ? t('sending') : t('send')}</Button>
         <ResponseViewer response={response} error={error} />
-        <CodeGenerator />
+        <CodeGenerator requestCurrent={currentRequest} />
       </form>
     </Container>
   );

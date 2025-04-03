@@ -106,5 +106,16 @@
     "clientError": "Client-Fehler",
     "serverError": "Server-Fehler",
     "unknown": "Unbekannter Status"
+  },
+  "CodeGenerator": {
+    "useGenerator": "Nutzen Sie unseren Code-Generator, um Ihre API-Anfrage in verschiedene Programmiersprachen zu konvertieren.",
+    "error": "Fehler",
+    "error-no-code": "Kein Code erzeugt",
+    "unknown": "Unbekannter Fehler aufgetreten",
+    "select-language": "Sprache auswählen",
+    "select-variant": "Variante auswählen",
+    "hide": "Generierten Code ausblenden",
+    "show": "Generierten Code anzeigen",
+    "generate": "Code generieren, um das Ergebnis zu sehen"
   }
 }
