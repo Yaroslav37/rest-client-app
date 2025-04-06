@@ -52,13 +52,13 @@ export function useVariablesForm() {
   }, [setValue]);
 
   useEffect(() => {
-    if (currentVariables.length === 0) return;
-
     try {
       const validVariables = currentVariables.filter((v) => v.id && v.key.trim() && v.value.trim());
 
       if (validVariables.length > 0) {
         localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(validVariables));
+      } else {
+        localStorage.removeItem(LOCAL_STORAGE_KEY);
       }
     } catch (error) {
       console.error('Failed to save variables:', error);
