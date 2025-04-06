@@ -3,6 +3,7 @@ export { Header } from './layout/Header/Header.tsx';
 export { HeadersEditor } from './layout/HeadersEditor/HeadersEditor.tsx';
 export { RequestEditor } from './layout/RequestEditor/RequestEditor';
 export { ResponseViewer } from './layout/ResponseViewer/ResponseViewer';
+export { VariablesEditor } from './layout/VariablesEditor/VariablesEditor';
 export { CodeGenerator } from './ui/CodeGenerator/CodeGenerator';
 export { Button } from './ui/FormButton/FormButton.tsx';
 export { FormField } from './ui/FormField/FormField.tsx';

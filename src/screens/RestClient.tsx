@@ -71,9 +71,9 @@ const RestClient = () => {
         </div>
         <HeadersEditor control={control} />
         <RequestEditor control={control} />
+        <CodeGenerator requestCurrent={currentRequest} />
         <Button disabled={isPending}>{isPending ? t('sending') : t('send')}</Button>
         <ResponseViewer response={response} error={error} />
-        <CodeGenerator requestCurrent={currentRequest} />
       </form>
     </Container>
   );

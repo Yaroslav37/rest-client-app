@@ -105,7 +105,8 @@
     "redirection": "Redirection",
     "clientError": "Client Error",
     "serverError": "Server Error",
-    "unknown": "Unknown Status"
+    "unknown": "Unknown Status",
+    "apply-variables": "Apply variables"
   },
   "CodeGenerator": {
     "useGenerator": "Use our Code Generator to convert your API request to different programming languages.",
@@ -117,5 +118,12 @@
     "hide": "Hide generated code",
     "show": "Show generated code",
     "generate": "Generate code to see the result"
+  },
+  "Variables": {
+    "variables-title": "Variables",
+    "key-placeholder": "key",
+    "value-placeholder": "value",
+    "info": "Add variable to your request. Variable value can be inserted either in the url, or request body, or header value.",
+    "info-add": "To indicate that the variable should be used, you can specify it as "
   }
 }

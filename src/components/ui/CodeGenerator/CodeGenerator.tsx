@@ -6,6 +6,7 @@ import { Header, Request } from 'postman-collection';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import Select, { SingleValue } from 'react-select';
 
+import { useVariablesForm } from '@/hooks/useVariablesForm';
 import { cn } from '@/utils/tailwind-clsx';
 
 interface RequestData {
@@ -36,6 +37,7 @@ const languageOptions = Object.entries(languageVariants).map(([key]) => ({
 }));
 
 export const CodeGenerator = ({ requestCurrent }: CodeGeneratorProps) => {
+  const { applyVariables, getVariablesAsObject } = useVariablesForm();
   const [language, setLanguage] = useState('curl');
   const [variant, setVariant] = useState<string | null>(languageVariants['curl'][0]);
   const [generatedCode, setGeneratedCode] = useState('');
@@ -44,6 +46,35 @@ export const CodeGenerator = ({ requestCurrent }: CodeGeneratorProps) => {
 
   const variants = useMemo(() => languageVariants[language] || [], [language]);
 
+  const replaceVariables = useCallback(
+    (data: RequestData): RequestData => {
+      const variables = getVariablesAsObject();
+
+      let processedUrl = data.url;
+      Object.entries(variables).forEach(([key, value]) => {
+        processedUrl = processedUrl.replace(new RegExp(`\\{\\{${key}\\}\\}`, 'g'), value);
+      });
+
+      const processedHeaders = data.headers.map((header) => ({
+        key: header.key,
+        value: header.value.replace(
+          /\{\{(\w+)\}\}/g,
+          (match, varName) => variables[varName] || match,
+        ),
+      }));
+
+      const processedBody = applyVariables(data.body);
+
+      return {
+        ...data,
+        url: processedUrl,
+        headers: processedHeaders,
+        body: processedBody,
+      };
+    },
+    [applyVariables, getVariablesAsObject],
+  );
+
   useEffect(() => {
     if (!requestCurrent?.url) {
       setGeneratedCode('');
@@ -51,14 +82,17 @@ export const CodeGenerator = ({ requestCurrent }: CodeGeneratorProps) => {
     }
 
     try {
-      const postmanHeaders = requestCurrent.headers.map((header) => new Header(header));
+      const processedRequest = replaceVariables(requestCurrent);
+
+      const postmanHeaders = processedRequest.headers.map((header) => new Header(header));
+
       const request = new Request({
-        method: requestCurrent.method,
-        url: requestCurrent.url,
+        method: processedRequest.method,
+        url: processedRequest.url,
         header: postmanHeaders,
         body: {
           mode: 'raw',
-          raw: requestCurrent.body,
+          raw: processedRequest.body,
         },
       });
 
@@ -78,9 +112,10 @@ export const CodeGenerator = ({ requestCurrent }: CodeGeneratorProps) => {
         `⚠️ ${t('error')}: ${error instanceof Error ? error.message : t('unknown-error')}`,
       );
     }
-  }, [requestCurrent, language, variant, t]);
+  }, [requestCurrent, language, variant, t, replaceVariables]);
 
-  const handleShowCode = useCallback(() => {
+  const handleShowCode = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
     setShowCode((prev) => !prev);
   }, []);
 
@@ -141,6 +176,7 @@ export const CodeGenerator = ({ requestCurrent }: CodeGeneratorProps) => {
 
       <div className="flex flex-col gap-2">
         <button
+          type="button"
           onClick={handleShowCode}
           className="px-4 py-2 bg-green text-white rounded-md hover:bg-light-green transition-colors w-fit"
         >
