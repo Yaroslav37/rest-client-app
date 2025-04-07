@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 const LOCAL_STORAGE_KEY = 'rest-client-variables';
@@ -10,6 +10,7 @@ interface Variable {
 }
 
 export function useVariablesForm() {
+  const [isLoaded, setIsLoaded] = useState(false);
   const { control, setValue, watch, getValues } = useForm<{ variables: Variable[] }>({
     defaultValues: {
       variables: [],
@@ -18,15 +19,22 @@ export function useVariablesForm() {
   });
 
   const currentVariables = watch('variables');
+
   useEffect(() => {
     const loadVariables = () => {
       try {
         const saved = localStorage.getItem(LOCAL_STORAGE_KEY);
-        if (!saved) return;
+        if (!saved) {
+          setIsLoaded(true);
+          return;
+        }
 
         const parsed = JSON.parse(saved) as unknown;
 
-        if (!Array.isArray(parsed)) return;
+        if (!Array.isArray(parsed)) {
+          setIsLoaded(true);
+          return;
+        }
 
         const validVariables = (parsed as unknown[]).filter(
           (v): v is Variable =>
@@ -40,11 +48,11 @@ export function useVariablesForm() {
             typeof (v as Variable).value === 'string',
         );
 
-        if (validVariables.length > 0) {
-          setValue('variables', validVariables);
-        }
+        setValue('variables', validVariables);
+        setIsLoaded(true);
       } catch (error) {
         console.error('Failed to load variables:', error);
+        setIsLoaded(true);
       }
     };
 
@@ -52,18 +60,18 @@ export function useVariablesForm() {
   }, [setValue]);
 
   useEffect(() => {
+    if (!isLoaded) return;
+    const validVariables = currentVariables.filter((v) => v.id && v.key.trim() && v.value.trim());
     try {
-      const validVariables = currentVariables.filter((v) => v.id && v.key.trim() && v.value.trim());
-
-      if (validVariables.length > 0) {
-        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(validVariables));
-      } else {
+      if (validVariables.length === 0) {
         localStorage.removeItem(LOCAL_STORAGE_KEY);
+      } else {
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(validVariables));
       }
     } catch (error) {
       console.error('Failed to save variables:', error);
     }
-  }, [currentVariables]);
+  }, [currentVariables, isLoaded]);
 
   const addVariable = useCallback(
     (variable: Omit<Variable, 'id'>) => {
@@ -135,6 +143,7 @@ export function useVariablesForm() {
   return {
     control,
     variables: currentVariables.filter((v) => v.key.trim() && v.value.trim()),
+    isLoaded,
     addVariable,
     removeVariable,
     updateVariable,

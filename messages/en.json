@@ -106,7 +106,9 @@
     "clientError": "Client Error",
     "serverError": "Server Error",
     "unknown": "Unknown Status",
-    "apply-variables": "Apply variables"
+    "apply-variables": "Apply variables",
+    "variables-not-loaded": "Variables are not loaded yet",
+    "no-variables": "No saved variables found in local storage"
   },
   "CodeGenerator": {
     "useGenerator": "Use our Code Generator to convert your API request to different programming languages.",

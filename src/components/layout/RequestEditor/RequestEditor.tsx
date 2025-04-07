@@ -3,6 +3,7 @@
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 import { Control, useController } from 'react-hook-form';
+import { toast } from 'react-toastify';
 
 import { Editor } from '@/components/ui/Editor/Editor';
 import { EditorSwitcher } from '@/components/ui/EditorSwitcher/EditorSwitcher';
@@ -24,7 +25,7 @@ export const RequestEditor = ({ control, readOnly = false }: Props) => {
   });
 
   const [localValue, setLocalValue] = useState(field.value || '');
-  const { applyVariables } = useVariablesForm();
+  const { applyVariables, isLoaded } = useVariablesForm();
   const { formatJson } = useJsonFormatter();
   const t = useTranslations('RestClient');
 
@@ -33,6 +34,7 @@ export const RequestEditor = ({ control, readOnly = false }: Props) => {
   }, [field.value]);
 
   const handleBlur = () => {
+    if (!isLoaded) return;
     const valueWithVariables = applyVariables(localValue);
     if (valueWithVariables !== field.value) {
       field.onChange(valueWithVariables);
@@ -46,12 +48,29 @@ export const RequestEditor = ({ control, readOnly = false }: Props) => {
       setLocalValue(valueWithVariables);
       field.onChange(valueWithVariables);
     } catch (_error) {
-      // TODO: show TOAST
-      // showToast('Invalid JSON format');
+      toast.error('Invalid JSON format');
     }
   };
 
+  const handleApplyVariables = () => {
+    if (!isLoaded) {
+      toast.error(t('variables-not-loaded'));
+      return;
+    }
+    const saved = localStorage.getItem('rest-client-variables');
+
+    if (!saved) {
+      toast.error(t('no-variables'));
+      return;
+    }
+
+    const valueWithVariables = applyVariables(localValue);
+    setLocalValue(valueWithVariables);
+    field.onChange(valueWithVariables);
+  };
+
   useEffect(() => {
+    if (!isLoaded) return;
     const timer = setTimeout(() => {
       const valueWithVariables = applyVariables(localValue);
       if (valueWithVariables !== localValue) {
@@ -60,7 +79,7 @@ export const RequestEditor = ({ control, readOnly = false }: Props) => {
     }, 300);
 
     return () => clearTimeout(timer);
-  }, [localValue, applyVariables]);
+  }, [localValue, applyVariables, isLoaded]);
 
   return (
     <div className="border rounded-lg overflow-hidden">
@@ -82,11 +101,14 @@ export const RequestEditor = ({ control, readOnly = false }: Props) => {
           type="button"
           onClick={(e) => {
             e.preventDefault();
-            const valueWithVariables = applyVariables(localValue);
-            setLocalValue(valueWithVariables);
-            field.onChange(valueWithVariables);
+            handleApplyVariables();
           }}
-          className="cursor-pointer px-3 py-1 transition-colors border border-blue-500 text-blue-500 rounded hover:bg-blue-500 hover:text-white"
+          disabled={!isLoaded}
+          className={`cursor-pointer px-3 py-1 transition-colors border rounded ${
+            isLoaded
+              ? 'border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white'
+              : 'border-gray-500 text-gray-500 cursor-not-allowed'
+          }`}
         >
           {t('apply-variables')}
         </button>

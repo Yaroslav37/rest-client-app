@@ -106,7 +106,9 @@
     "clientError": "Client-Fehler",
     "serverError": "Server-Fehler",
     "unknown": "Unbekannter Status",
-    "apply-variables": "Variablen anwenden"
+    "apply-variables": "Variablen anwenden",
+    "variables-not-loaded": "Variablen sind noch nicht geladenVariablen sind noch nicht geladen",
+    "no-variables": "Keine gespeicherten Variablen im lokalen Speicher gefundenVariablen sind noch nicht geladen"
   },
   "CodeGenerator": {
     "useGenerator": "Nutzen Sie unseren Code-Generator, um Ihre API-Anfrage in verschiedene Programmiersprachen zu konvertieren.",
