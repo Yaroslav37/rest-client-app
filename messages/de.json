@@ -105,7 +105,10 @@
     "redirection": "Umleitung",
     "clientError": "Client-Fehler",
     "serverError": "Server-Fehler",
-    "unknown": "Unbekannter Status"
+    "unknown": "Unbekannter Status",
+    "apply-variables": "Variablen anwenden",
+    "variables-not-loaded": "Variablen sind noch nicht geladenVariablen sind noch nicht geladen",
+    "no-variables": "Keine gespeicherten Variablen im lokalen Speicher gefundenVariablen sind noch nicht geladen"
   },
   "CodeGenerator": {
     "useGenerator": "Nutzen Sie unseren Code-Generator, um Ihre API-Anfrage in verschiedene Programmiersprachen zu konvertieren.",
@@ -117,5 +120,12 @@
     "hide": "Generierten Code ausblenden",
     "show": "Generierten Code anzeigen",
     "generate": "Code generieren, um das Ergebnis zu sehen"
+  },
+  "Variables": {
+    "variables-title": "Variablen",
+    "key-placeholder": "Schlüssel",
+    "value-placeholder": "Wert",
+    "info": "Fügen Sie eine Variable zu Ihrer Anfrage hinzu. Der Wert der Variablen kann entweder in die URL, den Anfragekörper oder den Header-Wert eingefügt werden.",
+    "info-add": "Um anzugeben, dass die Variable verwendet werden soll, können Sie sie als "
   }
 }

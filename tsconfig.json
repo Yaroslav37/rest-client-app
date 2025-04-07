@@ -39,6 +39,6 @@
     "types.d.ts",
     "eslint.config.mjs",
     "postcss.config.mjs"
-  ],
+, "src/app/layout.js"  ],
   "exclude": ["node_modules"]
 }

@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
+import { useVariablesForm } from '@/hooks/useVariablesForm';
 import type { RestClientFormValues } from '@/lib/yup/restClient';
 import type { HttpMethod } from '@/shared/types/enums';
 import { ApiResponse, Header } from '@/shared/types/interfaces';
@@ -29,64 +30,75 @@ export function useRestClientForm({ initialMethod, initialValues }: Props) {
   const currentUrl = watch('url');
   const currentBody = watch('body');
   const currentHeaders = watch('headers');
-
-  const onSubmit = useCallback(async (data: RestClientFormValues) => {
-    setError(null);
-    setResponse(undefined);
-
-    try {
-      const headers = new Headers(
-        data.headers?.reduce(
-          (acc, { key, value }) => {
-            if (key && value) acc[key] = value;
-            return acc;
-          },
-          {} as Record<string, string>,
-        ),
-      );
-
-      const requestInit: RequestInit = {
-        method: data.method,
-        headers,
-      };
-
-      if (['POST', 'PUT', 'PATCH'].includes(data.method)) {
-        requestInit.body = data.body;
-      }
-
-      const response = await fetch(data.url, requestInit);
-
-      const responseInfo = {
-        status: response.status,
-        statusText: response.statusText,
-        headers: Object.fromEntries(response.headers.entries()),
-      };
-
-      let responseData;
+  const { applyVariables } = useVariablesForm();
+  const onSubmit = useCallback(
+    async (data: RestClientFormValues) => {
+      setError(null);
+      setResponse(undefined);
 
       try {
-        responseData = await response.clone().json();
-      } catch {
-        try {
-          responseData = await response.clone().text();
-        } catch {
-          responseData = 'Unable to parse response';
+        const urlWithVars = applyVariables(data.url);
+        const bodyWithVars = applyVariables(data.body || '');
+        const headersWithVars =
+          data.headers?.map(({ key, value }) => ({
+            key: applyVariables(key),
+            value: applyVariables(value),
+          })) ?? [];
+
+        const headers = new Headers(
+          headersWithVars.reduce(
+            (acc, { key, value }) => {
+              if (key && value) acc[key] = value;
+              return acc;
+            },
+            {} as Record<string, string>,
+          ),
+        );
+
+        const requestInit: RequestInit = {
+          method: data.method,
+          headers,
+        };
+
+        if (['POST', 'PUT', 'PATCH'].includes(data.method)) {
+          requestInit.body = bodyWithVars;
         }
-      }
 
-      const fullResponse = { ...responseInfo, data: responseData };
-      setResponse(fullResponse);
+        const response = await fetch(urlWithVars, requestInit);
 
-      if (!response.ok) {
-        const error = new Error(`HTTP Error ${response.status}`);
-        Object.assign(error, { response: fullResponse });
-        throw error;
+        const responseInfo = {
+          status: response.status,
+          statusText: response.statusText,
+          headers: Object.fromEntries(response.headers.entries()),
+        };
+
+        let responseData;
+
+        try {
+          responseData = await response.clone().json();
+        } catch {
+          try {
+            responseData = await response.clone().text();
+          } catch {
+            responseData = 'Unable to parse response';
+          }
+        }
+
+        const fullResponse = { ...responseInfo, data: responseData };
+        setResponse(fullResponse);
+
+        if (!response.ok) {
+          const error = new Error(`HTTP Error ${response.status}`);
+          Object.assign(error, { response: fullResponse });
+          throw error;
+        }
+      } catch (err) {
+        // TODO: ADD TOAST
+        setError(err instanceof Error ? err : new Error('Unknown error occurred'));
       }
-    } catch (err) {
-      // TODO: ADD TOAST
-      setError(err instanceof Error ? err : new Error('Unknown error occurred'));
-    }
-  }, []);
+    },
+    [applyVariables],
+  );
 
   return {
     control,
