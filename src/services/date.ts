@@ -1,6 +1,6 @@
 import { DateGroup, RequestData } from '@/shared/types/interfaces';
 
-export const formatDateGroup = (timestamp: number): string => {
+export const formatDateGroup = (timestamp: number, locale: string = 'en-US'): string => {
   const now = new Date();
   const date = new Date(timestamp);
 
@@ -13,15 +13,18 @@ export const formatDateGroup = (timestamp: number): string => {
   } else if (date >= yesterday) {
     return 'Yesterday';
   } else {
-    return date.toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
+    return date.toLocaleDateString(locale, { month: 'long', day: 'numeric' });
   }
 };
 
-export const groupRequestsByDate = (requests: RequestData[]): DateGroup[] => {
+export const groupRequestsByDate = (
+  requests: RequestData[],
+  locale: string = 'en-US',
+): DateGroup[] => {
   const groups: Record<string, RequestData[]> = {};
 
   requests.forEach((request) => {
-    const dateGroup = formatDateGroup(request.timestamp);
+    const dateGroup = formatDateGroup(request.timestamp, locale);
     if (!groups[dateGroup]) {
       groups[dateGroup] = [];
     }
