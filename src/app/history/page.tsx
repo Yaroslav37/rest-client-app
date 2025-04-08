@@ -4,8 +4,6 @@ import dynamic from 'next/dynamic';
 import { Suspense } from 'react';
 
 import { Spinner } from '@/components';
-import withAuthRedirect from '@/hoc/withAuthRedirect';
-import { ROUTES } from '@/shared/routes';
 
 const History = dynamic(() => import('@/screens/History.tsx'), {
   loading: () => <Spinner />,
@@ -20,6 +18,4 @@ function HistoryPage() {
   );
 }
 
-export default withAuthRedirect(HistoryPage, {
-  redirectIfNotAuthenticated: ROUTES.MAIN,
-});
+export default HistoryPage;

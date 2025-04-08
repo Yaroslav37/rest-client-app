@@ -4,8 +4,6 @@ import dynamic from 'next/dynamic';
 import { Suspense } from 'react';
 
 import { Spinner } from '@/components';
-import withAuthRedirect from '@/hoc/withAuthRedirect';
-import { ROUTES } from '@/shared/routes';
 
 const RestClient = dynamic(() => import('@/screens/RestClient.tsx'), {
   loading: () => <Spinner />,
@@ -20,6 +18,4 @@ function RestClientPage() {
   );
 }
 
-export default withAuthRedirect(RestClientPage, {
-  redirectIfNotAuthenticated: ROUTES.MAIN,
-});
+export default RestClientPage;

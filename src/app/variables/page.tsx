@@ -4,8 +4,6 @@ import dynamic from 'next/dynamic';
 import { Suspense } from 'react';
 
 import { Spinner } from '@/components';
-import withAuthRedirect from '@/hoc/withAuthRedirect';
-import { ROUTES } from '@/shared/routes';
 
 const Variables = dynamic(() => import('@/screens/Variables.tsx'), {
   loading: () => <Spinner />,
@@ -20,6 +18,4 @@ function VariablesPage() {
   );
 }
 
-export default withAuthRedirect(VariablesPage, {
-  redirectIfNotAuthenticated: ROUTES.MAIN,
-});
+export default VariablesPage;
