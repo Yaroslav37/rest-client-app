@@ -9,6 +9,7 @@ import { toast } from 'react-toastify';
 import { Button } from '@/components';
 import { FormField } from '@/components';
 import ErrorMessage from '@/components/ui/ErrorMessage/ErrorMessage';
+import withAuthRedirect from '@/hoc/withAuthRedirect';
 import { useAuth } from '@/hooks/useAuth';
 import { ROUTES } from '@/shared/routes';
 
@@ -80,4 +81,6 @@ const SignInPage: React.FC = () => {
   );
 };
 
-export default SignInPage;
+export default withAuthRedirect(SignInPage, {
+  redirectIfAuthenticated: ROUTES.MAIN,
+});
