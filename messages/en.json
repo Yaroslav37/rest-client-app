@@ -127,5 +127,10 @@
     "value-placeholder": "value",
     "info": "Add variable to your request. Variable value can be inserted either in the url, or request body, or header value.",
     "info-add": "To indicate that the variable should be used, you can specify it as "
+  },
+  "History": {
+    "rest-link": "REST Client",
+    "no-requests": "You haven't executed any requests It's empty here. Try: ",
+    "history-title": "History Requests"
   }
 }

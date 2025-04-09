@@ -1,6 +1,11 @@
 import { DateGroup, RequestData } from '@/shared/types/interfaces';
 
-export const formatDateGroup = (timestamp: number, locale: string = 'en-US'): string => {
+const dateLabels: Record<string, { today: string; yesterday: string }> = {
+  en: { today: 'Today', yesterday: 'Yesterday' },
+  de: { today: 'Heute', yesterday: 'Gestern' },
+};
+
+export const formatDateGroup = (timestamp: number, locale: string = 'en'): string => {
   const now = new Date();
   const date = new Date(timestamp);
 
@@ -9,9 +14,9 @@ export const formatDateGroup = (timestamp: number, locale: string = 'en-US'): st
   yesterday.setDate(yesterday.getDate() - 1);
 
   if (date >= today) {
-    return 'Today';
+    return dateLabels[locale].today;
   } else if (date >= yesterday) {
-    return 'Yesterday';
+    return dateLabels[locale].yesterday;
   } else {
     return date.toLocaleDateString(locale, { month: 'long', day: 'numeric' });
   }
@@ -19,7 +24,7 @@ export const formatDateGroup = (timestamp: number, locale: string = 'en-US'): st
 
 export const groupRequestsByDate = (
   requests: RequestData[],
-  locale: string = 'en-US',
+  locale: string = 'en',
 ): DateGroup[] => {
   const groups: Record<string, RequestData[]> = {};
 
@@ -34,6 +39,6 @@ export const groupRequestsByDate = (
   return Object.entries(groups).map(([date, requests]) => ({
     date,
     requests,
-    isExpanded: date === 'Today',
+    isExpanded: date === dateLabels[locale].today,
   }));
 };
