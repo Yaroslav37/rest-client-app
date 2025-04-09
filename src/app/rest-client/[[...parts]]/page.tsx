@@ -10,10 +10,12 @@ const RestClient = dynamic(() => import('@/screens/RestClient.tsx'), {
   ssr: false,
 });
 
-export default function RestClientPage() {
+function RestClientPage() {
   return (
     <Suspense fallback={<Spinner />}>
       <RestClient />
     </Suspense>
   );
 }
+
+export default RestClientPage;

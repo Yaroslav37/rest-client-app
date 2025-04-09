@@ -16,19 +16,19 @@ export default function UserWelcome({ email }: { email: string }) {
       <div className="flex flex-col items-center gap-5">
         <Link
           href={ROUTES.REST}
-          className="flex flex-col items-center justify-center bg-[#29E881] rounded-full px-10 py-3 hover:text-white"
+          className="flex flex-col items-center justify-center text-[#29E881] rounded-full px-10 py-3 hover:scale-110 transition-transform"
         >
           <span className="text-responsive">{t('restClient')}</span>
         </Link>
         <Link
           href={ROUTES.HISTORY}
-          className="flex flex-col items-center justify-center bg-[#73CCFE] rounded-full px-10 py-3 w-full hover:text-white"
+          className="flex flex-col items-center justify-center text-[#73CCFE] rounded-full px-10 py-3 w-full hover:scale-110 transition-transform"
         >
           <span className="text-responsive">{t('history')}</span>
         </Link>
         <Link
           href={ROUTES.VARIABLES}
-          className="flex flex-col items-center justify-center bg-[#FF87FC] rounded-full px-10 py-3 w-full hover:text-white"
+          className="flex flex-col items-center justify-center text-[#FF87FC] rounded-full px-10 py-3 w-full hover:scale-110 transition-transform"
         >
           <span className="text-responsive">{t('variables')}</span>
         </Link>

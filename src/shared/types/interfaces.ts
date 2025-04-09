@@ -1,3 +1,5 @@
+import { HttpMethod } from './enums';
+
 export interface Header {
   key: string;
   value: string;
@@ -19,3 +21,23 @@ export interface ApiResponse {
 }
 
 export type EditingLanguage = 'json' | 'text';
+
+export interface Header {
+  key: string;
+  value: string;
+}
+
+export interface RequestData {
+  timestamp: number;
+  api_url: string;
+  redirect_url: string;
+  method: HttpMethod;
+  headers?: Header[];
+  body?: string;
+}
+
+export interface DateGroup {
+  date: string;
+  requests: RequestData[];
+  isExpanded: boolean;
+}

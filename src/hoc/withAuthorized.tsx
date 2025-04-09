@@ -4,9 +4,9 @@ import React, { useEffect } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import { ROUTES } from '@/shared/routes';
 
-export default function withAuthRedirect<T extends Record<string, unknown>>(
+export default function withAuthorized<T extends Record<string, unknown>>(
   Component: React.ComponentType<T>,
-): React.FC<T> {
+): React.ComponentType<T> {
   return function WrappedComponent(props: T) {
     const { user } = useAuth();
     const router = useRouter();

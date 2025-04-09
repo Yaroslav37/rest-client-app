@@ -82,7 +82,7 @@
   },
   "userWelcome": {
     "welcomeUser": "Willkommen",
-    "restClient": "REST-Client",
+    "restClient": "REST-Klient",
     "history": "Verlauf",
     "variables": "Variablen"
   },
@@ -127,5 +127,10 @@
     "value-placeholder": "Wert",
     "info": "Fügen Sie eine Variable zu Ihrer Anfrage hinzu. Der Wert der Variablen kann entweder in die URL, den Anfragekörper oder den Header-Wert eingefügt werden.",
     "info-add": "Um anzugeben, dass die Variable verwendet werden soll, können Sie sie als "
+  },
+  "History": {
+    "rest-link": "REST-Klient",
+    "no-requests": "Sie haben keine Anfragen ausgeführt Hier ist leer. Versuchen Sie es: ",
+    "history-title": "Anfragen zur Geschichte"
   }
 }
