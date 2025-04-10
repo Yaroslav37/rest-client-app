@@ -9,7 +9,6 @@ import { toast } from 'react-toastify';
 import { Button } from '@/components';
 import { FormField } from '@/components';
 import ErrorMessage from '@/components/ui/ErrorMessage/ErrorMessage';
-import withAuthorized from '@/hoc/withAuthorized';
 import { useAuth } from '@/hooks/useAuth';
 import { ROUTES } from '@/shared/routes';
 
@@ -81,4 +80,4 @@ const SignInPage: React.FC = () => {
   );
 };
 
-export default withAuthorized(SignInPage);
+export default SignInPage;

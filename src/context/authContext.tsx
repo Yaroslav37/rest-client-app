@@ -7,6 +7,7 @@ import {
   signOut,
   type User,
 } from 'firebase/auth';
+import Cookies from 'js-cookie';
 import { createContext, useEffect, useState } from 'react';
 import { ReactNode } from 'react';
 
@@ -29,8 +30,14 @@ export function AuthProvider({ children }: AuthUserProviderProps) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
       setUser(user);
+      if (user) {
+        const token = await user.getIdToken();
+        Cookies.set('firebase-token', token, { expires: 7 });
+      } else {
+        Cookies.remove('firebase-token');
+      }
       setIsLoading(false);
     });
 
@@ -40,7 +47,9 @@ export function AuthProvider({ children }: AuthUserProviderProps) {
   const signup = async (email: string, password: string): Promise<void> => {
     return new Promise(async (resolve, reject) => {
       try {
-        await createUserWithEmailAndPassword(auth, email, password);
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const token = await userCredential.user.getIdToken();
+        Cookies.set('firebase-token', token, { expires: 7 });
         resolve();
       } catch (error: unknown) {
         if (error instanceof FirebaseError) {
@@ -63,7 +72,9 @@ export function AuthProvider({ children }: AuthUserProviderProps) {
   const signin = async (email: string, password: string): Promise<void> => {
     return new Promise(async (resolve, reject) => {
       try {
-        await signInWithEmailAndPassword(auth, email, password);
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        const token = await userCredential.user.getIdToken();
+        Cookies.set('firebase-token', token, { expires: 7 });
         resolve();
       } catch (error: unknown) {
         if (error instanceof FirebaseError) {
@@ -84,7 +95,12 @@ export function AuthProvider({ children }: AuthUserProviderProps) {
   };
 
   const logout = async () => {
-    await signOut(auth);
+    try {
+      Cookies.remove('firebase-token', { path: '/' });
+      await signOut(auth);
+    } catch (error) {
+      console.error('Logout error:', error);
+    }
   };
 
   const value = {

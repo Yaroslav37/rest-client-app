@@ -10,7 +10,6 @@ import { toast } from 'react-toastify';
 
 import { Button } from '@/components';
 import { FormFieldSignUp } from '@/components/ui/FormField/FormFieldSignUp';
-import withAuthorized from '@/hoc/withAuthorized';
 import { useAuth } from '@/hooks/useAuth';
 import { validationSchema } from '@/lib/yup/schema';
 import { ROUTES } from '@/shared/routes';
@@ -95,4 +94,4 @@ const SignUpPage: React.FC = () => {
   );
 };
 
-export default withAuthorized(SignUpPage);
+export default SignUpPage;
