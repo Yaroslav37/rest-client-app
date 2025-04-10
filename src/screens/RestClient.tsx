@@ -1,6 +1,6 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { useTransition } from 'react';
 
@@ -26,6 +26,8 @@ const RestClient = () => {
   const t = useTranslations('RestClient');
   const { saveRequest } = useRequestHistory();
   const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const fullPathname = pathname + (searchParams.toString() ? `?${searchParams.toString()}` : '');
 
   const {
     control,
@@ -53,7 +55,7 @@ const RestClient = () => {
   const handleFormSubmit = (data: RestClientFormValues) => {
     saveRequest({
       api_url: data.url,
-      redirect_url: pathname,
+      redirect_url: fullPathname,
       method: data.method,
       body: data.body,
       headers: data.headers,
