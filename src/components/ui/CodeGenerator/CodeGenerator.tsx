@@ -143,7 +143,7 @@ export const CodeGenerator = ({ requestCurrent }: CodeGeneratorProps) => {
 
   return (
     <div className="space-y-4 font-montserrat">
-      <p className="text-white text-size-20">{t('useGenerator')}</p>
+      <p className="text-white text-sm mds:text-xl">{t('useGenerator')}</p>
       <div className="flex gap-4 items-center">
         <div className="flex flex-col gap-2">
           <span className="text-light-green">{t('select-language')}</span>

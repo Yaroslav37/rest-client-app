@@ -6,7 +6,7 @@ const inputClasses = {
   readonly: 'pointer-events-none',
 };
 
-export const HeaderInput = ({
+export const FieldInput = ({
   ref,
   placeholder,
   value,

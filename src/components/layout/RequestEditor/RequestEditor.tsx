@@ -48,7 +48,7 @@ export const RequestEditor = ({ control, readOnly = false }: Props) => {
       setLocalValue(valueWithVariables);
       field.onChange(valueWithVariables);
     } catch (_error) {
-      toast.error('Invalid JSON format');
+      toast.error(t('error'));
     }
   };
 
@@ -85,7 +85,7 @@ export const RequestEditor = ({ control, readOnly = false }: Props) => {
     <div className="border rounded-lg overflow-hidden">
       <span className="text-light-green mb-1.5 inline-block">{t('request-title')}</span>
 
-      <div className="flex justify-between items-center bg-dark-green p-2">
+      <div className="flex flex-col items-start gap-2 xs:flex-row xs:justify-between xs:items-center bg-dark-green p-2">
         <EditorSwitcher language={language} onLanguageChange={setLanguage} />
         {!readOnly && language === 'json' && (
           <button

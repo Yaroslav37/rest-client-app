@@ -103,12 +103,14 @@
     "informational": "Informational",
     "success": "Success",
     "redirection": "Redirection",
-    "clientError": "Client Error",
+    "clientErroInvalid JSON formatr": "Client Error",
     "serverError": "Server Error",
+    "failed": "Request Failed",
     "unknown": "Unknown Status",
     "apply-variables": "Apply variables",
     "variables-not-loaded": "Variables are not loaded yet",
-    "no-variables": "No saved variables found in local storage"
+    "no-variables": "No saved variables found in local storage",
+    "error": "Invalid JSON format"
   },
   "CodeGenerator": {
     "useGenerator": "Use our Code Generator to convert your API request to different programming languages.",
@@ -126,6 +128,11 @@
     "key-placeholder": "key",
     "value-placeholder": "value",
     "info": "Add variable to your request. Variable value can be inserted either in the url, or request body, or header value.",
-    "info-add": "To indicate that the variable should be used, you can specify it as "
+    "info-add": "To indicate that the variable should be used, you can specify it as ",
+    "errors": {
+    "error-failed": "Failed to load variables",
+    "unknown_variables": "Unknown variables: {variables}. Please define them in the 'Variables' page.",
+      "unknown_error": "Unknown error occurred"
+    }
   }
 }

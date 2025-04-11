@@ -1,6 +1,8 @@
+import { useTranslations } from 'next-intl';
 import { useCallback, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
+import { useUpdateUrl } from '@/hooks/useUpdateUrl';
 import { useVariablesForm } from '@/hooks/useVariablesForm';
 import type { RestClientFormValues } from '@/lib/yup/restClient';
 import type { HttpMethod } from '@/shared/types/enums';
@@ -25,18 +27,42 @@ export function useRestClientForm({ initialMethod, initialValues }: Props) {
 
   const [response, setResponse] = useState<ApiResponse>();
   const [error, setError] = useState<Error | null>(null);
-
+  const t = useTranslations('Variables');
   const currentMethod = watch('method');
   const currentUrl = watch('url');
   const currentBody = watch('body');
   const currentHeaders = watch('headers');
-  const { applyVariables } = useVariablesForm();
+  const { applyVariables, validateVariables } = useVariablesForm();
+  const { buildUrl } = useUpdateUrl();
+
   const onSubmit = useCallback(
     async (data: RestClientFormValues) => {
       setError(null);
       setResponse(undefined);
 
       try {
+        const allTextsToCheck = [
+          data.url,
+          data.body || '',
+          ...(data.headers?.flatMap((h) => [h.key, h.value]) || []),
+        ];
+
+        const missingVars = new Set<string>();
+        allTextsToCheck.forEach((text) => {
+          const validation = validateVariables(text);
+          if (!validation.isValid) {
+            validation.missingVariables.forEach((v) => missingVars.add(v));
+          }
+        });
+
+        if (missingVars.size > 0) {
+          throw new Error(
+            t('errors.unknown_variables', {
+              variables: Array.from(missingVars).join(', '),
+            }),
+          );
+        }
+
         const urlWithVars = applyVariables(data.url);
         const bodyWithVars = applyVariables(data.body || '');
         const headersWithVars =
@@ -44,6 +70,9 @@ export function useRestClientForm({ initialMethod, initialValues }: Props) {
             key: applyVariables(key),
             value: applyVariables(value),
           })) ?? [];
+
+        const updatedUrl = buildUrl(data.method, urlWithVars, bodyWithVars, headersWithVars);
+        window.history.replaceState(null, '', updatedUrl);
 
         const headers = new Headers(
           headersWithVars.reduce(
@@ -83,7 +112,6 @@ export function useRestClientForm({ initialMethod, initialValues }: Props) {
             responseData = 'Unable to parse response';
           }
         }
-
         const fullResponse = { ...responseInfo, data: responseData };
         setResponse(fullResponse);
 
@@ -93,11 +121,11 @@ export function useRestClientForm({ initialMethod, initialValues }: Props) {
           throw error;
         }
       } catch (err) {
-        // TODO: ADD TOAST
-        setError(err instanceof Error ? err : new Error('Unknown error occurred'));
+        const error = err instanceof Error ? err : new Error(t('errors.unknown_error'));
+        setError(error);
       }
     },
-    [applyVariables],
+    [applyVariables, buildUrl, , validateVariables, t],
   );
 
   return {
@@ -112,5 +140,6 @@ export function useRestClientForm({ initialMethod, initialValues }: Props) {
     onSubmit,
     response,
     error,
+    validateVariables,
   };
 }
