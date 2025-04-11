@@ -3,7 +3,7 @@
 import { memo, useEffect, useState } from 'react';
 import { RiDeleteBin2Fill } from 'react-icons/ri';
 
-import { HeaderInput } from '@/components/ui/HeaderInput/HeaderInput';
+import { FieldInput } from '@/components/ui/FieldInput/FieldInput';
 import { useDebounce } from '@/hooks/useDebounce';
 
 interface Props {
@@ -17,7 +17,7 @@ interface Props {
 
 const iconSize = 25;
 
-export const HeaderItem = memo(
+export const InputItem = memo(
   ({ id, index, keyValue, value, onRemove, onUpdate }: Props) => {
     const [localKey, setLocalKey] = useState(keyValue);
     const [localValue, setLocalValue] = useState(value);
@@ -42,8 +42,8 @@ export const HeaderItem = memo(
         key={id}
       >
         <div className="flex flex-col gap-4 mds:flex-row flex-1">
-          <HeaderInput value={localKey} onChange={(e) => setLocalKey(e.target.value)} />
-          <HeaderInput value={localValue} onChange={(e) => setLocalValue(e.target.value)} />
+          <FieldInput value={localKey} onChange={(e) => setLocalKey(e.target.value)} />
+          <FieldInput value={localValue} onChange={(e) => setLocalValue(e.target.value)} />
         </div>
         <button
           type="button"
@@ -64,4 +64,4 @@ export const HeaderItem = memo(
   },
 );
 
-HeaderItem.displayName = 'HeaderItem';
+InputItem.displayName = 'HeaderItem';

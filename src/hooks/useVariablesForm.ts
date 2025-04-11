@@ -1,5 +1,7 @@
+import { useTranslations } from 'next-intl';
 import { useCallback, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 
 const LOCAL_STORAGE_KEY = 'rest-client-variables';
 
@@ -17,7 +19,7 @@ export function useVariablesForm() {
     },
     mode: 'onChange',
   });
-
+  const t = useTranslations('Variables');
   const currentVariables = watch('variables');
 
   useEffect(() => {
@@ -50,14 +52,14 @@ export function useVariablesForm() {
 
         setValue('variables', validVariables);
         setIsLoaded(true);
-      } catch (error) {
-        console.error('Failed to load variables:', error);
+      } catch (_error) {
+        toast.error(t('errors.error-failed'));
         setIsLoaded(true);
       }
     };
 
     loadVariables();
-  }, [setValue]);
+  }, [setValue, t]);
 
   useEffect(() => {
     if (!isLoaded) return;
@@ -68,17 +70,16 @@ export function useVariablesForm() {
       } else {
         localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(validVariables));
       }
-    } catch (error) {
-      console.error('Failed to save variables:', error);
+    } catch (_error) {
+      toast.error(t('errors.error-failed'));
     }
-  }, [currentVariables, isLoaded]);
+  }, [currentVariables, isLoaded, t]);
 
   const addVariable = useCallback(
     (variable: Omit<Variable, 'id'>) => {
       if (!variable.key.trim() || !variable.value.trim()) {
         return false;
       }
-
       const newVariables = [...getValues('variables'), { ...variable, id: Date.now().toString() }];
       setValue('variables', newVariables);
       return true;
@@ -120,6 +121,31 @@ export function useVariablesForm() {
     [currentVariables],
   );
 
+  const validateVariables = useCallback(
+    (text: string): { isValid: boolean; missingVariables: string[] } => {
+      const missingVariables: string[] = [];
+      const existingVariables = new Set(
+        currentVariables.filter((v) => v.key.trim() && v.value.trim()).map((v) => v.key),
+      );
+
+      const variableMatches = text.match(/\{\{\w+\}\}/g) || [];
+      const uniqueVariables = [...new Set(variableMatches)];
+
+      uniqueVariables.forEach((variable) => {
+        const varName = variable.replace(/\{\{|\}\}/g, '');
+        if (!existingVariables.has(varName)) {
+          missingVariables.push(varName);
+        }
+      });
+
+      return {
+        isValid: missingVariables.length === 0,
+        missingVariables,
+      };
+    },
+    [currentVariables],
+  );
+
   const getVariablesAsObject = useCallback(() => {
     return currentVariables
       .filter((v) => v.key.trim() && v.value.trim())
@@ -132,14 +158,6 @@ export function useVariablesForm() {
       );
   }, [currentVariables]);
 
-  const addSpecificVariable = useCallback(
-    (variable: Omit<Variable, 'id'>) => {
-      const newVariables = [...getValues('variables'), { ...variable, id: Date.now().toString() }];
-      setValue('variables', newVariables);
-    },
-    [getValues, setValue],
-  );
-
   return {
     control,
     variables: currentVariables.filter((v) => v.key.trim() && v.value.trim()),
@@ -147,9 +165,9 @@ export function useVariablesForm() {
     addVariable,
     removeVariable,
     updateVariable,
-    applyVariables,
     getVariablesAsObject,
+    applyVariables,
+    validateVariables,
     setVariables: (variables: Variable[]) => setValue('variables', variables),
-    addSpecificVariable,
   };
 }

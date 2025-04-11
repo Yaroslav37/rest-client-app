@@ -5,8 +5,8 @@ import { useCallback, useRef, useState } from 'react';
 import { Control, useFieldArray } from 'react-hook-form';
 import { MdLibraryAdd } from 'react-icons/md';
 
-import { HeaderInput } from '@/components/ui/HeaderInput/HeaderInput';
-import { HeaderItem } from '@/components/ui/HeaderItem/HeaderItem';
+import { FieldInput } from '@/components/ui/FieldInput/FieldInput';
+import { InputItem } from '@/components/ui/InputItem/InputItem';
 import { RestClientFormValues } from '@/lib/yup/restClient';
 
 import { Button } from '../../ui/FormButton/FormButton';
@@ -48,14 +48,14 @@ export const HeadersEditor = ({ control }: Props) => {
 
       <div className="flex flex-col gap-6 mb-4 mds:flex-row">
         <div className="flex flex-col gap-4 mds:flex-row flex-1">
-          <HeaderInput
+          <FieldInput
             ref={keyInputRef}
             placeholder={t('key-placeholder')}
             value={newHeader.key}
             onChange={(e) => setNewHeader((prev) => ({ ...prev, key: e.target.value }))}
             className="border-green text-green"
           />
-          <HeaderInput
+          <FieldInput
             ref={valueInputRef}
             placeholder={t('value-placeholder')}
             value={newHeader.value}
@@ -74,7 +74,7 @@ export const HeadersEditor = ({ control }: Props) => {
 
       <div className="space-y-2">
         {fields.map((field, index) => (
-          <HeaderItem
+          <InputItem
             key={field.id}
             id={field.id}
             index={index}

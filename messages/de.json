@@ -105,10 +105,12 @@
     "redirection": "Umleitung",
     "clientError": "Client-Fehler",
     "serverError": "Server-Fehler",
+    "failed": "Anfrage fehlgeschlagen",
     "unknown": "Unbekannter Status",
     "apply-variables": "Variablen anwenden",
     "variables-not-loaded": "Variablen sind noch nicht geladenVariablen sind noch nicht geladen",
-    "no-variables": "Keine gespeicherten Variablen im lokalen Speicher gefundenVariablen sind noch nicht geladen"
+    "no-variables": "Keine gespeicherten Variablen im lokalen Speicher gefundenVariablen sind noch nicht geladen",
+    "error": "Ungültiges JSON-Format"
   },
   "CodeGenerator": {
     "useGenerator": "Nutzen Sie unseren Code-Generator, um Ihre API-Anfrage in verschiedene Programmiersprachen zu konvertieren.",
@@ -126,7 +128,12 @@
     "key-placeholder": "Schlüssel",
     "value-placeholder": "Wert",
     "info": "Fügen Sie eine Variable zu Ihrer Anfrage hinzu. Der Wert der Variablen kann entweder in die URL, den Anfragekörper oder den Header-Wert eingefügt werden.",
-    "info-add": "Um anzugeben, dass die Variable verwendet werden soll, können Sie sie als "
+    "info-add": "Um anzugeben, dass die Variable verwendet werden soll, können Sie sie als ",
+    "errors": {
+    "error-failed": "Variablen konnten nicht geladen werden",
+    "unknown_variables": "Unbekannte Variablen: {variables}. Bitte definieren Sie sie auf der Registerkarte „Variablen“.",
+      "unknown_error": "Unbekannter Fehler aufgetreten"
+    }
   },
   "History": {
     "rest-link": "REST-Klient",
