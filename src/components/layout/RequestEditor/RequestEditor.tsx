@@ -85,33 +85,37 @@ export const RequestEditor = ({ control, readOnly = false }: Props) => {
     <div className="border rounded-lg overflow-hidden">
       <span className="text-light-green mb-1.5 inline-block">{t('request-title')}</span>
 
-      <div className="flex justify-between items-center bg-dark-green p-2">
-        <EditorSwitcher language={language} onLanguageChange={setLanguage} />
-        {!readOnly && language === 'json' && (
+      <div className="flex flex-col sm:flex-row gap-2 bg-dark-green p-2">
+        <div className="w-full sm:w-auto">
+          <EditorSwitcher language={language} onLanguageChange={setLanguage} />
+        </div>
+        <div className="flex flex-wrap gap-2 items-center w-full sm:w-auto sm:ml-auto">
+          {!readOnly && language === 'json' && (
+            <button
+              type="button"
+              onClick={handlePrettify}
+              className="flex-1 sm:flex-initial cursor-pointer px-3 py-1 transition-colors border border-light-green text-light-green rounded hover:bg-light-green hover:text-dark"
+            >
+              {t('prettify')}
+            </button>
+          )}
+
           <button
             type="button"
-            onClick={handlePrettify}
-            className="cursor-pointer px-3 py-1 transition-colors border border-light-green  text-light-green rounded hover:bg-light-green hover:text-dark"
+            onClick={(e) => {
+              e.preventDefault();
+              handleApplyVariables();
+            }}
+            disabled={!isLoaded}
+            className={`flex-1 sm:flex-initial cursor-pointer px-3 py-1 transition-colors border rounded ${
+              isLoaded
+                ? 'border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white'
+                : 'border-gray-500 text-gray-500 cursor-not-allowed'
+            }`}
           >
-            {t('prettify')}
+            {t('apply-variables')}
           </button>
-        )}
-
-        <button
-          type="button"
-          onClick={(e) => {
-            e.preventDefault();
-            handleApplyVariables();
-          }}
-          disabled={!isLoaded}
-          className={`cursor-pointer px-3 py-1 transition-colors border rounded ${
-            isLoaded
-              ? 'border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white'
-              : 'border-gray-500 text-gray-500 cursor-not-allowed'
-          }`}
-        >
-          {t('apply-variables')}
-        </button>
+        </div>
       </div>
 
       <div onBlur={handleBlur}>

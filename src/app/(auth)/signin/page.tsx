@@ -42,7 +42,7 @@ const SignInPage: React.FC = () => {
   };
 
   return (
-    <div className="w-full my-10 max-w-md text-white mx-auto bg-input-bg rounded-lg shadow-md overflow-hidden">
+    <div className="w-full my-10 max-w-lg min-w-xs mx-auto text-white bg-input-bg rounded-lg shadow-md overflow-hidden">
       <div className="px-6 py-8">
         <h2 className="flex w-full justify-center text-3xl font-bold pb-5">{t('title')}</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
