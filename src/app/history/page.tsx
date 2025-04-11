@@ -5,17 +5,17 @@ import { Suspense } from 'react';
 
 import { Spinner } from '@/components';
 
-const Variables = dynamic(() => import('@/screens/Variables.tsx'), {
+const History = dynamic(() => import('@/screens/History.tsx'), {
   loading: () => <Spinner />,
   ssr: false,
 });
 
-function VariablesPage() {
+function HistoryPage() {
   return (
     <Suspense fallback={<Spinner />}>
-      <Variables />
+      <History />
     </Suspense>
   );
 }
 
-export default VariablesPage;
+export default HistoryPage;

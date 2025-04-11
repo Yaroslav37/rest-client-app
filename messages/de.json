@@ -82,7 +82,7 @@
   },
   "userWelcome": {
     "welcomeUser": "Willkommen",
-    "restClient": "REST-Client",
+    "restClient": "REST-Klient",
     "history": "Verlauf",
     "variables": "Variablen"
   },
@@ -134,5 +134,10 @@
     "unknown_variables": "Unbekannte Variablen: {variables}. Bitte definieren Sie sie auf der Registerkarte „Variablen“.",
       "unknown_error": "Unbekannter Fehler aufgetreten"
     }
+  },
+  "History": {
+    "rest-link": "REST-Klient",
+    "no-requests": "Sie haben keine Anfragen ausgeführt Hier ist leer. Versuchen Sie es: ",
+    "history-title": "Anfragen zur Geschichte"
   }
 }

@@ -1,5 +1,6 @@
 'use client';
 
+import { usePathname, useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { useTransition } from 'react';
 
@@ -13,6 +14,7 @@ import {
   ResponseViewer,
   UrlInput,
 } from '@/components';
+import { useRequestHistory } from '@/hooks/useRequestHistory';
 import { useRestClientForm } from '@/hooks/useRestClientForm';
 import { useRestClientParams } from '@/hooks/useRestClientParams';
 import { useUrlSync } from '@/hooks/useUrlSync';
@@ -22,6 +24,10 @@ const RestClient = () => {
   const { initialMethod, initialValues, initializedRef } = useRestClientParams();
   const [isPending, startTransition] = useTransition();
   const t = useTranslations('RestClient');
+  const { saveRequest } = useRequestHistory();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const fullPathname = pathname + (searchParams.toString() ? `?${searchParams.toString()}` : '');
 
   const {
     control,
@@ -47,6 +53,13 @@ const RestClient = () => {
   });
 
   const handleFormSubmit = (data: RestClientFormValues) => {
+    saveRequest({
+      api_url: data.url,
+      redirect_url: fullPathname,
+      method: data.method,
+      body: data.body,
+      headers: data.headers,
+    });
     startTransition(async () => {
       await onSubmit(data);
     });

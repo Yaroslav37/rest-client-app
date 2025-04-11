@@ -18,4 +18,5 @@ const Variables = () => {
     </div>
   );
 };
+
 export default Variables;

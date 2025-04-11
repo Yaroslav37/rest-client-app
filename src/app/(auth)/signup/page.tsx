@@ -10,7 +10,6 @@ import { toast } from 'react-toastify';
 
 import { Button } from '@/components';
 import { FormFieldSignUp } from '@/components/ui/FormField/FormFieldSignUp';
-import withAuthRedirect from '@/hoc/withAuthRedirect';
 import { useAuth } from '@/hooks/useAuth';
 import { validationSchema } from '@/lib/yup/schema';
 import { ROUTES } from '@/shared/routes';
@@ -95,4 +94,4 @@ const SignUpPage: React.FC = () => {
   );
 };
 
-export default withAuthRedirect(SignUpPage);
+export default SignUpPage;

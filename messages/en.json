@@ -134,5 +134,10 @@
     "unknown_variables": "Unknown variables: {variables}. Please define them in the 'Variables' page.",
       "unknown_error": "Unknown error occurred"
     }
+  },
+  "History": {
+    "rest-link": "REST Client",
+    "no-requests": "You haven't executed any requests It's empty here. Try: ",
+    "history-title": "History Requests"
   }
 }
