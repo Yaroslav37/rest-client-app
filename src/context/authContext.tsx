@@ -12,7 +12,7 @@ import { createContext, useEffect, useState } from 'react';
 import { ReactNode } from 'react';
 
 import { auth } from '@/lib/firebase/config';
-
+import { ROUTES } from '@/shared/routes';
 interface AuthContextType {
   user: User | null;
   signup: (email: string, password: string) => Promise<void>;
@@ -98,6 +98,7 @@ export function AuthProvider({ children }: AuthUserProviderProps) {
     try {
       Cookies.remove('firebase-token', { path: '/' });
       await signOut(auth);
+      window.location.href = ROUTES.MAIN;
     } catch (error) {
       console.error('Logout error:', error);
     }

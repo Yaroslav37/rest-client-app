@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import React from 'react';
 
 import { RequestData } from '@/shared/types/interfaces';
@@ -8,7 +7,7 @@ interface RequestItemProps {
 }
 
 const RequestItem: React.FC<RequestItemProps> = ({ request }) => (
-  <Link
+  <a
     href={request.redirect_url}
     className="flex items-center py-2 px-4 hover:bg-gray-800 transition-colors gap-2"
   >
@@ -17,7 +16,7 @@ const RequestItem: React.FC<RequestItemProps> = ({ request }) => (
     <div className="overflow-hidden">
       <div className="truncate text-gray-300">{request.api_url}</div>
     </div>
-  </Link>
+  </a>
 );
 
 export default RequestItem;
