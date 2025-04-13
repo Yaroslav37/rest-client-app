@@ -28,9 +28,9 @@ export default async function RootLayout({
       <body className={`${openSans.variable} ${montserrat.variable} ${inter.variable}`}>
         <AuthProvider>
           <NextIntlClientProvider>
-            <div className="min-h-screen flex flex-col">
+            <div className="min-h-screen flex flex-col justify-between">
               <Header />
-              <main className="flex-1">{children}</main>
+              <main>{children}</main>
               <Footer />
             </div>
             <ToastContainer

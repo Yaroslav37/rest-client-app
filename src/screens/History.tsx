@@ -38,7 +38,7 @@ const History = () => {
   }
 
   return (
-    <Container className="py-12">
+    <Container className="min-h-[70vh] py-12">
       <h1 className="text-xl font-bold text-light-green mb-6">{t('history-title')}</h1>
       <div className="text-gray-300 overflow-hidden p-2 border rounded border-green transition-colors">
         {dateGroups.map((group, index) => (

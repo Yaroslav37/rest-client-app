@@ -10,4 +10,6 @@ export { FormField } from './ui/FormField/FormField.tsx';
 export { LanguageSwitcher } from './ui/LanguageSwitcher/LanguageSwitcher.tsx';
 export { MethodSelector } from './ui/MethodSelector/MethodSelector';
 export { Spinner } from './ui/Spinner/Spinner.tsx';
+export { TeamCard } from './ui/TeamCard/TeamCard';
+export { TeamList } from './ui/TeamList/TeamList';
 export { UrlInput } from './ui/UrlInput/UrlInput';
