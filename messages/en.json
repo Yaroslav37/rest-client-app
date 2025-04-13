@@ -1,6 +1,45 @@
 {
   "MainContent": {
-    "description": "This project is a lightweight REST Client inspired by tools like Postman. It supports common HTTP methods (GET, POST, PUT, DELETE, etc.) for API interactions. Rest Client allows users to input API endpoints and customize headers easily. It keeps track of past API calls, enabling quick access to previous requests and lets users define and reuse variables across requests for dynamic API testing."
+    "description": "This project is a lightweight REST Client inspired by tools like Postman. It supports common HTTP methods (GET, POST, PUT, DELETE, etc.) for API interactions. Rest Client allows users to input API endpoints and customize headers easily. It keeps track of past API calls, enabling quick access to previous requests and lets users define and reuse variables across requests for dynamic API testing.",
+    "stack": "Technology Stack",
+    "project": "The Rest Client App is a trainee project for RS School. The RS School React course offers free, high-quality training for developers with strong JavaScript/TypeScript and frontend skills. The program is open to all regardless of age or location, with all materials available on YouTube and GitHub. Through practical assignments and projects, participants gain real-world React development experience. The course focuses on modern React concepts while emphasizing hands-on learning. With its rigorous standards and free access, it provides excellent career advancement opportunities."
+  },
+  "Team": {
+    "devteam": "Development Team",
+    "positions": {
+      "teamLead": "Team Lead",
+      "frontend": "Frontend Developer"
+    },
+    "yaraslau": {
+      "name": "Yaraslau Minenkou",
+      "contributions": {
+        "ciCd": "Set up CI/CD pipeline",
+        "firebase": "Set up Firebase",
+        "auth": "Implemented authentication",
+        "history": "Created request history feature",
+        "optimization": "Optimized performance"
+      }
+    },
+    "veranika": {
+      "name": "Veranika Liauchuk",
+      "contributions": {
+        "header": "Implemented Header",
+        "i18n": "Configured i18n",
+        "restClient": "Implemented REST client page",
+        "api": "Built API endpoints",
+        "bugs": "Fixed critical bugs"
+      }
+    },    
+   "elena": {
+      "name": "Elena Ivanova",
+      "contributions": {
+         "environment": "Set up project's environment",
+        "codegen": "Implemented Code Generation",
+        "variables": "Developed variables management",
+        "footer": "Implemented Footer",
+        "docs": "Created documentation"
+      }
+      }
   },
   "Header": {
     "sign-in": "Sign In",

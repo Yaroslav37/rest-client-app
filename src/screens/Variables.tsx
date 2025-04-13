@@ -6,7 +6,7 @@ const Variables = () => {
   const t = useTranslations('Variables');
 
   return (
-    <div className="mt-5 p-4">
+    <div className="min-h-[70vh] mt-5 p-4">
       <p className="m-5 text-white text-sm mds:text-xl">{t('info')}</p>
       <p className="m-5 text-white text-sm mds:text-xl">
         {t('info-add')}

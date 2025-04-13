@@ -1,52 +1,39 @@
+import { useTranslations } from 'next-intl';
+
 import { TeamCard } from '@/components/ui/TeamCard/TeamCard';
 
 export const TeamList = () => {
+  const t = useTranslations('Team');
   const teamMembers = [
     {
-      name: 'Yaraslau Minenkou',
-      position: 'Team Lead',
-      contributions: [
-        'Set up CI/CD pipeline',
-        'Set up Firebase',
-        'Implemented authentication',
-        'Created request history feature',
-        'Optimized performance',
-      ],
+      id: 'yaraslau',
+      position: 'teamLead',
+      contributions: ['ciCd', 'firebase', 'auth', 'history', 'optimization'],
     },
     {
-      name: 'Veranika Liauchuk',
-      position: 'Frontend Developer',
-      contributions: [
-        'Implemented Header',
-        'Configured i18n',
-        'Implemented REST client page',
-        'Built API endpoints',
-        'Fixed critical bugs',
-      ],
+      id: 'veranika',
+      position: 'frontend',
+      contributions: ['header', 'i18n', 'restClient', 'api', 'bugs'],
     },
     {
-      name: 'Elena Ivanova',
-      position: 'Frontend Developer',
-      contributions: [
-        "Set up project's environment",
-        'Implemented Code Generation',
-        'Developed variables management',
-        'Implemented Footer',
-        'Created documentation',
-      ],
+      id: 'elena',
+      position: 'frontend',
+      contributions: ['environment', 'codegen', 'variables', 'footer', 'docs'],
     },
   ];
 
   return (
     <div className="flex flex-col gap-5">
-      <h2 className="text-xl font-bold text-white mt-10 mb-6">Development Team</h2>
+      <h2 className="text-xl font-bold text-white mt-10 mb-6">{t('devteam')}</h2>
       <div className="flex flex-wrap justify-center min-[1044px]:justify-between items-center gap-5 mb-15">
         {teamMembers.map((member, index) => (
           <div key={index} className="transition-transform hover:scale-105">
             <TeamCard
-              name={member.name}
-              position={member.position}
-              contributions={member.contributions}
+              name={t(`${member.id}.name`)}
+              position={t(`positions.${member.position}`)}
+              contributions={member.contributions.map((cont) =>
+                t(`${member.id}.contributions.${cont}`),
+              )}
             />
           </div>
         ))}

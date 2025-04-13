@@ -33,7 +33,7 @@ export const MainContent = () => {
   return (
     <div className="flex flex-col p-10">
       <p className="mb-15 text-light-grey text-sm mds:text-xl">{t('description')}</p>
-      <h2 className="text-xl font-bold text-light-green mb-6">Technology Stack</h2>
+      <h2 className="text-xl font-bold text-light-green mb-6">{t('stack')}</h2>
       <div className="flex flex-wrap gap-5">
         {icons.map((Icon, index) => (
           <Icon
@@ -45,15 +45,7 @@ export const MainContent = () => {
       <TeamList />
       <div className="flex flex-col gap-2 xs:flex-row items-start">
         <Image src="/rss-logo.svg" width={100} height={100} alt="RS School logo" />
-        <p className="mb-6 text-light-grey text-sm mds:text-xl">
-          The Rest Client App is a trainee project for RS School. The RS School React course offers
-          free, high-quality training for developers with strong JavaScript/TypeScript and frontend
-          skills. The program is open to all regardless of age or location, with all materials
-          available on YouTube and GitHub. Through practical assignments and projects, participants
-          gain real-world React development experience. The course focuses on modern React concepts
-          while emphasizing hands-on learning. With its rigorous standards and free access, it
-          provides excellent career advancement opportunities.
-        </p>
+        <p className="mb-6 text-light-grey text-sm mds:text-xl">{t('project')}</p>
       </div>
     </div>
   );

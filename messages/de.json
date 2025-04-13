@@ -1,6 +1,45 @@
 {
-  "HomePage": {
-    "MainContent": "Dieses Projekt ist ein leichtgewichtiger REST-Client, inspiriert von Tools wie Postman. Er unterstützt gängige HTTP-Methoden (GET, POST, PUT, DELETE, etc.) für API-Interaktionen. Rest Client ermöglicht es Benutzern, API-Endpunkte einzugeben und Header einfach anzupassen. Er speichert frühere API-Aufrufe und ermöglicht so einen schnellen Zugriff auf frühere Anfragen. Außerdem können Benutzer Variablen für dynamische API-Tests definieren und über Anfragen hinweg wiederverwenden."
+  "MainContent": {
+    "description": "Dieses Projekt ist ein leichtgewichtiger REST-Client, inspiriert von Tools wie Postman. Er unterstützt gängige HTTP-Methoden (GET, POST, PUT, DELETE, etc.) für API-Interaktionen. Rest Client ermöglicht es Benutzern, API-Endpunkte einzugeben und Header einfach anzupassen. Er speichert frühere API-Aufrufe und ermöglicht so einen schnellen Zugriff auf frühere Anfragen. Außerdem können Benutzer Variablen für dynamische API-Tests definieren und über Anfragen hinweg wiederverwenden.",
+    "stack": "Technologie-Stapel",
+    "project": "Die Rest Client App ist ein Trainingsprojekt für die RS School. Die RS School React Kurs bietet kostenlose, qualitativ hochwertige Ausbildung für Entwickler mit starken JavaScript / TypeScript und Frontend-Kenntnisse. Das Programm ist offen für alle, unabhängig von Alter oder Standort, mit allen Materialien auf YouTube und GitHub zur Verfügung. Durch praktische Aufgaben und Projekte sammeln die Teilnehmer praktische Erfahrungen in der React-Entwicklung. Der Kurs konzentriert sich auf moderne React-Konzepte und legt den Schwerpunkt auf praktisches Lernen. Mit seinen strengen Standards und dem freien Zugang bietet er hervorragende Möglichkeiten für die berufliche Weiterentwicklung."
+  },
+  "Team": {
+    "devteam": "Entwicklungsteam",
+    "positions": {
+      "teamLead": "Teamleitung",
+      "frontend": "Frontend-Entwickler"
+    },
+    "yaraslau": {
+      "name": "Yaraslau Minenkou",
+      "contributions": {
+        "ciCd": "CI/CD-Pipeline einrichten",
+        "firebase": "Firebase einrichten",
+        "auth": "Authentifizierung implementiert",
+        "history": "Funktion Anfragehistorie erstellt",
+        "optimization": "Optimierte Leistung"
+      }
+    },
+    "veranika": {
+      "name": "Veranika Liauchuk",
+      "contributions": {
+        "header": "Implementierte Überschrift",
+        "i18n": "Konfigurierte i18n",
+        "restClient": "REST-Client-Seite implementiert",
+        "api": "Erstellte API-Endpunkte",
+        "bugs": "Kritische Bugs behoben"
+      }
+    },    
+   "elena": {
+      "name": "Elena Ivanova",
+      "contributions": {
+         "environment": "Einrichten der Projektumgebung",
+        "codegen": "Implementierte Codegenerierung",
+        "variables": "Entwickeltes Variablenmanagent",
+        "footer": "Implementierte Fußzeile",
+        "docs": "Erstellte Dokumentation"
+      }
+      }
   },
   "Header": {
     "sign-in": "Eintragen",
