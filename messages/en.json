@@ -1,6 +1,6 @@
 {
-  "HomePage": {
-    "title": "Hello world!"
+  "MainContent": {
+    "description": "This project is a lightweight REST Client inspired by tools like Postman. It supports common HTTP methods (GET, POST, PUT, DELETE, etc.) for API interactions. Rest Client allows users to input API endpoints and customize headers easily. It keeps track of past API calls, enabling quick access to previous requests and lets users define and reuse variables across requests for dynamic API testing."
   },
   "Header": {
     "sign-in": "Sign In",
@@ -78,7 +78,7 @@
     "signIn": "Sign In",
     "or": "or",
     "signUp": "Sign Up",
-    "toContinue": "to continue."
+    "toContinue": "to use Rest Client app."
   },
   "userWelcome": {
     "welcomeUser": "Welcome",

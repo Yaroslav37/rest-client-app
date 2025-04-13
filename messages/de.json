@@ -1,6 +1,6 @@
 {
   "HomePage": {
-    "title": "Hallo Welt!"
+    "MainContent": "Dieses Projekt ist ein leichtgewichtiger REST-Client, inspiriert von Tools wie Postman. Er unterstützt gängige HTTP-Methoden (GET, POST, PUT, DELETE, etc.) für API-Interaktionen. Rest Client ermöglicht es Benutzern, API-Endpunkte einzugeben und Header einfach anzupassen. Er speichert frühere API-Aufrufe und ermöglicht so einen schnellen Zugriff auf frühere Anfragen. Außerdem können Benutzer Variablen für dynamische API-Tests definieren und über Anfragen hinweg wiederverwenden."
   },
   "Header": {
     "sign-in": "Eintragen",
@@ -78,7 +78,7 @@
     "signIn": "Anmelden",
     "or": "oder",
     "signUp": "Registrieren",
-    "toContinue": "um fortzufahren."
+    "toContinue": "zur Verwendung der Rest-Client-Anwendung."
   },
   "userWelcome": {
     "welcomeUser": "Willkommen",
