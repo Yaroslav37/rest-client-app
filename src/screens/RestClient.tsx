@@ -1,8 +1,8 @@
 'use client';
 
-import { usePathname, useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { useTransition } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
 
 import {
   Button,
@@ -48,6 +48,11 @@ const RestClient = () => {
   });
 
   const handleFormSubmit = (data: RestClientFormValues) => {
+    if (!data.url.trim()) {
+      toast.error(t('enter-url'));
+      return;
+    }
+
     startTransition(async () => {
       await onSubmit(data);
     });

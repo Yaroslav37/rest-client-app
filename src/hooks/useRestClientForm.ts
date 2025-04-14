@@ -145,7 +145,7 @@ export function useRestClientForm({ initialMethod, initialValues }: Props) {
         setError(error);
       }
     },
-    [applyVariables, buildUrl, , validateVariables, t],
+    [applyVariables, saveRequest, buildUrl, validateVariables, t],
   );
 
   return {
