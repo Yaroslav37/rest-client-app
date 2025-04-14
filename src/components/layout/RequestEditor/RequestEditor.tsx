@@ -48,7 +48,7 @@ export const RequestEditor = ({ control, readOnly = false }: Props) => {
       setLocalValue(valueWithVariables);
       field.onChange(valueWithVariables);
     } catch (_error) {
-      toast.error('Invalid JSON format');
+      toast.error(t('error'));
     }
   };
 
@@ -85,37 +85,33 @@ export const RequestEditor = ({ control, readOnly = false }: Props) => {
     <div className="border rounded-lg overflow-hidden">
       <span className="text-light-green mb-1.5 inline-block">{t('request-title')}</span>
 
-      <div className="flex flex-col sm:flex-row gap-2 bg-dark-green p-2">
-        <div className="w-full sm:w-auto">
-          <EditorSwitcher language={language} onLanguageChange={setLanguage} />
-        </div>
-        <div className="flex flex-wrap gap-2 items-center w-full sm:w-auto sm:ml-auto">
-          {!readOnly && language === 'json' && (
-            <button
-              type="button"
-              onClick={handlePrettify}
-              className="flex-1 sm:flex-initial cursor-pointer px-3 py-1 transition-colors border border-light-green text-light-green rounded hover:bg-light-green hover:text-dark"
-            >
-              {t('prettify')}
-            </button>
-          )}
-
+      <div className="flex flex-col items-start gap-2 xs:flex-row xs:justify-between xs:items-center bg-dark-green p-2">
+        <EditorSwitcher language={language} onLanguageChange={setLanguage} />
+        {!readOnly && language === 'json' && (
           <button
             type="button"
-            onClick={(e) => {
-              e.preventDefault();
-              handleApplyVariables();
-            }}
-            disabled={!isLoaded}
-            className={`flex-1 sm:flex-initial cursor-pointer px-3 py-1 transition-colors border rounded ${
-              isLoaded
-                ? 'border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white'
-                : 'border-gray-500 text-gray-500 cursor-not-allowed'
-            }`}
+            onClick={handlePrettify}
+            className="cursor-pointer px-3 py-1 transition-colors border border-light-green  text-light-green rounded hover:bg-light-green hover:text-dark"
           >
-            {t('apply-variables')}
+            {t('prettify')}
           </button>
-        </div>
+        )}
+
+        <button
+          type="button"
+          onClick={(e) => {
+            e.preventDefault();
+            handleApplyVariables();
+          }}
+          disabled={!isLoaded}
+          className={`cursor-pointer px-3 py-1 transition-colors border rounded ${
+            isLoaded
+              ? 'border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white'
+              : 'border-gray-500 text-gray-500 cursor-not-allowed'
+          }`}
+        >
+          {t('apply-variables')}
+        </button>
       </div>
 
       <div onBlur={handleBlur}>

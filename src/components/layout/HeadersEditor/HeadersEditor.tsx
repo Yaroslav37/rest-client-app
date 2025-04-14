@@ -2,11 +2,11 @@
 
 import { useTranslations } from 'next-intl';
 import { useCallback, useRef, useState } from 'react';
-import { Control, useFieldArray, useWatch } from 'react-hook-form';
+import { Control, useFieldArray } from 'react-hook-form';
 import { MdLibraryAdd } from 'react-icons/md';
 
-import { HeaderInput } from '@/components/ui/HeaderInput/HeaderInput';
-import { HeaderItem } from '@/components/ui/HeaderItem/HeaderItem';
+import { FieldInput } from '@/components/ui/FieldInput/FieldInput';
+import { InputItem } from '@/components/ui/InputItem/InputItem';
 import { RestClientFormValues } from '@/lib/yup/restClient';
 
 import { Button } from '../../ui/FormButton/FormButton';
@@ -21,11 +21,6 @@ export const HeadersEditor = ({ control }: Props) => {
   const { fields, append, remove, update } = useFieldArray({
     control,
     name: 'headers',
-  });
-  const watchFieldArray = useWatch({
-    control,
-    name: 'headers',
-    defaultValue: [],
   });
   const [newHeader, setNewHeader] = useState({ key: '', value: '' });
   const keyInputRef = useRef<HTMLInputElement>(null);
@@ -47,34 +42,20 @@ export const HeadersEditor = ({ control }: Props) => {
     [update],
   );
 
-  const handleRemoveHeader = useCallback(
-    (index: number) => {
-      remove(index);
-    },
-    [remove],
-  );
-
-  const updatedFields = fields.map((field, index) => {
-    return {
-      ...field,
-      ...watchFieldArray![index],
-    };
-  });
-
   return (
     <div className="flex gap-2 flex-col justify-between font-montserrat">
       <span className="text-light-green">{t('headers-title')}</span>
 
       <div className="flex flex-col gap-6 mb-4 mds:flex-row">
         <div className="flex flex-col gap-4 mds:flex-row flex-1">
-          <HeaderInput
+          <FieldInput
             ref={keyInputRef}
             placeholder={t('key-placeholder')}
             value={newHeader.key}
             onChange={(e) => setNewHeader((prev) => ({ ...prev, key: e.target.value }))}
             className="border-green text-green"
           />
-          <HeaderInput
+          <FieldInput
             ref={valueInputRef}
             placeholder={t('value-placeholder')}
             value={newHeader.value}
@@ -92,14 +73,14 @@ export const HeadersEditor = ({ control }: Props) => {
       </div>
 
       <div className="space-y-2">
-        {updatedFields.map((field, index) => (
-          <HeaderItem
+        {fields.map((field, index) => (
+          <InputItem
             key={field.id}
             id={field.id}
             index={index}
             keyValue={field.key}
             value={field.value}
-            onRemove={() => handleRemoveHeader(index)}
+            onRemove={() => remove(index)}
             onUpdate={handleUpdateHeader}
           />
         ))}

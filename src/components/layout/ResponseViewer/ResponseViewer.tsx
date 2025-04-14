@@ -43,10 +43,9 @@ export const ResponseViewer = ({ response, error }: ResponseViewerProps) => {
         </div>
       )}
       {error ? (
-        // TODO: ADD TOAST INSTEAD ?
         <div className="p-4 bg-red-900 text-red-200 flex items-center gap-2">
           <div>
-            <div className="font-bold">Request Failed</div>
+            <div className="font-bold">{t('failed')}</div>
             <div className="text-sm">{error.message}</div>
           </div>
         </div>

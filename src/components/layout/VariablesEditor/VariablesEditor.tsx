@@ -4,8 +4,8 @@ import { useTranslations } from 'next-intl';
 import { useCallback, useRef, useState } from 'react';
 import { MdLibraryAdd } from 'react-icons/md';
 
-import { HeaderInput } from '@/components/ui/HeaderInput/HeaderInput';
-import { HeaderItem } from '@/components/ui/HeaderItem/HeaderItem';
+import { FieldInput } from '@/components/ui/FieldInput/FieldInput';
+import { InputItem } from '@/components/ui/InputItem/InputItem';
 import { useVariablesForm } from '@/hooks/useVariablesForm';
 
 import { Button } from '../../ui/FormButton/FormButton';
@@ -41,14 +41,14 @@ export const VariablesEditor = () => {
 
       <div className="flex flex-col gap-6 mb-4 mds:flex-row">
         <div className="flex flex-col gap-4 mds:flex-row flex-1">
-          <HeaderInput
+          <FieldInput
             ref={keyInputRef}
             placeholder={t('key-placeholder')}
             value={newVariable.key}
             onChange={(e) => setNewVariable((prev) => ({ ...prev, key: e.target.value }))}
             className="border-green text-green"
           />
-          <HeaderInput
+          <FieldInput
             ref={valueInputRef}
             placeholder={t('value-placeholder')}
             value={newVariable.value}
@@ -68,7 +68,7 @@ export const VariablesEditor = () => {
 
       <div className="space-y-2">
         {variables.map((variable, index) => (
-          <HeaderItem
+          <InputItem
             key={variable.id}
             id={variable.id}
             index={index}
