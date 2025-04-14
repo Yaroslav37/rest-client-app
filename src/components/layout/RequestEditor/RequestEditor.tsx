@@ -35,18 +35,14 @@ export const RequestEditor = ({ control, readOnly = false }: Props) => {
 
   const handleBlur = () => {
     if (!isLoaded) return;
-    const valueWithVariables = applyVariables(localValue);
-    if (valueWithVariables !== field.value) {
-      field.onChange(valueWithVariables);
-    }
+    field.onChange(localValue);
   };
 
   const handlePrettify = async () => {
     try {
       const formattedJSON = await formatJson(localValue);
-      const valueWithVariables = applyVariables(formattedJSON);
-      setLocalValue(valueWithVariables);
-      field.onChange(valueWithVariables);
+      setLocalValue(formattedJSON);
+      field.onChange(formattedJSON);
     } catch (_error) {
       toast.error(t('error'));
     }
@@ -72,14 +68,11 @@ export const RequestEditor = ({ control, readOnly = false }: Props) => {
   useEffect(() => {
     if (!isLoaded) return;
     const timer = setTimeout(() => {
-      const valueWithVariables = applyVariables(localValue);
-      if (valueWithVariables !== localValue) {
-        setLocalValue(valueWithVariables);
-      }
+      setLocalValue(localValue);
     }, 300);
 
     return () => clearTimeout(timer);
-  }, [localValue, applyVariables, isLoaded]);
+  }, [localValue, isLoaded]);
 
   return (
     <div className="border rounded-lg overflow-hidden">

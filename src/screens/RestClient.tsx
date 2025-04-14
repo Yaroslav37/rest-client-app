@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 import { useTransition } from 'react';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 import {
   Button,
