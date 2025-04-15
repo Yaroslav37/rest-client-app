@@ -22,11 +22,6 @@ export interface ApiResponse {
 
 export type EditingLanguage = 'json' | 'text';
 
-export interface Header {
-  key: string;
-  value: string;
-}
-
 export interface RequestData {
   timestamp: number;
   api_url: string;

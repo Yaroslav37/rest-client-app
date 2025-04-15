@@ -29,10 +29,7 @@ export const HeadersEditor = ({ control }: Props) => {
 
   const handleAddHeader = () => {
     if (newHeader.key.trim() && newHeader.value.trim()) {
-      append({
-        ...newHeader,
-        id: Date.now(),
-      });
+      append(newHeader);
       setNewHeader({ key: '', value: '' });
       keyInputRef.current?.focus();
     }
@@ -40,9 +37,9 @@ export const HeadersEditor = ({ control }: Props) => {
 
   const handleUpdateHeader = useCallback(
     (index: number, key: string, value: string) => {
-      update(index, { key, value, id: fields[index].id });
+      update(index, { key, value });
     },
-    [update, fields],
+    [update],
   );
 
   return (
