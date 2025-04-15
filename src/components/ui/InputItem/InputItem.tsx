@@ -7,7 +7,6 @@ import { FieldInput } from '@/components/ui/FieldInput/FieldInput';
 import { useDebounce } from '@/hooks/useDebounce';
 
 interface Props {
-  id: string;
   index: number;
   keyValue: string;
   value: string;
@@ -18,12 +17,12 @@ interface Props {
 const iconSize = 25;
 
 export const InputItem = memo(
-  ({ id, index, keyValue, value, onRemove, onUpdate }: Props) => {
+  ({ index, keyValue, value, onRemove, onUpdate }: Props) => {
     const [localKey, setLocalKey] = useState(keyValue);
     const [localValue, setLocalValue] = useState(value);
 
-    const debouncedKey = useDebounce(localKey, 300);
-    const debouncedValue = useDebounce(localValue, 300);
+    const debouncedKey = useDebounce(localKey, 500);
+    const debouncedValue = useDebounce(localValue, 500);
 
     useEffect(() => {
       setLocalKey(keyValue);
@@ -37,10 +36,7 @@ export const InputItem = memo(
     }, [debouncedKey, debouncedValue, index, keyValue, onUpdate, value]);
 
     return (
-      <div
-        className="flex flex-col gap-6 mb-4 mds:flex-row not-last:border-b not-last:border-dark-grey mds:not-last:border-0 not-last:pb-3 mds:not-last:pb-0"
-        key={id}
-      >
+      <div className="flex flex-col gap-6 mb-4 mds:flex-row not-last:border-b not-last:border-dark-grey mds:not-last:border-0 not-last:pb-3 mds:not-last:pb-0">
         <div className="flex flex-col gap-4 mds:flex-row flex-1">
           <FieldInput value={localKey} onChange={(e) => setLocalKey(e.target.value)} />
           <FieldInput value={localValue} onChange={(e) => setLocalValue(e.target.value)} />
@@ -59,9 +55,9 @@ export const InputItem = memo(
     return (
       prevProps.keyValue === nextProps.keyValue &&
       prevProps.value === nextProps.value &&
-      prevProps.id === nextProps.id
+      prevProps.index === nextProps.index
     );
   },
 );
 
-InputItem.displayName = 'HeaderItem';
+InputItem.displayName = 'InputItem';

@@ -8,7 +8,6 @@ import { MdLibraryAdd } from 'react-icons/md';
 import { FieldInput } from '@/components/ui/FieldInput/FieldInput';
 import { InputItem } from '@/components/ui/InputItem/InputItem';
 import { RestClientFormValues } from '@/lib/yup/restClient';
-import { stringToNumber } from '@/shared/utils/string-to-number';
 
 import { Button } from '../../ui/FormButton/FormButton';
 
@@ -30,20 +29,18 @@ export const HeadersEditor = ({ control }: Props) => {
 
   const handleAddHeader = () => {
     if (newHeader.key.trim() && newHeader.value.trim()) {
-      const id = stringToNumber(`${newHeader.key}-${newHeader.value}-${Date.now()}`);
-      append({ ...newHeader, id });
+      append({
+        ...newHeader,
+        id: Date.now(),
+      });
       setNewHeader({ key: '', value: '' });
       keyInputRef.current?.focus();
     }
   };
 
   const handleUpdateHeader = useCallback(
-    (id: number, key: string, value: string) => {
-      const currentHeader = fields.find((field) => field.id === id);
-      if (currentHeader) {
-        const index = fields.findIndex((field) => field.id === id);
-        update(index, { key, value, id });
-      }
+    (index: number, key: string, value: string) => {
+      update(index, { key, value, id: fields[index].id });
     },
     [update, fields],
   );
@@ -79,14 +76,13 @@ export const HeadersEditor = ({ control }: Props) => {
       </div>
 
       <div className="space-y-2">
-        {fields.map((field) => (
+        {fields.map((field, index) => (
           <InputItem
             key={field.id}
-            id={field.id}
-            index={field.id}
+            index={index}
             keyValue={field.key}
             value={field.value}
-            onRemove={() => remove(field.id)}
+            onRemove={() => remove(index)}
             onUpdate={handleUpdateHeader}
           />
         ))}

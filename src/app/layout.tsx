@@ -30,7 +30,7 @@ export default async function RootLayout({
           <NextIntlClientProvider>
             <div className="min-h-screen flex flex-col justify-between">
               <Header />
-              <main>{children}</main>
+              <main className='mt-[120px] xs:mt-[80px]'>{children}</main>
               <Footer />
             </div>
             <ToastContainer
