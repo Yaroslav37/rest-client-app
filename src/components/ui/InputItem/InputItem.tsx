@@ -12,6 +12,7 @@ interface Props {
   value: string;
   onRemove: () => void;
   onUpdate: (index: number, key: string, value: string) => void;
+  id?: string;
 }
 
 const iconSize = 25;
