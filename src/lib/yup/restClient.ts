@@ -17,6 +17,7 @@ export const restClientSchema = yup.object({
     yup.object({
       key: yup.string().required('Header key is required'),
       value: yup.string().required('Header value is required'),
+      id: yup.number().required('Header id is required'),
     }),
   ),
   body: yup.string().test('valid-json', 'Invalid JSON format', (value) => {
