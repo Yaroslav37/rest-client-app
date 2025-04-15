@@ -76,7 +76,6 @@ export const HeadersEditor = ({ control }: Props) => {
         {fields.map((field, index) => (
           <InputItem
             key={field.id}
-            id={field.id}
             index={index}
             keyValue={field.key}
             value={field.value}

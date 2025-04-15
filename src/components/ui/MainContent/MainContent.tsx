@@ -31,7 +31,7 @@ const icons = [
 export const MainContent = () => {
   const t = useTranslations('MainContent');
   return (
-    <div className="flex flex-col p-10">
+    <div className="flex flex-col p-3 xs:p-10">
       <p className="mb-15 text-light-grey text-sm mds:text-xl">{t('description')}</p>
       <h2 className="text-xl font-bold text-light-green mb-6">{t('stack')}</h2>
       <div className="flex flex-wrap gap-5">
