@@ -14,12 +14,12 @@ export default function UserWelcome({ email }: { email: string }) {
           {t('welcomeUser')}, <span className="text-[#FFCC54]">{email}</span>!
         </h1>
         <div className="flex gap-5">
-          <Link
+          <a
             href={ROUTES.REST}
             className="flex flex-col items-center justify-center text-[#29E881] rounded-full px-5 py-3 hover:scale-110 transition-transform"
           >
             <span className="text-responsive">{t('restClient')}</span>
-          </Link>
+          </a>
           <Link
             href={ROUTES.HISTORY}
             className="flex flex-col items-center justify-center text-[#73CCFE] rounded-full px-5 py-3  hover:scale-110 transition-transform"

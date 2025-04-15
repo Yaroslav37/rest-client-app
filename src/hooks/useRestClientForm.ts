@@ -7,6 +7,9 @@ import { useVariablesForm } from '@/hooks/useVariablesForm';
 import type { RestClientFormValues } from '@/lib/yup/restClient';
 import type { HttpMethod } from '@/shared/types/enums';
 import { ApiResponse, Header } from '@/shared/types/interfaces';
+import { buildRedirectUrl } from '@/shared/utils/url-encoding';
+
+import { useRequestHistory } from './useRequestHistory';
 
 interface Props {
   initialMethod: HttpMethod;
@@ -34,6 +37,7 @@ export function useRestClientForm({ initialMethod, initialValues }: Props) {
   const currentHeaders = watch('headers');
   const { applyVariables, validateVariables } = useVariablesForm();
   const { buildUrl } = useUpdateUrl();
+  const { saveRequest } = useRequestHistory();
 
   const onSubmit = useCallback(
     async (data: RestClientFormValues) => {
@@ -93,6 +97,22 @@ export function useRestClientForm({ initialMethod, initialValues }: Props) {
           requestInit.body = bodyWithVars;
         }
 
+        const redirectUrl = buildRedirectUrl({
+          currentHost: window.location.origin,
+          method: data.method,
+          url: urlWithVars,
+          body: bodyWithVars,
+          headers: headersWithVars,
+        });
+
+        saveRequest({
+          api_url: urlWithVars,
+          redirect_url: redirectUrl,
+          method: data.method,
+          body: bodyWithVars,
+          headers: headersWithVars,
+        });
+
         const response = await fetch(urlWithVars, requestInit);
 
         const responseInfo = {
@@ -125,7 +145,7 @@ export function useRestClientForm({ initialMethod, initialValues }: Props) {
         setError(error);
       }
     },
-    [applyVariables, buildUrl, , validateVariables, t],
+    [applyVariables, saveRequest, buildUrl, validateVariables, t],
   );
 
   return {
