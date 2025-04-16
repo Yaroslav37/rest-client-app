@@ -46,6 +46,6 @@
     "eslint.config.mjs",
     "postcss.config.mjs",
     "src/app/layout.js"
-    ],
+, "vitest.config.mts"    ],
   "exclude": ["node_modules"]
 }

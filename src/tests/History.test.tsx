@@ -10,20 +10,6 @@ import { groupRequestsByDate } from '@/services/date';
 import { HttpMethod } from '@/shared/types/enums';
 import type { DateGroup, RequestData } from '@/shared/types/interfaces';
 
-const createMockTranslations = () => {
-  const fn = vi.fn((key: string) => key);
-  return Object.assign(fn, {
-    rich: vi.fn((key: string) => key),
-    markup: vi.fn((key: string) => key),
-    raw: vi.fn((_key: string) => ({})),
-  });
-};
-
-vi.mock('next-intl', () => ({
-  useLocale: vi.fn(() => 'en'),
-  useTranslations: vi.fn(createMockTranslations),
-}));
-
 const createMockRequest = (overrides: Partial<RequestData> = {}): RequestData => ({
   timestamp: Date.now(),
   api_url: 'https://api.example.com',
@@ -33,6 +19,11 @@ const createMockRequest = (overrides: Partial<RequestData> = {}): RequestData =>
   body: '',
   ...overrides,
 });
+
+vi.mock('next-intl', () => ({
+  useLocale: vi.fn(() => 'en'),
+  useTranslations: vi.fn(() => vi.fn((key: string) => key)),
+}));
 
 vi.mock('@/hooks/useRequestHistory', () => ({
   useRequestHistory: vi.fn(() => ({
