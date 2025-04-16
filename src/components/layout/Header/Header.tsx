@@ -1,8 +1,8 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
+import { IoMdExit } from 'react-icons/io';
 import { toast } from 'react-toastify';
 
 import { LanguageSwitcher } from '@/components/ui/LanguageSwitcher/LanguageSwitcher';
@@ -31,10 +31,8 @@ export const Header = () => {
   return (
     <header
       className={cn(
-        'flex w-full border-b border-light-green sticky top-0 transition-all duration-500 z-[500]',
-        isScrolled
-          ? 'py-3 shadow-[0_3px_3px_0_rgba(135,194,50,0.3)] bg-dark-green'
-          : 'py-6 bg-dark',
+        'flex w-full border-b border-light-green fixed top-0 left-0 bg-dark transition-all will-change-contents duration-500 z-[500] py-4',
+        isScrolled && 'shadow-[0_3px_3px_0_rgba(135,194,50,0.3)] bg-[#1d1d1d] py-2',
       )}
     >
       <Container className="w-full">
@@ -55,21 +53,15 @@ export const Header = () => {
           ) : (
             <button
               onClick={handleLogout}
-              className="cursor-pointer min-w-[98px] text-center flex gap-2.5"
+              className="group cursor-pointer min-w-[98px] text-center flex gap-2.5 items-center"
             >
-              <Image
-                src="/icons/exit.svg"
-                width={20}
-                height={20}
-                alt="sign-out"
-                className=" peer order-2"
-              />
+              <IoMdExit fontSize={20} />
               <span
                 className={cn(
                   linksStyles,
-                  'peer-hover:text-light-green',
-                  'peer-hover:border-b peer-hover:border-light-green',
                   'order-1',
+                  'group-hover:text-light-green',
+                  'group-hover:border-b group-hover:border-light-green',
                 )}
               >
                 {t('sign-out')}
