@@ -10,9 +10,9 @@ export const TeamCard = ({
   contributions: string[];
 }) => {
   return (
-    <div className="card">
+    <div className="card" data-testid="team-card">
       <div className="card__border"></div>
-      <div className="card_title__container">
+      <div className="card_title__container" data-testid="title-container">
         <span className="card_title">{name}</span>
         <p className="card_paragraph">{position}</p>
       </div>
@@ -23,6 +23,7 @@ export const TeamCard = ({
             <span className="check">
               <svg
                 className="check_svg"
+                data-testid="checkmark-icon"
                 fill="currentColor"
                 viewBox="0 0 16 16"
                 xmlns="http://www.w3.org/2000/svg"

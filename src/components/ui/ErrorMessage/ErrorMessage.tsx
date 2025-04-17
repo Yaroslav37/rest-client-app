@@ -16,6 +16,7 @@ export default function ErrorMessage({ message, justifyCenter }: ErrorMessagePro
       className={`flex items-center text-sm text-warning gap-1 animate-slide-down text-size-16 min-h-5 ${
         justifyCenter ? 'justify-center' : ''
       }`}
+      data-testid="error-message"
     >
       <MdError />
       {message}

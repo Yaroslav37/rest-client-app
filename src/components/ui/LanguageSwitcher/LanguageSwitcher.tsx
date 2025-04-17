@@ -32,6 +32,7 @@ export const LanguageSwitcher = () => {
         disabled={isPending}
         aria-label="Switch language"
         aria-busy={isPending}
+        data-testid="loading-overlay"
       />
       <label htmlFor="language-toggle" />
       <span className="on">EN</span>

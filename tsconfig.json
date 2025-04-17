@@ -37,15 +37,11 @@
   "include": [
     "**/*.ts",
     "**/*.tsx",
-    "./dist/types/**/*.ts",
-    "./nextt/types/**/*.ts",
     ".next/types/**/*.ts",
     "next-env.d.ts",
-    "./next/types/**/*.ts",
     "types.d.ts",
     "eslint.config.mjs",
     "postcss.config.mjs",
-    "src/app/layout.js"
-, "vitest.config.mts"    ],
+    "vitest.config.mts"    ],
   "exclude": ["node_modules"]
 }

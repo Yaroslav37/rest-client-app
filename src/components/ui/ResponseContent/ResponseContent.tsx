@@ -18,7 +18,9 @@ export const ResponseContent = ({
     <>
       {activeTab === 'headers' ? (
         <div className="p-4 h-[300px] overflow-auto">
-          <pre className="text-sm text-light-grey">{JSON.stringify(response.headers, null, 2)}</pre>
+          <pre className="text-sm text-light-grey" data-testid="headers-content">
+            {JSON.stringify(response.headers, null, 2)}
+          </pre>
         </div>
       ) : (
         <CodeMirror

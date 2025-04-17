@@ -10,10 +10,11 @@ import {
 import Cookies from 'js-cookie';
 import { createContext, useEffect, useState } from 'react';
 import { ReactNode } from 'react';
+import { toast } from 'react-toastify';
 
 import { auth } from '@/lib/firebase/config';
 import { ROUTES } from '@/shared/routes';
-interface AuthContextType {
+export interface AuthContextType {
   user: User | null;
   signup: (email: string, password: string) => Promise<void>;
   signin: (email: string, password: string) => Promise<void>;
@@ -100,7 +101,7 @@ export function AuthProvider({ children }: AuthUserProviderProps) {
       await signOut(auth);
       window.location.href = ROUTES.MAIN;
     } catch (error) {
-      console.error('Logout error:', error);
+      toast.error('Logout error');
     }
   };
 

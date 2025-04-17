@@ -10,19 +10,32 @@ import { groupRequestsByDate } from '@/services/date';
 import { HttpMethod } from '@/shared/types/enums';
 import type { DateGroup, RequestData } from '@/shared/types/interfaces';
 
-const createMockRequest = (overrides: Partial<RequestData> = {}): RequestData => ({
-  timestamp: Date.now(),
-  api_url: 'https://api.example.com',
-  redirect_url: 'https://example.com',
-  method: HttpMethod.GET,
-  headers: [],
-  body: '',
-  ...overrides,
+const { createMockTranslations, createMockRequest } = vi.hoisted(() => {
+  return {
+    createMockTranslations: () => {
+      const fn = vi.fn((key: string) => key);
+      return Object.assign(fn, {
+        rich: vi.fn((key: string) => key),
+        markup: vi.fn((key: string) => key),
+        raw: vi.fn((_key: string) => ({})),
+        has: vi.fn((_key: string) => true),
+      });
+    },
+    createMockRequest: (overrides: Partial<RequestData> = {}): RequestData => ({
+      timestamp: Date.now(),
+      api_url: 'https://api.example.com',
+      redirect_url: 'https://example.com',
+      method: HttpMethod.GET,
+      headers: [],
+      body: '',
+      ...overrides,
+    }),
+  };
 });
 
 vi.mock('next-intl', () => ({
   useLocale: vi.fn(() => 'en'),
-  useTranslations: vi.fn(() => vi.fn((key: string) => key)),
+  useTranslations: vi.fn(createMockTranslations),
 }));
 
 vi.mock('@/hooks/useRequestHistory', () => ({
@@ -42,11 +55,17 @@ vi.mock('next/link', () => ({
   ),
 }));
 
-vi.mock('@/components/layout/Container/Container', () => ({
-  default: ({ children, className }: { children: React.ReactNode; className?: string }) => (
-    <div className={className}>{children}</div>
-  ),
-}));
+vi.mock(import('@/components/layout/Container/Container'), async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...actual,
+    default: ({ children, className }: { children: React.ReactNode; className?: string }) => (
+      <div className={className} data-testid="container">
+        {children}
+      </div>
+    ),
+  };
+});
 
 vi.mock('@/components/ui/HistoryRequestGroup/RequestGroup', () => ({
   default: ({ group, groupIndex }: { group: DateGroup; groupIndex: number }) => (
@@ -79,9 +98,9 @@ describe('History Component', () => {
     render(<History />);
 
     await waitFor(() => {
-      expect(screen.getByText('History.no-requests')).toBeInTheDocument();
-      expect(screen.getByText('History.rest-link')).toBeInTheDocument();
-      expect(screen.getByRole('link')).toHaveAttribute('href', '/rest');
+      expect(screen.getByText('no-requests')).toBeInTheDocument();
+      expect(screen.getByText('rest-link')).toBeInTheDocument();
+      expect(screen.getByRole('link')).toHaveAttribute('href', '/rest-client');
     });
   });
 
@@ -144,14 +163,13 @@ describe('History Component', () => {
         isExpanded: false,
       },
     ];
-
     mockLoadRequests.mockReturnValue(mockRequests);
     vi.mocked(groupRequestsByDate).mockReturnValue(mockDateGroups);
 
     render(<History />);
 
     await waitFor(() => {
-      expect(screen.getByText('History.history-title')).toBeInTheDocument();
+      expect(screen.getByText('history-title')).toBeInTheDocument();
       const requestGroups = screen.getAllByTestId('request-group');
       expect(requestGroups).toHaveLength(2);
       expect(requestGroups[0]).toHaveAttribute('data-index', '0');
@@ -186,7 +204,6 @@ describe('History Component', () => {
 
     const { rerender } = render(<History />);
 
-    // Change locale
     const newLocale = 'de';
     vi.mocked(useLocale).mockReturnValue(newLocale);
     rerender(<History />);
