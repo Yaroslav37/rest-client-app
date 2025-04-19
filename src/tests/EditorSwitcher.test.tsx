@@ -43,7 +43,6 @@ describe('EditorSwitcher Component', () => {
     const jsonButton = screen.getByRole('button', { name: 'JSON' });
     await user.click(jsonButton);
 
-    // It still calls the function, since there's no prevention logic
     expect(onChange).toHaveBeenCalledWith('json');
   });
 

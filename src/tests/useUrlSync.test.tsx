@@ -51,7 +51,6 @@ describe('useUrlSync Hook', () => {
   it('recomputes URL when method changes', () => {
     const { rerender } = renderHook((props) => useUrlSync(props), { initialProps: baseProps });
 
-    // Change method
     rerender({ ...baseProps, currentMethod: HttpMethod.POST });
     expect(window.history.replaceState).toHaveBeenCalledWith(
       null,
@@ -66,12 +65,10 @@ describe('useUrlSync Hook', () => {
     methods.forEach((method) => {
       const { result } = renderHook(() => useUrlSync({ ...baseProps, currentMethod: method }));
 
-      // Check that the URL starts with the expected format
       expect(result.current.debouncedNewUrl).toMatch(
         new RegExp(`^/rest-client/${method}/[A-Za-z0-9+/]+=?=?$`),
       );
 
-      // Optionally verify the base64 content
       const base64Part = result.current.debouncedNewUrl.split('/')[3];
       expect(atob(base64Part)).toBe('api/test');
     });

@@ -4,7 +4,6 @@ import { describe, expect, it } from 'vitest';
 
 import Footer from '@/components/layout/Footer/Footer';
 
-// Mock next/image component
 vi.mock('next/image', () => ({
   default: (props: any) => <img {...props} />,
 }));
@@ -104,7 +103,6 @@ describe('Footer Component', () => {
     expect(rsLink).toHaveClass('hover:opacity-80');
 
     await user.hover(rsLink);
-    // Similar hover verification as above
   });
 
   it('matches snapshot', () => {

@@ -3,7 +3,6 @@ import { describe, expect, it, vi } from 'vitest';
 
 import { TeamList } from '@/components/ui/TeamList/TeamList';
 
-// Mock next-intl and TeamCard
 vi.mock('next-intl', () => ({
   useTranslations: () => (key: string) => {
     const translations: Record<string, string> = {

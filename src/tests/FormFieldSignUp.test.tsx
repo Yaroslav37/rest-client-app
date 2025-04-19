@@ -10,7 +10,6 @@ vi.mock('../ErrorMessage/ErrorMessage', () => ({
 }));
 
 describe('FormFieldSignUp Component', () => {
-  // Create a test form type
   type TestFormValues = {
     testField: string;
   };
@@ -53,7 +52,6 @@ describe('FormFieldSignUp Component', () => {
   });
 
   it('calls register onChange handler', async () => {
-    // Create properly typed mock register function
     const mockRegisterOnChange = vi.fn();
     const mockRegister: UseFormRegister<TestFormValues> = vi.fn((name) => ({
       onChange: mockRegisterOnChange,

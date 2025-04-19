@@ -19,7 +19,6 @@ vi.mock('react', () => ({
   useTransition: vi.fn(),
 }));
 
-// Mock the locale service directly
 vi.mock('@/services/locale', () => ({
   setUserLocale: vi.fn().mockResolvedValue(undefined),
 }));

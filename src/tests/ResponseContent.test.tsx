@@ -100,7 +100,6 @@ describe('ResponseContent Component', () => {
 
     const codeMirrorWithMock = CodeMirrorModule as unknown as CodeMirrorWithMock;
 
-    // ⬇️ Теперь используешь мок без ошибок
     expect(codeMirrorWithMock.codeMirrorMock).toHaveBeenCalledWith(
       expect.objectContaining({
         extensions: expect.arrayContaining(['json-extension', 'lineWrapping']),
