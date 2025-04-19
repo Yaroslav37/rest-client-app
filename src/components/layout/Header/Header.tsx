@@ -53,15 +53,16 @@ export const Header = () => {
           ) : (
             <button
               onClick={handleLogout}
-              className="group cursor-pointer min-w-[98px] text-center flex gap-2.5 items-center"
+              className="group cursor-pointer min-w-[105px] text-center flex gap-2.5 items-center"
             >
-              <IoMdExit fontSize={20} />
+              <IoMdExit size={20} />
               <span
                 className={cn(
                   linksStyles,
                   'order-1',
                   'group-hover:text-light-green',
                   'group-hover:border-b group-hover:border-light-green',
+                  'will-change-contents',
                 )}
               >
                 {t('sign-out')}
