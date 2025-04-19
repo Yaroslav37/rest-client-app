@@ -9,7 +9,6 @@ import {
   SiReact,
   SiTailwindcss,
   SiTypescript,
-  SiVite,
   SiVitest,
 } from 'react-icons/si';
 
@@ -18,7 +17,6 @@ import { TeamList } from '@/components/ui/TeamList/TeamList';
 const icons = [
   SiReact,
   SiNextdotjs,
-  SiVite,
   SiVitest,
   SiTypescript,
   SiEslint,
