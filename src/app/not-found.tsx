@@ -5,7 +5,10 @@ import { useTranslations } from 'next-intl';
 export default function NotFoundPage() {
   const t = useTranslations('NotFound');
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-4">
+    <div
+      className="flex flex-col items-center justify-center min-h-screen p-4"
+      data-testid="not-found-container"
+    >
       <Image
         src="/404.gif"
         alt="Page not found"

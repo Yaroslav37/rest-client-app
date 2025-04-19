@@ -25,7 +25,10 @@ export const TeamList = () => {
   return (
     <div className="flex flex-col gap-5">
       <h2 className="text-xl font-bold text-white mt-10 mb-6">{t('devteam')}</h2>
-      <div className="flex flex-wrap justify-center min-[1044px]:justify-between items-center gap-5 mb-15">
+      <div
+        className="flex flex-wrap justify-center min-[1044px]:justify-between items-center gap-5 mb-15"
+        data-testid="team-cards-container"
+      >
         {teamMembers.map((member, index) => (
           <div key={index} className="transition-transform will-change-transform hover:scale-105">
             <TeamCard

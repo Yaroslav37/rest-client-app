@@ -16,7 +16,7 @@ interface RequestData {
   body: string;
 }
 
-type CodeGeneratorProps = {
+export type CodeGeneratorProps = {
   requestCurrent: RequestData;
 };
 
