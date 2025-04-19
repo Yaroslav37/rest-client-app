@@ -29,22 +29,23 @@
         "api": "Erstellte API-Endpunkte",
         "bugs": "Kritische Bugs behoben"
       }
-    },    
-   "elena": {
+    },
+    "elena": {
       "name": "Elena Ivanova",
       "contributions": {
-         "environment": "Einrichten der Projektumgebung",
+        "environment": "Einrichten der Projektumgebung",
         "codegen": "Implementierte Codegenerierung",
         "variables": "Entwickeltes Variablenmanagent",
         "footer": "Implementierte Fußzeile",
         "docs": "Erstellte Dokumentation"
       }
-      }
+    }
   },
   "Header": {
     "sign-in": "Eintragen",
     "sign-up": "Anmeldung",
-    "sign-out": "Abmelden"
+    "sign-out": "Abmelden",
+    "logo": "REST Klient"
   },
   "NotFound": {
     "not-found": "Ups! Diese Seite wurde nicht gefunden.",
@@ -169,8 +170,8 @@
     "info": "Fügen Sie eine Variable zu Ihrer Anfrage hinzu. Der Wert der Variablen kann entweder in die URL, den Anfragekörper oder den Header-Wert eingefügt werden.",
     "info-add": "Um anzugeben, dass die Variable verwendet werden soll, können Sie sie als ",
     "errors": {
-    "error-failed": "Variablen konnten nicht geladen werden",
-    "unknown_variables": "Unbekannte Variablen: {variables}. Bitte definieren Sie sie auf der Registerkarte „Variablen“.",
+      "error-failed": "Variablen konnten nicht geladen werden",
+      "unknown_variables": "Unbekannte Variablen: {variables}. Bitte definieren Sie sie auf der Registerkarte „Variablen“.",
       "unknown_error": "Unbekannter Fehler aufgetreten"
     }
   },
