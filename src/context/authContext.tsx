@@ -101,7 +101,7 @@ export function AuthProvider({ children }: AuthUserProviderProps) {
       await signOut(auth);
       window.location.href = ROUTES.MAIN;
     } catch (error) {
-      toast.error('Logout error');
+      toast.error(`Logout error: ${error}`);
     }
   };
 

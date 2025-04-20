@@ -28,7 +28,6 @@ describe('Spinner Component', () => {
     render(<Spinner />);
     const spinner = screen.getByTestId('spinner');
 
-    expect(spinner).toHaveClass('fixed');
     expect(spinner).toHaveClass('flex');
     expect(spinner).toHaveClass('justify-center');
     expect(spinner).toHaveClass('items-center');

@@ -1,5 +1,7 @@
 # REST Client API - Lightweight Postman Alternative
 
+🎥 **[Watch Video Overview](https://youtu.be/MpTxGgT-fQI)**
+
 ## Overview
 
 REST Client API is a lightweight alternative to Postman built with Next.js, providing essential API testing capabilities with a focus on simplicity and user experience. The application supports all RESTful methods, request customization, and includes features like authentication, request history, and code generation.
@@ -7,6 +9,7 @@ REST Client API is a lightweight alternative to Postman built with Next.js, prov
 ## Features
 
 ### Core Functionality
+
 - **REST Client** with all HTTP methods (GET, POST, PUT, DELETE, etc.)
 - **Request Builder** with:
   - Method selector
@@ -17,6 +20,7 @@ REST Client API is a lightweight alternative to Postman built with Next.js, prov
 - **Code Generation** for multiple languages and libraries (cURL, Fetch, XHR, Node.js, Python, etc.)
 
 ### Additional Features
+
 - ✅ User Authentication
 - 📜 Request History
 - 🔤 Variables System
@@ -42,15 +46,15 @@ REST Client API is a lightweight alternative to Postman built with Next.js, prov
 
 ### Key Libraries
 
-| Library | Purpose |
-|---------|---------|
-| CodeMirror | Code editing in request/response panels |
-| React Hook Form | Form management with validation |
-| react-toastify | User notifications and alerts |
-| next-intl | Internationalization (i18n) support |
-| Firebase/Supabase | Authentication |
-| postman-code-generators | API request code generation |
-| yup | Schema validation for forms |
+| Library                 | Purpose                                 |
+| ----------------------- | --------------------------------------- |
+| CodeMirror              | Code editing in request/response panels |
+| React Hook Form         | Form management with validation         |
+| react-toastify          | User notifications and alerts           |
+| next-intl               | Internationalization (i18n) support     |
+| Firebase/Supabase       | Authentication                          |
+| postman-code-generators | API request code generation             |
+| yup                     | Schema validation for forms             |
 
 ## Available Scripts
 
