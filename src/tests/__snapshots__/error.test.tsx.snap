@@ -1,0 +1,32 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Error > matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="min-h-screen flex flex-col items-center justify-center bg-[var(--color-dark)] text-white p-4"
+  >
+    <h2
+      class="text-light-green text-[16px] xs:text-[24px] mb-4"
+    >
+      Something went wrong!
+    </h2>
+    <button
+      class="
+    bg-grey
+    text-white
+    px-4 py-2
+    rounded-lg
+    transition-colors
+    duration-300
+    hover:bg-light-green
+    cursor-pointer
+      hover:scale-105
+      transform
+      active:scale-95
+  "
+    >
+      Try again
+    </button>
+  </div>
+</DocumentFragment>
+`;

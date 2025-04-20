@@ -1,0 +1,22 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`UrlInput Component > matches snapshot 1`] = `
+<div>
+  <div
+    class="flex gap-2 flex-col justify-between font-montserrat max-w-[375px] sm:w-full"
+  >
+    <span
+      class="text-light-green self-start sm:self-end"
+    >
+      enter-url
+    </span>
+    <input
+      class="text-white p-2 border-b border-green focus:outline-0 focus:border-white"
+      name="url"
+      placeholder="https://jsonplaceholder.typicode.com/posts"
+      type="text"
+      value=""
+    />
+  </div>
+</div>
+`;

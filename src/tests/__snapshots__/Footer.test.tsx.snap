@@ -1,0 +1,85 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Footer Component > matches snapshot 1`] = `
+<div>
+  <footer
+    class="flex flex-wrap flex-col items-center justify-center pb-10 gap-2 border-t border-light-green bg-dark-grey py-4 text-sm xs:gap-4 sm:flex-row sm:gap-16"
+  >
+    <div
+      class="flex flex-col gap-2 mds:gap-20 xs:flex-row"
+    >
+      <a
+        aria-label="Yaraslau Minenkou GitHub profile"
+        class="flex items-center gap-2 transition-colors text-white hover:text-light-green"
+        href="https://github.com/Yaroslav37"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        <img
+          alt=""
+          aria-hidden="true"
+          class="h-4 w-4"
+          height="16"
+          src="/github_icon.svg"
+          width="16"
+        />
+        Yaraslau Minenkou
+      </a>
+      <a
+        aria-label="Veranika Liauchuk GitHub profile"
+        class="flex items-center gap-2 transition-colors text-white hover:text-light-green"
+        href="https://github.com/adAstra97"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        <img
+          alt=""
+          aria-hidden="true"
+          class="h-4 w-4"
+          height="16"
+          src="/github_icon.svg"
+          width="16"
+        />
+        Veranika Liauchuk
+      </a>
+      <a
+        aria-label="Elena Ivanova GitHub profile"
+        class="flex items-center gap-2 transition-colors text-white hover:text-light-green"
+        href="https://github.com/Elena-lucky"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        <img
+          alt=""
+          aria-hidden="true"
+          class="h-4 w-4"
+          height="16"
+          src="/github_icon.svg"
+          width="16"
+        />
+        Elena Ivanova
+      </a>
+    </div>
+    <span
+      class="text-light-green"
+    >
+      2025
+    </span>
+    <a
+      aria-label="RS School React course"
+      class="transition-opacity hover:opacity-80"
+      href="https://rs.school/courses/reactjs"
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      <img
+        alt="RS School logo"
+        class="h-8 w-8"
+        height="32"
+        src="/rss-logo.svg"
+        width="32"
+      />
+    </a>
+  </footer>
+</div>
+`;

@@ -1,0 +1,21 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Container Component > matches snapshot with custom className 1`] = `
+<div
+  class="px-4 sm:px-6 xl:px-10 max-w-[1920px] mx-auto custom-class"
+>
+  <div>
+    Test
+  </div>
+</div>
+`;
+
+exports[`Container Component > matches snapshot with default props 1`] = `
+<div
+  class="px-4 sm:px-6 xl:px-10 max-w-[1920px] mx-auto undefined"
+>
+  <div>
+    Test
+  </div>
+</div>
+`;
