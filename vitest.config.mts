@@ -29,6 +29,7 @@ export default defineConfig({
         'src/hooks/useAuth.tsx',
         'src/app/loading.tsx',
         'src/components/ui/Logo/Logo.tsx',
+        'src/components/layout/RequestEditor/RequestEditor.tsx',
         '**/*.config.ts',
         'src/main.tsx',
         '**/*.ts',
