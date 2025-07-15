@@ -1,0 +1,183 @@
+{
+  "MainContent": {
+    "description": "This project is a lightweight REST Client inspired by tools like Postman. It supports common HTTP methods (GET, POST, PUT, DELETE, etc.) for API interactions. Rest Client allows users to input API endpoints and customize headers easily. It keeps track of past API calls, enabling quick access to previous requests and lets users define and reuse variables across requests for dynamic API testing.",
+    "stack": "Technology Stack",
+    "project": "The Rest Client App is a trainee project for RS School. The RS School React course offers free, high-quality training for developers with strong JavaScript/TypeScript and frontend skills. The program is open to all regardless of age or location, with all materials available on YouTube and GitHub. Through practical assignments and projects, participants gain real-world React development experience. The course focuses on modern React concepts while emphasizing hands-on learning. With its rigorous standards and free access, it provides excellent career advancement opportunities."
+  },
+  "Team": {
+    "devteam": "Development Team",
+    "positions": {
+      "teamLead": "Team Lead",
+      "frontend": "Frontend Developer"
+    },
+    "yaraslau": {
+      "name": "Yaraslau Minenkou",
+      "contributions": {
+        "ciCd": "Set up CI/CD pipeline",
+        "firebase": "Set up Firebase",
+        "auth": "Implemented authentication",
+        "history": "Created request history feature",
+        "optimization": "Optimized performance"
+      }
+    },
+    "veranika": {
+      "name": "Veranika Liauchuk",
+      "contributions": {
+        "header": "Implemented Header",
+        "i18n": "Configured i18n",
+        "restClient": "Implemented REST client page",
+        "api": "Built API endpoints",
+        "bugs": "Fixed critical bugs"
+      }
+    },
+    "elena": {
+      "name": "Elena Ivanova",
+      "contributions": {
+        "environment": "Set up project's environment",
+        "codegen": "Implemented Code Generation",
+        "variables": "Developed variables management",
+        "footer": "Implemented Footer",
+        "docs": "Created documentation"
+      }
+    }
+  },
+  "Header": {
+    "sign-in": "Sign In",
+    "sign-up": "Sign Up",
+    "sign-out": "Sign Out",
+    "logo": "REST Client"
+  },
+  "NotFound": {
+    "not-found": "Oops! This page was not found.",
+    "back": "Back to Main page"
+  },
+  "Error": {
+    "error": "Something went wrong!",
+    "try": "Try again"
+  },
+  "SignIn": {
+    "title": "Sign In",
+    "emailLabel": "Email",
+    "passwordLabel": "Password",
+    "button": "Sign In",
+    "noAccount": "Do not have an account?",
+    "signUpLink": "Sign Up",
+    "error": "An error occurred. Please try again.",
+    "invalid": "Invalid credentials"
+  },
+  "SignUp": {
+    "title": "Sign Up",
+    "emailLabel": "Email",
+    "passwordLabel": "Password",
+    "confirmPasswordLabel": "Confirm Password",
+    "button": "Sign Up",
+    "error": {
+      "email": "Invalid email address",
+      "password": "Password is too weak",
+      "passwordConfirm": "Passwords do not match"
+    }
+  },
+  "validation": {
+    "email": {
+      "invalid": "Invalid email",
+      "required": "Email is required"
+    },
+    "password": {
+      "hasNumber": "Password must contain at least 1 number",
+      "hasUpperCase": "Password must contain at least 1 uppercase letter",
+      "hasLowerCase": "Password must contain at least 1 lowercase letter",
+      "hasSpecialChar": "Password must contain at least 1 special character",
+      "minLength": "Password must be at least 8 characters",
+      "required": "Password is required"
+    },
+    "passwordConfirm": {
+      "match": "Passwords must match",
+      "required": "Confirm password is required"
+    }
+  },
+  "Toasts": {
+    "signup": {
+      "success": "Account created successfully!"
+    },
+    "signin": {
+      "success": "Logged in successfully!"
+    },
+    "logout": {
+      "success": "Goodbye! See you soon..."
+    },
+    "in-use": {
+      "in-use": "Email is already in use. Please try another email."
+    },
+    "errors": {
+      "invalid": "Check your email and password.",
+      "unknown": "An unexpected error occurred."
+    }
+  },
+  "authWelcome": {
+    "welcome": "Welcome!",
+    "signIn": "Sign In",
+    "or": "or",
+    "signUp": "Sign Up",
+    "toContinue": "to use Rest Client app."
+  },
+  "userWelcome": {
+    "welcomeUser": "Welcome",
+    "restClient": "REST Client",
+    "history": "History",
+    "variables": "Variables"
+  },
+  "RestClient": {
+    "sending": "Sending...",
+    "send": "Send Request",
+    "select-method": "Select Method",
+    "enter-url": "Enter endpoint URL",
+    "headers-title": "Headers",
+    "key-placeholder": "Key",
+    "value-placeholder": "Value",
+    "request-title": "Request editor",
+    "prettify": "Prettify",
+    "response-title": "Response viewer",
+    "status": "Status",
+    "response-tab-body": "Body",
+    "response-tab-headers": "Headers",
+    "informational": "Informational",
+    "success": "Success",
+    "redirection": "Redirection",
+    "clientErroInvalid JSON formatr": "Client Error",
+    "serverError": "Server Error",
+    "failed": "Request Failed",
+    "unknown": "Unknown Status",
+    "apply-variables": "Apply variables",
+    "variables-not-loaded": "Variables are not loaded yet",
+    "no-variables": "No saved variables found in local storage",
+    "error": "Invalid JSON format"
+  },
+  "CodeGenerator": {
+    "useGenerator": "Use our Code Generator to convert your API request to different programming languages.",
+    "error": "Error",
+    "error-no-code": "No code generated",
+    "unknown": "Unknown error occurred",
+    "select-language": "Select language",
+    "select-variant": "Select variant",
+    "hide": "Hide generated code",
+    "show": "Show generated code",
+    "generate": "Generate code to see the result"
+  },
+  "Variables": {
+    "variables-title": "Variables",
+    "key-placeholder": "key",
+    "value-placeholder": "value",
+    "info": "Add variable to your request. Variable value can be inserted either in the url, or request body, or header value.",
+    "info-add": "To indicate that the variable should be used, you can specify it as ",
+    "errors": {
+      "error-failed": "Failed to load variables",
+      "unknown_variables": "Unknown variables: {variables}. Please define them in the 'Variables' page.",
+      "unknown_error": "Unknown error occurred"
+    }
+  },
+  "History": {
+    "rest-link": "REST Client",
+    "no-requests": "You haven't executed any requests It's empty here. Try: ",
+    "history-title": "History Requests"
+  }
+}

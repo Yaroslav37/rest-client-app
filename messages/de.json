@@ -1,0 +1,183 @@
+{
+  "MainContent": {
+    "description": "Dieses Projekt ist ein leichtgewichtiger REST-Client, inspiriert von Tools wie Postman. Er unterstützt gängige HTTP-Methoden (GET, POST, PUT, DELETE, etc.) für API-Interaktionen. Rest Client ermöglicht es Benutzern, API-Endpunkte einzugeben und Header einfach anzupassen. Er speichert frühere API-Aufrufe und ermöglicht so einen schnellen Zugriff auf frühere Anfragen. Außerdem können Benutzer Variablen für dynamische API-Tests definieren und über Anfragen hinweg wiederverwenden.",
+    "stack": "Technologie-Stapel",
+    "project": "Die Rest Client App ist ein Trainingsprojekt für die RS School. Die RS School React Kurs bietet kostenlose, qualitativ hochwertige Ausbildung für Entwickler mit starken JavaScript / TypeScript und Frontend-Kenntnisse. Das Programm ist offen für alle, unabhängig von Alter oder Standort, mit allen Materialien auf YouTube und GitHub zur Verfügung. Durch praktische Aufgaben und Projekte sammeln die Teilnehmer praktische Erfahrungen in der React-Entwicklung. Der Kurs konzentriert sich auf moderne React-Konzepte und legt den Schwerpunkt auf praktisches Lernen. Mit seinen strengen Standards und dem freien Zugang bietet er hervorragende Möglichkeiten für die berufliche Weiterentwicklung."
+  },
+  "Team": {
+    "devteam": "Entwicklungsteam",
+    "positions": {
+      "teamLead": "Teamleitung",
+      "frontend": "Frontend-Entwickler"
+    },
+    "yaraslau": {
+      "name": "Yaraslau Minenkou",
+      "contributions": {
+        "ciCd": "CI/CD-Pipeline einrichten",
+        "firebase": "Firebase einrichten",
+        "auth": "Authentifizierung implementiert",
+        "history": "Funktion Anfragehistorie erstellt",
+        "optimization": "Optimierte Leistung"
+      }
+    },
+    "veranika": {
+      "name": "Veranika Liauchuk",
+      "contributions": {
+        "header": "Implementierte Überschrift",
+        "i18n": "Konfigurierte i18n",
+        "restClient": "REST-Client-Seite implementiert",
+        "api": "Erstellte API-Endpunkte",
+        "bugs": "Kritische Bugs behoben"
+      }
+    },
+    "elena": {
+      "name": "Elena Ivanova",
+      "contributions": {
+        "environment": "Einrichten der Projektumgebung",
+        "codegen": "Implementierte Codegenerierung",
+        "variables": "Entwickeltes Variablenmanagent",
+        "footer": "Implementierte Fußzeile",
+        "docs": "Erstellte Dokumentation"
+      }
+    }
+  },
+  "Header": {
+    "sign-in": "Eintragen",
+    "sign-up": "Anmeldung",
+    "sign-out": "Abmelden",
+    "logo": "REST Klient"
+  },
+  "NotFound": {
+    "not-found": "Ups! Diese Seite wurde nicht gefunden.",
+    "back": "Zurück zur Hauptseite"
+  },
+  "Error": {
+    "error": "Etwas ist schief gelaufen!",
+    "try": "Erneut versuchen"
+  },
+  "SignIn": {
+    "title": "Anmelden",
+    "emailLabel": "Email",
+    "passwordLabel": "Passwort",
+    "button": "Anmelden",
+    "noAccount": "Haben Sie kein Konto?",
+    "signUpLink": "Registrieren",
+    "error": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.",
+    "invalid": "Ungültige Berechtigungsnachweise"
+  },
+  "SignUp": {
+    "title": "Registrieren",
+    "emailLabel": "Email",
+    "passwordLabel": "Passwort",
+    "confirmPasswordLabel": "Passwort bestätigen",
+    "button": "Registrieren",
+    "error": {
+      "email": "Ungültige Email-Adresse",
+      "password": "Passwort ist zu schwach",
+      "passwordConfirm": "Passwörter stimmen nicht überein"
+    }
+  },
+  "validation": {
+    "email": {
+      "invalid": "Ungültige Email",
+      "required": "Email ist erforderlich"
+    },
+    "password": {
+      "hasNumber": "Passwort muss mindestens 1 Zahl enthalten",
+      "hasUpperCase": "Passwort muss mindestens 1 Großbuchstaben enthalten",
+      "hasLowerCase": "Passwort muss mindestens 1 Kleinbuchstaben enthalten",
+      "hasSpecialChar": "Passwort muss mindestens 1 Sonderzeichen enthalten",
+      "minLength": "Passwort muss mindestens {length} Zeichen lang sein",
+      "required": "Passwort ist erforderlich"
+    },
+    "passwordConfirm": {
+      "match": "Passwörter müssen übereinstimmen",
+      "required": "Passwortbestätigung ist erforderlich"
+    }
+  },
+  "Toasts": {
+    "signup": {
+      "success": "Konto erfolgreich erstellt!"
+    },
+    "signin": {
+      "success": "Erfolgreich eingeloggt!"
+    },
+    "logout": {
+      "success": "Auf Wiedersehen! Bis bald..."
+    },
+    "in-use": {
+      "in-use": "Die E-Mail ist bereits in Gebrauch. Bitte versuchen Sie eine andere E-Mail."
+    },
+    "errors": {
+      "invalid": "Überprüfen Sie Ihre E-Mail und Ihr Passwort.",
+      "unknown": "Ein unerwarteter Fehler ist aufgetreten."
+    }
+  },
+  "authWelcome": {
+    "welcome": "Willkommen!",
+    "signIn": "Anmelden",
+    "or": "oder",
+    "signUp": "Registrieren",
+    "toContinue": "zur Verwendung der Rest-Client-Anwendung."
+  },
+  "userWelcome": {
+    "welcomeUser": "Willkommen",
+    "restClient": "REST-Klient",
+    "history": "Verlauf",
+    "variables": "Variablen"
+  },
+  "RestClient": {
+    "sending": "Senden von...",
+    "send": "Anfrage senden",
+    "select-method": "Methode wählen",
+    "enter-url": "Endpunkt-URL eingeben",
+    "headers-title": "Kopfzeilen",
+    "key-placeholder": "Schlüssel",
+    "value-placeholder": "Wert",
+    "request-title": "Editor anfordern",
+    "prettify": "Aufhübschen",
+    "response-title": "Antwort-Viewer",
+    "status": "Stand",
+    "response-tab-body": "Körper",
+    "response-tab-headers": "Kopfzeilen",
+    "informational": "Informationell",
+    "success": "Erfolg",
+    "redirection": "Umleitung",
+    "clientError": "Client-Fehler",
+    "serverError": "Server-Fehler",
+    "failed": "Anfrage fehlgeschlagen",
+    "unknown": "Unbekannter Status",
+    "apply-variables": "Variablen anwenden",
+    "variables-not-loaded": "Variablen sind noch nicht geladenVariablen sind noch nicht geladen",
+    "no-variables": "Keine gespeicherten Variablen im lokalen Speicher gefundenVariablen sind noch nicht geladen",
+    "error": "Ungültiges JSON-Format"
+  },
+  "CodeGenerator": {
+    "useGenerator": "Nutzen Sie unseren Code-Generator, um Ihre API-Anfrage in verschiedene Programmiersprachen zu konvertieren.",
+    "error": "Fehler",
+    "error-no-code": "Kein Code erzeugt",
+    "unknown": "Unbekannter Fehler aufgetreten",
+    "select-language": "Sprache auswählen",
+    "select-variant": "Variante auswählen",
+    "hide": "Generierten Code ausblenden",
+    "show": "Generierten Code anzeigen",
+    "generate": "Code generieren, um das Ergebnis zu sehen"
+  },
+  "Variables": {
+    "variables-title": "Variablen",
+    "key-placeholder": "Schlüssel",
+    "value-placeholder": "Wert",
+    "info": "Fügen Sie eine Variable zu Ihrer Anfrage hinzu. Der Wert der Variablen kann entweder in die URL, den Anfragekörper oder den Header-Wert eingefügt werden.",
+    "info-add": "Um anzugeben, dass die Variable verwendet werden soll, können Sie sie als ",
+    "errors": {
+      "error-failed": "Variablen konnten nicht geladen werden",
+      "unknown_variables": "Unbekannte Variablen: {variables}. Bitte definieren Sie sie auf der Registerkarte „Variablen“.",
+      "unknown_error": "Unbekannter Fehler aufgetreten"
+    }
+  },
+  "History": {
+    "rest-link": "REST-Klient",
+    "no-requests": "Sie haben keine Anfragen ausgeführt Hier ist leer. Versuchen Sie es: ",
+    "history-title": "Anfragen zur Geschichte"
+  }
+}

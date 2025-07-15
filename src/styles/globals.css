@@ -1,0 +1,78 @@
+@import 'tailwindcss';
+@tailwind utilities;
+
+@theme {
+  --font-open-sans: var(--font-open-sans);
+  --font-inter: var(--font-inter);
+  --font-montserrat: var(--font-montserrat);
+
+  --color-white: #ffffff;
+  --color-green: #618930;
+  --color-light-green: #87c232;
+  --color-dark-grey: #474a4f;
+  --color-grey: #6a6e71;
+  --color-light-grey: #aaaaaa;
+  --color-dark: #030303;
+  --color-dark-green: #121a11;
+  --color-error: #e25c5f;
+  --color-input: #212224;
+  --color-input-bg: #0f0f10;
+  --color-input-border: #2f2f31;
+  --color-warning: #e86b10;
+
+  --breakpoint-ls: 320px;
+  --breakpoint-xs: 500px;
+  --breakpoint-mds: 600px;
+  --breakpoint-sm: 768px;
+  --breakpoint-xl: 1024px;
+  --breakpoint-md: 1100px;
+  --breakpoint-lg: 1300px;
+  --breakpoint-2xl: 1440px;
+  --breakpoint-xh: 1600px;
+  --breakpoint-3xl: 1920px;
+
+  --text-size-14: 14px;
+  --text-size-16: 16px;
+  --text-size-18: 18px;
+  --text-size-20: 20px;
+  --text-size-24: 24px;
+  --text-size-32: 32px;
+  --text-size-40: 40px;
+  --text-size-48: 48px;
+  --text-size-64: 64px;
+}
+
+html,
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  background-color: var(--color-dark);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.input {
+  @apply w-full px-2 py-2 border text-white border-input-border bg-input rounded-md focus:outline-none focus:ring-1 focus:ring-green-600;
+}
+
+.label {
+  @apply block text-sm font-medium text-white mb-1;
+}
+
+.button {
+  @apply w-full mt-2 py-2 px-4 rounded-md text-white font-medium bg-gradient-to-r cursor-pointer from-green-900 to-green-700 hover:from-green-800 hover:to-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors;
+}
+
+.text-responsive-auth {
+  @apply text-sm mds:text-xl sm:text-2xl md:text-3xl lg:text-4xl;
+}
+
+.text-responsive {
+  @apply sm:text-xl md:text-2xl;
+}
